@@ -1,5 +1,7 @@
 <h1 align="center">SpinFlowSim</h1>
+
 ![resolved_networks](https://github.com/user-attachments/assets/3a79f328-2c27-4dda-b9da-6d8dd5fa3bcb)
+
 </div>
 
 **Introducing SpinFlowSim**! 
