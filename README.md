@@ -1,20 +1,19 @@
-<h1 align="center">SpinFlowSim</h1>
-<!-- [resolved_networks](https://github.com/user-attachments/assets/3a79f328-2c27-4dda-b9da-6d8dd5fa3bcb)-->
+<h1 align="center">● SpinFlowSim ●</h1>
+
+
+<video width="600" controls autoplay>
+    <source src="[https://github.com/user-attachments/assets/be](https://github.com/user-attachments/assets/3a79f328-2c27-4dda-b9da-6d8dd5fa3bcb)" type="video/mp4">
+</video>
+
 
 ![flowchart](https://github.com/user-attachments/assets/908ea87e-29ac-43b7-9089-3f0353af9e84)
 
 </div>
 
 **Introducing SpinFlowSim**! 
-Here you'll find the code and essential data to run .This repository contains the code and the synthetic data used for: "SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer", Voronova A et al. 
+Here you'll find the code and essential data to run .This repository contains the code and the synthetic data used for: 
+> "SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer". Voronova A et al. 
 
-- Markdown Cheatsheet [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-- Markdown icons [https://gist.github.com/rxaviers/7360908](https://gist.github.com/rxaviers/7360908)
-- Github Actions [https://docs.github.com/en/actions/learn-github-actions](https://docs.github.com/en/actions/learn-github-actions)
-- Python Packages:
-  - [https://blog.inedo.com/python/packages-authoring-best-practices](https://blog.inedo.com/python/packages-authoring-best-practices)
-  - [https://packaging.python.org/en/latest/tutorials/packaging-projects/](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
-  - [https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/)
 
 <div align="center">
 <br/>
