@@ -1,10 +1,9 @@
 <h1 align="center">SpinFlowSim</h1>
-
-<div align="center" style="padding-top: 2em; padding-bottom: 2em;">
-    <img src="[https://github.com/user-attachments/assets/8](https://github.com/user-attachments/assets/89cb3abb-ac3f-4a8c-a460-77a2e754e735)" alt="resolved_networks">
+![resolved_networks](https://github.com/user-attachments/assets/3a79f328-2c27-4dda-b9da-6d8dd5fa3bcb)
 </div>
 
-**Introducing SpinFlowSim**! Here you'll find the code and essential data to run .This repository contains the code and the synthetic data used for: "SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer", Voronova A et al. 
+**Introducing SpinFlowSim**! 
+Here you'll find the code and essential data to run .This repository contains the code and the synthetic data used for: "SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer", Voronova A et al. 
 
 - Markdown Cheatsheet [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 - Markdown icons [https://gist.github.com/rxaviers/7360908](https://gist.github.com/rxaviers/7360908)
