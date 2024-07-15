@@ -18,6 +18,7 @@ This an example of a README.md file for a package. Change this to your code sett
 <br/>
 
 
+![resolved_networks](https://github.com/user-attachments/assets/89cb3abb-ac3f-4a8c-a460-77a2e754e735)
 
 
 
