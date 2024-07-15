@@ -1,6 +1,7 @@
 <h1 align="center">SpinFlowSim</h1>
+<!-- [resolved_networks](https://github.com/user-attachments/assets/3a79f328-2c27-4dda-b9da-6d8dd5fa3bcb)-->
 
-![resolved_networks](https://github.com/user-attachments/assets/3a79f328-2c27-4dda-b9da-6d8dd5fa3bcb)
+![flowchart](https://github.com/user-attachments/assets/908ea87e-29ac-43b7-9089-3f0353af9e84)
 
 </div>
 
