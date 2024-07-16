@@ -58,29 +58,7 @@ positional arguments:
 
 optional arguments:
   -h, --help       show this help message and exit
-  -f, -o, --force  overwrite if the file already exists
-  -c, --resume     resume failed or cancelled download (partial sanity check)
-  -e, --echo       print the filepath to stdout after downloading (other
-                   output will be redirected to stderr)
-  -q, --quiet      suppress filesize and progress info
-  -b, --batch      Download files in batch. If this flag is passed the passed
-                   source will be considered as a file with download links
-                   seperated by a newline. This flag will be ignored if source
-                   is a valid URL.
-  -v, --version    show the program version number and exit
 
-```
-
-# Use It
-
-**Want to use it in your project?**
-
-Import the ```Download``` class using the following.
-
-```python
-from downloader_cli.download import Download
-Download(url).download()
-```
 
 Above is the simplest way to use it in your app. The other arguments are optional.
 
