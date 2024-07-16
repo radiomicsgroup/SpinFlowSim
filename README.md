@@ -1,10 +1,6 @@
 <h1 align="center">SpinFlowSim: synthesize dMRI signals from histology</h1>
 
 
-<video width="600" controls autoplay>
-    <source src="[https://github.com/user-attachments/assets/be](https://github.com/user-attachments/assets/3a79f328-2c27-4dda-b9da-6d8dd5fa3bcb)" type="video/mp4">
-</video>
-
 ![Resolvednetworks](https://github.com/user-attachments/assets/e7386d51-27aa-4650-8e75-84545a530daf)
 
 </div>
@@ -22,99 +18,31 @@ Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi S
 <div align="center">
     
 ![qr_img](https://github.com/user-attachments/assets/c4c9c69d-48c6-405e-8837-b3afde524312)
-
+    
 <div>
 
 <a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#use-it">Use It</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#other-examples">Other examples</a>&nbsp;&nbsp;&nbsp;
 <br/><br/>
 
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)<br/><br/>
-[![License](https://img.shields.io/badge/License-MIT-pink.svg?style=for-the-badge)](LICENSE) ![AUR](https://img.shields.io/aur/version/downloader-cli?style=for-the-badge) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-purple.svg?style=for-the-badge)](http://makeapullrequest.com)
 
 </div>
 
 # Installation
 
-- [PyPI](#pypi)
-- [Arch](#arch)
-- [Gentoo](#gentoo)
-- [Conda-Forge](#conda-forge)
-- [Manual](#manual)
-
->NOTE: The following packages (except installing manually) will get you the latest release. If you want to try out the latest development stuff, install manually.
-
-### PyPI
-
-The package is available in PyPI [here](https://pypi.org/project/downloader-cli/)
-
-Install it using
-
-```sh
-pip install downloader-cli
-```
-
-### Arch
-
-The package is available in the AUR [here](https://aur.archlinux.org/packages/downloader-cli/)
-
-Install it using `yay`
-
-```console
-yay -S downloader-cli
-```
-
-### Gentoo
-
-The package is also available in src_prepare Gentoo overlay [here](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/net-misc/downloader-cli/)
-
-First set up src_prepare-overlay
-
-```sh
-sudo emerge -anv --noreplace app-eselect/eselect-repository
-sudo eselect repository enable src_prepare-overlay
-sudo emaint sync -r src_prepare-overlay
-```
-
-Install it using
-
-```sh
-sudo emerge -anv --autounmask net-misc/downloader-cli
-```
-
-### Conda-Forge
-
-Installing `downloader-cli` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
-
-```
-conda config --add channels conda-forge
-conda config --set channel_priority strict
-```
-
-Once the `conda-forge` channel has been enabled, `downloader-cli` can be installed with:
-
-```
-conda install downloader-cli
-```
-
-It is possible to list all of the versions of `downloader-cli` available on your platform with:
-
-```
-conda search downloader-cli --channel conda-forge
-```
-
-### Manual
-
-If you want to manuall install, clone the repo and run the following command
-
-```sh
-sudo python setup.py install
-```
+Start using SpinFlowSim by 
 
 # Requirements
 
-**downloader-cli** requires just one external module.
+</div>
+SpinFlowSim has been developed with python 3.10.8.
 
-- [urllib3](https://pypi.org/project/urllib3/)
+It requires the following third-party packages:
+
+- [pandas](https://pandas.pydata.org/) (developed with version 1.5.3)
+- [lcapy](https://lcapy.readthedocs.io/en/latest) (developed with lcapy 1.10)
+- [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with PySpice 1.5)
+- [graph-tool](https://graph-tool.skewed.de) (developed with graph-tool 2.45, commit b1a649d8)
+
 
 # Usage
 
@@ -156,40 +84,5 @@ Download(url).download()
 
 Above is the simplest way to use it in your app. The other arguments are optional.
 
-## Arguments
 
-The module takes various arguments. Only **one** is required though.
 
-| Name | required | default |
-|------|----------|---------|
-| URL/file  | Yes      |         |
-| des  | No       | None (Current directory is selected and the name is extracted from the URL)|
-| overwrite| No   | False   |
-| continue_download| No | False |
-| echo | No | False |
-| quiet | No | False |
-| batch | No | False |
-| icon_done| No   | ▓       |
-| icon_left| No   | ░       |
-| icon_border| No | \| (If a single char is passed, it will be used for both the right and left border. If a string of 2 chars are passed, 1st char will be used as left border and the 2nd as the right border) |
-
-> **NOTE** For details regarding the arguments, check [Usage](#usage)
-
-> **NOTE** In case the file size is not available, the bar is shown as indefinite, in which case the icon_left
-by default space(```" "```).
-
-# Other examples
-
-### In case you want to experiment with the progress bar's icons, here's some examples
-
-- This is when I passed ```icon_done``` as ```#``` and ```icon_left``` as space.
-
-  <div align="center" style="padding-top: 2em !important; padding-bottom: 2em; !important">
-      <img src=".github/dw_other.gif">
-  </div>
-
-- In case a file's size is not available from the server, the progressbar is indefinite.
-
-  <div align="center">
-      <img src=".github/indefinite_bar.gif">
-  </div>
