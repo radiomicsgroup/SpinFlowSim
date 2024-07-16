@@ -1,26 +1,29 @@
-<h1 align="center">● SpinFlowSim ●</h1>
+<h1 align="center">SpinFlowSim: synthesize dMRI signals from histology</h1>
 
 
 <video width="600" controls autoplay>
     <source src="[https://github.com/user-attachments/assets/be](https://github.com/user-attachments/assets/3a79f328-2c27-4dda-b9da-6d8dd5fa3bcb)" type="video/mp4">
 </video>
 
-
-![flowchart](https://github.com/user-attachments/assets/908ea87e-29ac-43b7-9089-3f0353af9e84)
+![Resolvednetworks](https://github.com/user-attachments/assets/e7386d51-27aa-4650-8e75-84545a530daf)
 
 </div>
 
 **Introducing SpinFlowSim**! 
-Here you'll find the code and essential data to run .This repository contains the code and the synthetic data used for: 
-> "SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer". Voronova A et al. 
 
+
+Here you'll find the code and essential data to simulate diffusion Magnetic Resonance Imaging (dMRI) signals arising from perfusion flow in synthetic and realistic microvasculature networks obtained from histology.
+
+
+Foster open science by citing our preprint if you use SpinFlowSim in your research: 
+
+Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Nuria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Roser Sala-Llonch, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu. "SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer". medRxiv 2024.07.15.24310335; doi: https://doi.org/10.1101/2024.07.15.24310335
 
 <div align="center">
-<br/>
+    
+![qr_img](https://github.com/user-attachments/assets/c4c9c69d-48c6-405e-8837-b3afde524312)
 
-
-
-
+<div>
 
 <a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#use-it">Use It</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#other-examples">Other examples</a>&nbsp;&nbsp;&nbsp;
 <br/><br/>
