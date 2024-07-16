@@ -21,15 +21,12 @@ Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi S
     
 <div>
 
-<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#use-it">Use It</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#other-examples">Other examples</a>&nbsp;&nbsp;&nbsp;
+<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#environment">Environment</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#use-it">Use It</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#other-examples">Other examples</a>&nbsp;&nbsp;&nbsp;
 <br/><br/>
 
 
 </div>
 
-# Installation
-
-Start using SpinFlowSim by 
 
 # Requirements
 
@@ -43,7 +40,27 @@ It requires the following third-party packages:
 - [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with PySpice 1.5)
 - [graph-tool](https://graph-tool.skewed.de) (developed with graph-tool 2.45, commit b1a649d8)
 
+# Download
+</div>
+Obtain SpinFlowSim by cloning this repository:
 
+ ```sh
+ git clone https://github.com/radiomicsgroup/SpinFlowSim
+ ```
+
+# Environment
+</div>
+Start using SpinFlowSim by activating the pipenet environment
+
+```
+$:- conda create --name pipenet  -c conda-forge graph-tool  python=3.10.8
+$:- conda activate pipenet
+```
+Install the required packages
+
+```
+$:- pip install -r requirements.txt
+```
 # Usage
 
 The script also allows some other values from the commandline.
