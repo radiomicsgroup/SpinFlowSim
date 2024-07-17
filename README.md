@@ -63,21 +63,8 @@ $:- pip install -r requirements.txt
 ```
 # Usage
 
-The script also allows some other values from the commandline.
+Under construction, will be available soon!
 
-```console
-usage: dw [-h] [-f | -c] [-e] [-q] [-b] [-v] SOURCE [TARGET]
-
-positional arguments:
-  SOURCE           URL of the file
-  TARGET           target filepath (existing directories will be treated as
-                   the target location)
-
-optional arguments:
-  -h, --help       show this help message and exit
-
-
-Above is the simplest way to use it in your app. The other arguments are optional.
 
 
 
