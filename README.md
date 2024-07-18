@@ -13,7 +13,9 @@ Here you'll find the code and essential data to simulate diffusion Magnetic Reso
 
 Foster open science by citing our preprint if you use SpinFlowSim in your research: 
 
-Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Nuria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Roser Sala-Llonch, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu. "SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer". medRxiv 2024.07.15.24310335; doi: https://doi.org/10.1101/2024.07.15.24310335
+Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Nuria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Roser Sala-Llonch, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu. **"SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer"**. medRxiv 2024.07.15.24310335; doi: https://doi.org/10.1101/2024.07.15.24310335.
+
+The SpinFlowSim code was developed by Francesco Grussu (<fgrussu@vhio.net>), Anna Voronova (<annavoronova@vhio.net>) and Athanasios Grigoriou (<agrigoriou@vhio.net>). 
 
 <div align="center">
     
