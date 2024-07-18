@@ -23,7 +23,7 @@ The SpinFlowSim code was developed by Francesco Grussu (<fgrussu@vhio.net>), Ann
     
 <div>
 
-<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#environment">Environment</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#use-it">Use It</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#other-examples">Other examples</a>&nbsp;&nbsp;&nbsp;
+<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#other-examples">Other examples</a>&nbsp;&nbsp;&nbsp;
 <br/><br/>
 
 
@@ -42,15 +42,13 @@ It requires the following third-party packages:
 - [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with PySpice 1.5)
 - [graph-tool](https://graph-tool.skewed.de) (developed with graph-tool 2.45, commit b1a649d8)
 
-# Download
+# Installation
 </div>
 Obtain SpinFlowSim by cloning this repository:
 
  ```sh
  git clone https://github.com/radiomicsgroup/SpinFlowSim
  ```
-
-# Environment
 </div>
 Start using SpinFlowSim by activating the pipenet environment
 
