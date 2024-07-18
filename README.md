@@ -62,7 +62,7 @@ $:- pip install -r requirements.txt
 ```
 # Usage
 
-Under construction, will be available soon!
+Under construction - several tutorials will be available soon!
 
 
 
