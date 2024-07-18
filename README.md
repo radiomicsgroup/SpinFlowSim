@@ -1,4 +1,4 @@
-<h1 align="center">SpinFlowSim: synthesize dMRI signals from flowing spins</h1>
+<h1 align="center">SpinFlowSim: synthesize dMRI signals from spins flowing in capillary networks</h1>
 
 
 ![Resolvednetworks](https://github.com/user-attachments/assets/e7386d51-27aa-4650-8e75-84545a530daf)
