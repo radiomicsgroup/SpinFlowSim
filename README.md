@@ -8,7 +8,7 @@
 **Introducing SpinFlowSim**! 
 
 
-Here you'll find the code and essential data to simulate diffusion Magnetic Resonance Imaging (dMRI) signals arising from perfusion flow in synthetic and realistic microvasculature networks obtained from histology.
+Here you'll find the code and essential data to simulate diffusion Magnetic Resonance Imaging (dMRI) signals arising from spins flowing in synthetic, realistic microvasculature networks obtained from histology.
 
 
 Foster open science by citing our preprint if you use SpinFlowSim in your research: 
