@@ -16,7 +16,7 @@ The SpinFlowSim code was written by Francesco Grussu (<fgrussu@vhio.net>), Anna 
 
 Foster open science by citing our preprint if you use SpinFlowSim in your research: 
 
-Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Nuria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Roser Sala-Llonch, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu. **"SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer"**. medRxiv 2024.07.15.24310335; doi: https://doi.org/10.1101/2024.07.15.24310335.
+Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Nuria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Roser Sala-Llonch, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu. **"SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer"**. medRxiv 2024.07.15.24310335; doi: [10.1101/2024.07.15.24310335](https://doi.org/10.1101/2024.07.15.24310335).
 
 <div align="center">
     
@@ -49,7 +49,7 @@ Obtain SpinFlowSim by cloning this repository:
  git clone https://github.com/radiomicsgroup/SpinFlowSim
  ```
 </div>
-Start using SpinFlowSim by activating the pipenet environment
+Start using SpinFlowSim by creating a new environment:
 
 ```
 $:- conda create --name pipenet  -c conda-forge graph-tool  python=3.10.8
@@ -60,10 +60,18 @@ Install the required packages
 ```
 $:- pip install -r requirements.txt
 ```
+
+# Code description
+
+
 # Usage
 
-Under construction - several tutorials will be available soon!
+We have included some examples to illustrate how to use SpinFlowSim for your diffusion MRI analyses. 
 
+* In this first tutorial, we show how to create and initialise a SpinFlowSim _pipenet_ object, in order to resolve an exemplificative vascular network drawn on histology.
+* In this second tutorial, we show how synthetic signals can be used to inform microvasculature inference, replicating the _in silico_ parameter estimation experiments of our [preprint](https://doi.org/10.1101/2024.07.15.24310335).
+    
+Moreover, this repository contains all the 1500 microvascular networks used in our preprint. These can be used to synthesise vascular diffusion MRI signals for any protocol of interest.
 
 
 
