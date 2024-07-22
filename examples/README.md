@@ -1,3 +1,5 @@
+#_SpinFlowSim_ examples
+
 This folder contains examples that illustrate how to use SpinFlowSim for your diffusion MRI analyses. The examples rely on additional custom-written code, which is included here for convenience. Some third-party packages are also required, as for example:
 * [nibabel](https://nipy.org/nibabel) (examples tested with version '5.1.0')
 * [numpy](https://numpy.org) (examples tested with version '1.23.5')
