@@ -77,7 +77,7 @@ We have included some [examples](https://github.com/radiomicsgroup/SpinFlowSim/b
 * In this first [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md), we show how to create and initialise a SpinFlowSim _pipenet_ object, in order to resolve an exemplificative vascular network drawn on histology.
 * In this second [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md), we show how synthetic signals can be used to inform microvasculature inference, replicating the _in silico_ parameter estimation experiments of our [preprint](https://doi.org/10.1101/2024.07.15.24310335).
     
-**Please note that we are still polishing the SpinFlowSim repositories: the file structure may change slightly and some files may be still missing. Thanks for your patience!**
+**UNDER CONSTRUCTION! Please note that we are still polishing the SpinFlowSim repositories: the file structure may change slightly and some files may be still missing. Thanks for your patience!**
 
 
 
