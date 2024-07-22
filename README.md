@@ -64,8 +64,8 @@ $:- pip install -r requirements.txt
 # Repository description
 The SpinFlowSim repository includes several sub-fodlers:
 * The folder (code)[https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code] stores
-  ** a
-  ** b
+    * a
+    * b
 * The folder 
 
 # Usage
