@@ -64,9 +64,11 @@ $:- pip install -r requirements.txt
 # Repository description
 The SpinFlowSim repository includes several sub-fodlers:
 * The folder [code](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code) stores the actual simulation and visualisation tools behind SpinFlowSim:
-    * the file [syn.py](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/syn.py) defines the _pipenet_ class, with which we represent and resolve vascular networks. An initialised _pipenet_ object can be used to synthesise microvascular signals for any dMRI protocol of interest. 
+    * the file [syn.py](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/syn.py) defines the _pipenet_ class, with which we represent and resolve vascular networks. An initialised _pipenet_ object can be used to synthesise microvascular signals for any dMRI protocol of interest;
     * the file [visu.py](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/visu.py) defines useful tools to visualise spin flow as a video.
-* The folder[code](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code) 
+* The folder [examples](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) contains some examples that illustrate how to use SpinFlowSim in practice (please also see the next section).
+* The folder [networks](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) contains the resolved vascular networks generated for our [preprint](https://doi.org/10.1101/2024.07.15.24310335). These can be used to synthesise vascular dMRI signals for any acquisition protocol of interest.
+    
 
 # Usage
 
@@ -75,7 +77,7 @@ We have included some examples to illustrate how to use SpinFlowSim for your dif
 * In this first tutorial, we show how to create and initialise a SpinFlowSim _pipenet_ object, in order to resolve an exemplificative vascular network drawn on histology.
 * In this second tutorial, we show how synthetic signals can be used to inform microvasculature inference, replicating the _in silico_ parameter estimation experiments of our [preprint](https://doi.org/10.1101/2024.07.15.24310335).
     
-Moreover, this repository contains all the 1500 microvascular networks used in our preprint. These can be used to synthesise vascular diffusion MRI signals for any protocol of interest.
+**Please note that we are still polishing the SpinFlowSim repositories: the file structure may change slightly and some files may be still missing. Thanks for your patience!**
 
 
 
