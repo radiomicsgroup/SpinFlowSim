@@ -63,10 +63,10 @@ $:- pip install -r requirements.txt
 
 # Repository description
 The SpinFlowSim repository includes several sub-fodlers:
-* The folder (code)[https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code] stores
-    * a
-    * b
-* The folder 
+* The folder [code](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code) stores the actual simulation and visualisation tools behind SpinFlowSim:
+    * the file [syn.py](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/syn.py) defines the _pipenet_ class, with which we represent and resolve vascular networks. An initialised _pipenet_ object can be used to synthesise microvascular signals for any dMRI protocol of interest. 
+    * the file [visu.py](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/visu.py) defines useful tools to visualise spin flow as a video.
+* The folder[code](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code) 
 
 # Usage
 
