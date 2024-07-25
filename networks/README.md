@@ -1,4 +1,4 @@
-# Ferely available capillary networks for vascular dMRI signal synthesis
+# Capillary networks for vascular dMRI signal synthesis
 
 SpinFlowSim was showcased on vascular networks reconstructed from 2D histological images. The networks were drawn manually, tracing visible capillaries in 11 stained liver biopsies.
 
