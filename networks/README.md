@@ -10,11 +10,13 @@ The network dataset has been augmented to 1500 realizations by varying input flo
 
 
 
-You can start running SpinFlowSim by choosing from any of the 1500 network realizations (in binary `.bin` format) stored within [**this**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) folder.
+You can start running SpinFlowSim by choosing from any of the 1500 network realizations (in binary `.bin` format) stored within this folder.
 
 ### Directory Description:
 
-- **Net{ID}**: Directory containing the files, where `{ID}` is the unique identifier for the networks shown in the figure above.
+The [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) folder contains 15 sub-folders, each referring to a vascular network.
+
+- **Net{ID}**: folder containing the files, where `{ID}` is the unique identifier for the networks shown in the figure above.
 
 ### Sub-Directory Filename Description:
 - **net{ID}**: Base name of the file, where `{ID}` corresponds to the same unique identifier used in the directory.
