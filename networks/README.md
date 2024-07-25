@@ -19,20 +19,17 @@ The [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/netwo
 - **Net{ID}**: folder containing the files, where `{ID}` is the unique identifier for the networks shown in the figure above.
 
 ### Sub-Directory Filename Description:
-Each network folder, contains several files - something like, for example, _net12_Nin0_Nout14_Qin0.0007.bin_. We use the following file naming convention:
+Each network folder, contains several files - something like, for example, [_net10_Nin0_Nout28_Qin0.0001.bin_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.bin). We use the following file naming convention:
 - **net{ID}**: Base name of the file, where `{ID}` corresponds to the same unique identifier used in the directory.
 - **Nin{input_node}**: The flow input node in the given network realization.
 - **Nout{output_node}**: The flow output node in the given network realization.
 - **Qin{input_volumetric_flow_rate}**: Represents the input volumetric flow rate in mm³/s.
 
-### Example:
 
-For a file named `net10_Nin0_Nout28_Qin0.0001.bin`, this indicates:
-
-- The file is located in the `Net10` directory.
-- The network ID is `10`.
-- The flow inlet node is `0`, the outlet node is `28`.
-- The input volumetric flow rate is `1 × 10⁻⁴ mm³/s`.
-
+This means that a file name `net10_Nin0_Nout28_Qin0.0001.bin` indicates that:
+- the file is located in the folder corresponding to the `Net10` vascular network;
+- the network ID is `10`;
+- the flow inlet node is `0`, while the the outlet node is `28`;
+- the input volumetric flow rate is `1 × 10⁻⁴ mm³/s`.
 
 
