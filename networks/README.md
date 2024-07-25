@@ -15,7 +15,7 @@ Start running SpinFlowSim by choosing from any of the 1500 network realizations 
 
 ### Directory Description:
 
-- **Net{ID}**: Directory containing the files, where `{ID}` is the unique identifier for the network.
+- **Net{ID}**: Directory containing the files, where `{ID}` is the unique identifier for the networks shown in the figure above.
 
 ### Sub-Directory Filename Description:
 - **net{ID}**: Base name of the file, where `{ID}` corresponds to the same unique identifier used in the directory.
