@@ -66,13 +66,13 @@ The SpinFlowSim repository includes several sub-fodlers:
 * The folder [**code**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code) stores the actual simulation and visualisation tools behind SpinFlowSim:
     * the file [`syn.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/syn.py) defines the _pipenet_ class, with which we represent and resolve vascular networks. An initialised _pipenet_ object can be used to synthesise microvascular signals for any dMRI protocol of interest;
     * the file [`visu.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/visu.py) defines useful tools to visualise spins flowing within a vascular network as a video.
-* The folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) contains some examples that illustrate how to use SpinFlowSim in practice (please also see the next section).
+* The folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) contains some tutorials that illustrate how to use SpinFlowSim in practice.
 * The folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) contains the resolved vascular networks generated for our [preprint](https://doi.org/10.1101/2024.07.15.24310335). These can be used to synthesise vascular dMRI signals for any acquisition protocol of interest.
     
 
 # Usage
 
-We have included some [examples](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/README.md) to illustrate how to use SpinFlowSim for your diffusion MRI analyses. 
+We have included some tutorials in the folder [examples](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/README.md) to illustrate how to use SpinFlowSim for your diffusion MRI analyses. 
 
 * In this first [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md), we show **how to create and initialise a SpinFlowSim _pipenet_ object to resolve a vascular network drawn on histology**.
 * In this second [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md), we show **how synthetic signals can be used to inform microvasculature property inference**, replicating the _in silico_ parameter estimation experiments of our [preprint](https://doi.org/10.1101/2024.07.15.24310335).
