@@ -19,6 +19,7 @@ The [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/netwo
 - **Net{ID}**: folder containing the files, where `{ID}` is the unique identifier for the networks shown in the figure above.
 
 ### Sub-Directory Filename Description:
+Each network folder, contains several files - something like, for example, _net12_Nin0_Nout14_Qin0.0007.bin_. We use the following file naming convention:
 - **net{ID}**: Base name of the file, where `{ID}` corresponds to the same unique identifier used in the directory.
 - **Nin{input_node}**: The flow input node in the given network realization.
 - **Nout{output_node}**: The flow output node in the given network realization.
