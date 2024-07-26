@@ -40,9 +40,14 @@ Attributes and methods of objects of the class _pipenet_ are described in detail
 Each _pipenet_ object storing a network is accompanied by a small CSV file bearing the same name, and storing summary network properties. For example, the network file  [_net10_Nin0_Nout28_Qin0.0001.bin_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.bin) has a companion CSV file called  [_net10_Nin0_Nout28_Qin0.0001.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.csv). Each of these CSV files has 5 columns, reporting 5 network properties:
 - **variable _vm_**: mean value of the blood velocity distribution, in `mm/s`;
 - **variable _vs_**: standard deviation of the blood velocity distribution, in `mm/s`;
-- **variable _anb_**: apparent network branching (ANB), expressed in number of segments. This is a count of the number of capillary segments that spins flowing through the network pass through during a given observation time (in this case, 100 ms);
-- **variable _rm_**: mean capillary segment radius, in mm;
-- *variable _lm**: mean capillary segment length, in mm.
+- **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`. This is a count of the number of capillary segments that spins flowing through the network pass through during a given observation time (in this case, 100 ms);
+- **variable _rm_**: mean capillary segment radius, in `mm`;
+- **variable _lm**: mean capillary segment length, in `mm`.
 
+As an example, the content of one of these CSV files would look something like this:
+```
+vm,vs,anb,rm,rl
+4.56,3.23,14.76,0.0056,0.0195
+```
 
  
