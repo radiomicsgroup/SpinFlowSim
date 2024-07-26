@@ -12,25 +12,26 @@ The network dataset has been augmented to 1500 realizations by varying input flo
 
 You can start running SpinFlowSim by choosing from any of the 1500 network realizations (in binary `.bin` format) stored within this folder.
 
-### Directory Description:
+### Directory Description
 
 The [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) folder contains 15 sub-folders, each referring to a vascular network.
 
 - **Net{ID}**: folder containing the files, where `{ID}` is the unique identifier for the networks shown in the figure above.
 
-### Sub-Directory Filename Description:
+### Sub-Directory Filename Description
 Each network folder, contains several files - something like, for example, [_net10_Nin0_Nout28_Qin0.0001.bin_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.bin). We use the following file naming convention:
 - **net{ID}**: Base name of the file, where `{ID}` corresponds to the same unique identifier used in the directory.
 - **Nin{input_node}**: The flow input node in the given network realization.
 - **Nout{output_node}**: The flow output node in the given network realization.
 - **Qin{input_volumetric_flow_rate}**: Represents the input volumetric flow rate in mm³/s.
 
-
-This means that a file name `net10_Nin0_Nout28_Qin0.0001.bin` indicates that:
+### .bin files: pipenet objects
+A file name `net10_Nin0_Nout28_Qin0.0001.bin` indicates that:
 - the file is located in the folder corresponding to the `Net10` vascular network;
 - the network ID is `10`;
 - the flow inlet node is `0`, while the the outlet node is `28`;
 - the input volumetric flow rate is `1 × 10⁻⁴ mm³/s`.
 
+### .csv files: network features
 Each network is accompanied by a small CSV file bearing the same name, and storing summary network properties. For example, the network file  [_net10_Nin0_Nout28_Qin0.0001.bin_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.bin) has a companion CSV file called  [_net10_Nin0_Nout28_Qin0.0001.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.csv). Each of these CSV files has 5 columns, reporting 5 network properties:
  
