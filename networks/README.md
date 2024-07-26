@@ -42,12 +42,15 @@ Each _pipenet_ object storing a network is accompanied by a small CSV file beari
 - **variable _vs_**: standard deviation of the blood velocity distribution, in `mm/s`;
 - **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`. This is a count of the number of capillary segments that spins flowing through the network pass through during a given observation time (in this case, 100 ms);
 - **variable _rm_**: mean capillary segment radius, in `mm`;
-- **variable _lm**: mean capillary segment length, in `mm`.
+- **variable _lm_**: mean capillary segment length, in `mm`.
 
 As an example, the content of one of these CSV files would look something like this:
 ```
-vm,vs,anb,rm,rl
+vm,vs,anb,rm,lm
 4.56,3.23,14.76,0.0056,0.0195
 ```
 
- 
+### Using vascular networks and their network properties
+We have written two tutorials to show you how to use these data for your modelling of vascular diffusion MRI signals.  
+* This first [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md), **describes in detail a SpinFlowSim _pipenet_ object, and shows how to resolve a vascular network from capillaries drawn on histology**.
+* This second [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md), shows **how synthetic signals from _pipenet_ objects can be used to inform microvascular parameter estimation**.  
