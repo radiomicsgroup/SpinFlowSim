@@ -32,4 +32,5 @@ This means that a file name `net10_Nin0_Nout28_Qin0.0001.bin` indicates that:
 - the flow inlet node is `0`, while the the outlet node is `28`;
 - the input volumetric flow rate is `1 × 10⁻⁴ mm³/s`.
 
-
+Each network is accompanied by a small CSV file bearing the same name, and storing summary network properties. For example, the network file  [_net10_Nin0_Nout28_Qin0.0001.bin_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.bin) has a companion CSV file called  [_net10_Nin0_Nout28_Qin0.0001.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.csv). Each of these CSV files has 5 columns, reporting 5 network properties:
+ 
