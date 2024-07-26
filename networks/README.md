@@ -52,5 +52,5 @@ vm,vs,anb,rm,lm
 
 ### Using vascular networks and their properties
 We have written two tutorials to show you how to use these data for your modelling of vascular diffusion MRI signals.  
-* This first [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md), **describes in detail a SpinFlowSim _pipenet_ object, and shows how to resolve a vascular network from capillaries drawn on histology**.
-* This second [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md), shows **how synthetic signals from _pipenet_ objects can be used to inform microvascular parameter estimation**.  
+* This first [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md) **describes in detail a SpinFlowSim _pipenet_ object, and shows how to resolve a vascular network from capillaries drawn on histology**.
+* This second [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md) shows **how synthetic signals from _pipenet_ objects can be used to inform microvascular parameter estimation**.  
