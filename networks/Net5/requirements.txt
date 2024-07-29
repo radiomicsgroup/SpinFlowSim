@@ -1,0 +1,3 @@
+numpy==1.23.5
+lcapy==1.10
+graph-tool==2.45
