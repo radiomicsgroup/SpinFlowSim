@@ -1,6 +1,8 @@
-**WE ARE POLISHING THIS CODE. IT WILL BE HERE IN THE COMING DAYS - APOLOGIES FOR THE INCONVENIENCE!!**
+# How to initialise objects from the class _pipenet_ to resolve vascular networks
 
-**Initializing a pipenet object**
+**NOTE: WE ARE STILL POLISHING THIS CODE. WE WILL BE DONE IN THE COMING DAYS - APOLOGIES FOR THE INCONVENIENCE!!**
+
+## Initializing a pipenet object
 
 _pipenet_ is a Class used to define a vascular network that can be later used to simulated IVIM MRI diffusion signals. In our framework, a vascular network is nothing but a collection of _nodes_, connected through _pipes_, representing capillaries.  
 
