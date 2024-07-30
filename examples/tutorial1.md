@@ -16,15 +16,31 @@ To create an object from the _pipenet_ class ones needs the following mandatory 
     * idxout:    index of the output node in the node matrix (nodes[:,idxout] provides the x,y,z coordinates
                  of such an input node)
 
-For example, this code creates a _pipenet_ object describing the small, two-dimensional 3-capillary network depicted below:
+Additional optional parameters are the fluid viscosity, the radius at the inlet, the model used to solve the fluid dynamics and the type of solver. The full manual of the _pipenet_ class constructor is provided here.
+
+For example, this code creates a _pipenet_ object describing a small, two-dimensional 3-capillary network, depicted below. It also ensures that the fluid dynamics follows the model used in Blinder et al, Nat Neurosci 2013, doi: , which is solved numerically, with default inlet radius computation (mean of the radii emanating from the inlet): 
 
 ```
 import numpy as np
 import sys
 sys.path.insert(0, '../code' )      # Add the SpinFlowSim "code" folder where the syn.py and visu.py files are stored
 
-nodepos = np.transpose( np.array([ [0.0, 0.0, 0.0], [0.010, 0.020, 0.0], [0.030, 0.0, 0.0] ] ) )
+nodepos = np.transpose( np.array([ [0.0, 0.0, 0.0], [0.010, 0.020, 0.0], [0.030, 0.0, 0.0] ] ) )    # Node positions in mm
 
+r = np.zeros((3,3))           # Node positions in mm
+r[0][0] = r[1][1] = r[2][2] = np.nan
+r[0][1] = r[1][0] = 0.005
+r[0][2] = r[2][0] = 0.007
+r[1][2] = r[2][1] = 0.008
+
+qin = 0.0055               # Input volumetric flow rate in mm3/s
+inputnode = 0              # Inlet of the whole network
+outputnode = 2             # Outlet of the whole network
+
+muval = 1.2                # Define the viscosity of pure plasma in mPa x s
+bloodmodel = 'blinder'     # Define the flow model
+
+net = syn.pipenet(nodepos,r,qin,inputnode,outputnode,visc=muval,flowmodel=bloodmodel)
 
 ```
 
