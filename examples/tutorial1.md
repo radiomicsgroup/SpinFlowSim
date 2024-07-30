@@ -75,9 +75,8 @@ help(syn.pipenet)
 ```
 
 ## Drawing a network on histology and using it to initialise a _pipenet_ object
-With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries.
+With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries. The network is made of 26 nodes, connected among each other through 37 straight capillaries. 
 
-The network is made of 26 nodes, connected among each other through 37 straight capillaries. The easiest way to start building this object is by loading a spreadsheet in .csv format with the network data as described below.
 ![labels_githhubreoi](https://github.com/user-attachments/assets/0364164f-4f12-4cf2-9fae-3c7f37770e81)
 
 We have stored the information realted to the network as a CSV spreadsheet. Each straight capillary is described by a row in [Network_stats.csv](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv). Each row is described by the following variables:
@@ -132,7 +131,7 @@ The table below illustrates the content of the CSV file.
 | 37            | 1.82385           | 10083.96    | 10073.92   | 0      | 10134.48    | 10068.24   | 0    | 1                     | 26                |
 
 
-We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py) shows how to load the spreadsheet with [_pandas_](https://pandas.pydata.org/) and how to create the input parameters that can be used to resolve the kidney network shown above.  
+We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py) shows how to load the network information contained in the spreadsheet with [_pandas_](https://pandas.pydata.org/) and how to use it to initialise a _pipenet_ object. In the script, as an example, it is assumed that the inlet/outlet are respectively nodes 0/16.
 
 
 ## Loading the realistic vascular networks that we distribute with SpinFlowSim
