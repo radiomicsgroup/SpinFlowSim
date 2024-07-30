@@ -21,7 +21,7 @@ The easiest way to start building this object is by loading a spreadsheet in .cs
 ## Network Data
 Here we have a histology image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries.
 
-Each straight capillary segment is characterized by annotation in [Network_stats.csv](./Network_stats.csv.) the following:
+Each straight capillary segment is characterized by annotation in [Network_stats.csv](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv) the following:
 - segmented ID (SegmentNumber)
 - mean radius (RadiiMean_um) in µm; computed by averaging three radii measured over the length of a segment
 - starting coordinates (Xstart,Ystart,Zstart)in µm
