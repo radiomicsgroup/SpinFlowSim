@@ -19,7 +19,7 @@ To create an object from the _pipenet_ class ones needs the following mandatory 
 
 Additional optional parameters are the fluid viscosity, the radius at the inlet, the model used to solve the fluid dynamics and the type of solver. The full manual of the _pipenet_ class is provided [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md).
 
-For example, this code creates an initialises a _pipenet_ object describing a simple 2D 3-capillary network, depicted below. 
+For example, this code creates an initialises a _pipenet_ object describing a simple 2D 3-capillary network, made of 3 nodes, namely nodes 0, 1 and 2. Connections are between nodes 0 and 1, between 0 and 2, and between 1 and 2. The input flow comes from node 0, and the output node is 2.
 
 ```
 import numpy as np
@@ -61,11 +61,12 @@ the blood velocity (BV) in mm/s in each capillary,
  [-17.61550894          nan   6.88105818]
  [-26.74115613  -6.88105818          nan]]
 ```
-or the list of paths that connect the input node with the output node:
+or the list of paths that connect the input node with the output node,
 ```
 >>> print(net.iopaths)
 [array([0, 1, 2], dtype=uint64), array([0, 2], dtype=uint64)]
 ```
+which shows that in this simple network, there are only two possible paths from inlet to outlet.
 
 Note that the VFR and BV are two attributes of the object `net`, namely `flowmat` and `velmat`. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary going from node _i_ to node _j_. These two have the same sign, and is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (as well as `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
 
