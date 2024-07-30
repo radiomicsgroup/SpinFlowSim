@@ -19,7 +19,7 @@ To create an object from the _pipenet_ class ones needs the following mandatory 
 
 Additional optional parameters are the fluid viscosity, the radius at the inlet, the model used to solve the fluid dynamics and the type of solver. The full manual of the _pipenet_ class constructor is provided here.
 
-For example, this code creates an initialises a _pipenet_ object describing a small, two-dimensional 3-capillary network, as the one depicted below. 
+For example, this code creates an initialises a _pipenet_ object describing a simple 2D 3-capillary network, depicted below. 
 
 ```
 import numpy as np
