@@ -1,4 +1,4 @@
-# How to initialise objects from the class _pipenet_ to resolve vascular networks
+# Initialising _pipenet_ objects to resolve a vascular network
 
 **NOTE: WE ARE STILL POLISHING THIS CODE. WE WILL BE DONE IN THE COMING DAYS - APOLOGIES FOR THE INCONVENIENCE!!**
 
