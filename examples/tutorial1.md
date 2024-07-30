@@ -3,7 +3,7 @@
 
 ## The _pipenet_ class
 
-We have defined the _pipenet_ to work with vascular networks, which can later be used to simulated diffusion MRI (dMRI) signals for any given protocol of interest. In our framework, a vascular network is nothing else but a collection _pipes_, representing capillaries, which conned a set of _nodes_.  
+We have defined the _pipenet_ to work with vascular networks. In our framework, a vascular network is nothing else but a collection _pipes_, representing capillaries, which conned a set of _nodes_.  
 
 To create an object from the _pipenet_ class ones needs the following mandatory input parameters:
 
@@ -25,6 +25,7 @@ For example, this code creates an initialises a _pipenet_ object describing a si
 import numpy as np
 import sys
 sys.path.insert(0, '../code' )      # Add the SpinFlowSim "code" folder where the syn.py and visu.py files are stored
+import syn                          # import syn.py, where the pipenet class is defined
 
 nodepos = np.transpose( np.array([ [0.0, 0.0, 0.0], [0.010, 0.020, 0.0], [0.030, 0.0, 0.0] ] ) )    # Node positions in mm
 
@@ -63,7 +64,13 @@ or the blood velocity (BV) in mm/s in each capillary:
 
 Note that the VFR and BV are two attributes of the object `net`, namely `flowmat` and `velmat`. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary going from node _i_ to node _j_. These two have the same sign, and is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (as well as `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
 
-The 
+Here you can find a complete description of all methods and attributes of the _pipenet_ class. You can print the same manual as:
+```
+import numpy as np
+import sys
+sys.path.insert(0, '../code' )      # Add the SpinFlowSim "code" folder where the syn.py and visu.py files are stored
+help(syn.pipenet)
+```
 
 ## Drawing a network on histology and using it to initialise a _pipenet_ object
 With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries.
