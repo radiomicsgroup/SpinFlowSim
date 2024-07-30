@@ -47,22 +47,29 @@ net = syn.pipenet(nodepos,r,qin,inputnode,outputnode,visc=muval,flowmodel=bloodm
 ```
 For the network initialisiation, we ensure that the fluid dynamics follows the model used in Blinder et al (Blinder P et al, Nature Neuroscience volume 16, pages 889–897 (2013), doi: [10.1038/nn.3426](https://doi.org/10.1038/nn.3426); optional parameter `flowmodel=bloodmodel`) with a cell-free plasma viscosity of 1.2 mPa s (`visc=muval`). The circuit is solved numerically (`solver=solvtechnique`), with default inlet radius computation (mean of the radii emanating from the inlet): 
 
-Upon declaration of the _pipenet_ object, the vascular network is solved. We can now check, for example, the volumetric flow rate (VFR) in mm<sup>3</sup>/s in each capillary:
+Upon declaration of the _pipenet_ object, the vascular network is solved. We can now check, for example, the volumetric flow rate (VFR) in mm<sup>3</sup>/s in each capillary,
 ```
 >>> print(net.flowmat)
 [[        nan  0.00138352  0.00411648]
  [-0.00138352         nan  0.00138352]
  [-0.00411648 -0.00138352         nan]]
 ```
-or the blood velocity (BV) in mm/s in each capillary:
+the blood velocity (BV) in mm/s in each capillary,
 ```
 >>> print(net.velmat)
 [[         nan  17.61550894  26.74115613]
  [-17.61550894          nan   6.88105818]
  [-26.74115613  -6.88105818          nan]]
 ```
+or the list of paths that connect the input node with the output node:
+```
+>>> print(net.iopaths)
+[array([0, 1, 2], dtype=uint64), array([0, 2], dtype=uint64)]
+```
 
 Note that the VFR and BV are two attributes of the object `net`, namely `flowmat` and `velmat`. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary going from node _i_ to node _j_. These two have the same sign, and is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (as well as `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
+
+
 
 [Here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md) you can find a complete description of all methods and attributes of the _pipenet_ class. You can print the same manual as:
 ```
