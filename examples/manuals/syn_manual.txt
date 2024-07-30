@@ -1,3 +1,6 @@
+The [syn.py](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) module contains the _pipenet_ class. Find below a detailed description of the class, of its methods, and of its attributes.
+
+```
 Help on class pipenet in module syn:
 
 class pipenet(builtins.object)
@@ -404,4 +407,4 @@ class pipenet(builtins.object)
  |  
  |  __weakref__
  |      list of weak references to the object (if defined)
-  
+```  
