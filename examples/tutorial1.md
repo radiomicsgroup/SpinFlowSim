@@ -170,6 +170,8 @@ h.close()
 # Plot the Volumetric Flow Rate matrix
 plt.imshow(net.flowmat,aspect='auto')
 plt.title('VFR matrix in mm$^3$/s')
+plt.xlabel('Node index')
+plt.ylabel('Node index')
 plt.colorbar()
 plt.show()
 
