@@ -45,7 +45,7 @@ class pipenet(builtins.object)
  |              of the vascular network. Values could be: 
  |               - "numerical": to use the PySpice package;
  |               - "symbolic": to use the lcapy symbolic computation package;
-|               Default value is "numerical"
+ |               Default value is "numerical"
  |  
  |  RETURNS
  |  * obj:       instance of class pipenet, storing an initialised vascular network.
@@ -85,7 +85,7 @@ class pipenet(builtins.object)
  |                          of the pipe connecting node i with node j, s.t. rij = rji (units: mm).
  |                          NaNs are stored along the diagonal. It is essentially a copy of the input
  |                          parameter "radii", with NaNs along the diagonal
-|              - lengthmat: matrix of pipe lengths L = [lij] of size Nnodes x Nnodes. lij stores the length
+ |              - lengthmat: matrix of pipe lengths L = [lij] of size Nnodes x Nnodes. lij stores the length
  |                           radius of the pipe connecting node i with node j, s.t. lij = lji (units: mm).
  |                           NaNs are stored along the diagonal
  |              - resmat:   matrix of pipe resistances Z = [zij] of size Nnodes x Nnodes. zij stores the
@@ -182,7 +182,7 @@ class pipenet(builtins.object)
  |      OPTIONAL INPUT PARAMETERS
  |      * Nspins:   number of spins to simulate (default: 2000).
  |      * dt:       temporal resolution of the simulation (scalar; units: s; default: 2e-5,
-|                  i.e., 20 us)
+ |                  i.e., 20 us)
  |      *seednumber: Random seed used for spin position initialisation in the network. Spin positions
  |                   are initialised uniformly within each segment (pipe) of the network. The number
  |                   of spins placed within each segment its proportional to the volume of the
@@ -230,7 +230,7 @@ class pipenet(builtins.object)
  |      * Gdir: gradient direction for a PGSE sequence; it must be a 1D numpy array of size 3, storing the
  |              x, y and z components of the gradient direction; ; if optional
  |              Gx, Gy, Gz gradient waveforms are provided, this parameter is ignored
-|              
+ |              
  |      **** NOTE THAT ALL MANDATORY INPUT PARAMETERS ABOUT b-value, GRADIENT DURATION/SEPARATION/DIRECTION
  |      ARE IGNORED IF CUSTOM GRADIENT WAVEFORMS ARE PROVIDED VIA OPTIONAL INPUT PARAMETERS Gx, Gy, Gz                
  |      
@@ -374,7 +374,7 @@ class pipenet(builtins.object)
  |                  will continue travelling through this "copy" of the network.
  |                - "feedback" -> a spin that reaches the output node is fed back to the input node,
  |                  and it will follow again the same trajectory it had taken before. Note that
-|                  in this case the particle positions and velocities over time will exhibit a
+ |                  in this case the particle positions and velocities over time will exhibit a
  |                  discontinuity when the "jump" from output node to input node occurs. This could cause
  |                  some unexpected signal behaviours: for example, the signal from a
  |                  straight pipe (where all spins travel in parallel at the same velocity) will show
