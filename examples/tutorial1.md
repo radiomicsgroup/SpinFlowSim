@@ -21,7 +21,14 @@ The easiest way to start building this object is by loading a spreadsheet in .cs
 ## Network Data
 Here we have a histology image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries.
 
-Each straight capillary segment is annotated [Network_stats.csv](./Network_stats.csv.) with a starting coordinate (Xstart,Ystart,Zstart) and an ending (Xend,Yend,Zend) in µm.
+Each straight capillary segment is characterized by annotation in [Network_stats.csv](./Network_stats.csv.) the following:
+- segmented ID (SegmentNumber)
+- mean radius (RadiiMean_um) in µm; computed by averaging three radii measured over the length of a segment
+- starting coordinates (Xstart,Ystart,Zstart)in µm
+- ending coordinates (Xend,Yend,Zend) in µm
+- starting node ID (Node_at_Xstart_Ystart)
+- ending node ID (Node_at_Xend_Yend)
+  
 ![labels_githhubreoi](https://github.com/user-attachments/assets/0364164f-4f12-4cf2-9fae-3c7f37770e81)
 
 ### Data Table
@@ -65,6 +72,8 @@ Each straight capillary segment is annotated [Network_stats.csv](./Network_stats
 | 35            | 2.3390666666666666| 10163.87    | 10137.31   | 0      | 10182.86    | 10164.91   | 0    | 25                    | 2                 |
 | 36            | 2.1939666666666664| 10172.3     | 10101.79   | 0      | 10134.48    | 10068.24   | 0    | 24                    | 26                |
 | 37            | 1.82385           | 10083.96    | 10073.92   | 0      | 10134.48    | 10068.24   | 0    | 1                     | 26                |
+
+
 
 
 Place the .csv file in the same directory as [script01_initnet.py](./script01_initnet.py), and run the latter to initalize the network.  
