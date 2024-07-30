@@ -26,7 +26,7 @@ Each network folder, contains several files - something like, for example, [_net
 - **Qin{input_volumetric_flow_rate}**: Represents the input volumetric flow rate in mm³/s.
 
 ### _pipenet_ network objects (.bin files)
-Resolved vascular networks are stored as binary (.bin) files, containing instantiations of the class _pipenet_ (_i.e., _pipenet_ objects; the _pipenet_ class is defined in [_syn.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py)). 
+Resolved vascular networks are stored as binary (.bin) files, containing instantiations of the class _pipenet_ (i.e., _pipenet_ objects; the _pipenet_ class is defined in [_syn.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py)). 
 
 A file name `net10_Nin0_Nout28_Qin0.0001.bin` indicates that:
 - the file is located in the folder corresponding to the `Net10` vascular network;
