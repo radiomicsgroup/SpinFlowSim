@@ -71,7 +71,7 @@ Note that the VFR and BV are two attributes of the object `net`, namely `flowmat
 
 
 
-[Here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md) you can find a complete description of all methods and attributes of the _pipenet_ class. You can print the same manual as:
+[Here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md) you can find a complete description of all methods and attributes of the _pipenet_ class. You can print this manual at any time as:
 ```
 import numpy as np
 import sys
