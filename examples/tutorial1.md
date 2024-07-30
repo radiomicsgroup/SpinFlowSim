@@ -16,7 +16,7 @@ To initalize the _pipenet_ class the following input parameters are mandatory:
     * idxout:    index of the output node in the node matrix (nodes[:,idxout] provides the x,y,z coordinates
                  of such an input node)
 
-The easiest way to start building this object is by loading a spreadsheet in .csv format with the following entries:
+The easiest way to start building this object is by loading a spreadsheet in .csv format with the network data as described below.
 
 ## Network Data
 Here we have a histology image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries.
