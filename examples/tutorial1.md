@@ -21,7 +21,7 @@ For example, this code creates a _pipenet_ object describing the small, two-dime
 ```
 import numpy as np
 import sys
-sys.path.insert(0, '../code' )      # Add the SpinFlowSim folder where the syn.py and visu.py files are stored
+sys.path.insert(0, '../code' )      # Add the SpinFlowSim "code" folder where the syn.py and visu.py files are stored
 
 nodepos = np.transpose( np.array([ [0.0, 0.0, 0.0], [0.010, 0.020, 0.0], [0.030, 0.0, 0.0] ] ) )
 
