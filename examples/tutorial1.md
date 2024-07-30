@@ -3,7 +3,7 @@
 
 ## The _pipenet_ class
 
-_pipenet_ is a Class used to define a vascular network that can be later used to simulated IVIM MRI diffusion signals. In our framework, a vascular network is nothing but a collection of _nodes_, connected through _pipes_, representing capillaries.  
+We have defined the _pipenet_ to work with vascular networks, which can later be used to simulated diffusion MRI (dMRI) signals for any given protocol of interest. In our framework, a vascular network is nothing else but a collection _pipes_, representing capillaries, which conned a set of _nodes_.  
 
 To create an object from the _pipenet_ class ones needs the following mandatory input parameters:
 
@@ -46,8 +46,22 @@ net = syn.pipenet(nodepos,r,qin,inputnode,outputnode,visc=muval,flowmodel=bloodm
 ```
 For the network initialisiation, we ensure that the fluid dynamics follows the model used in Blinder et al, Nat Neurosci 2013, doi: (optional parameter `flowmodel=bloodmodel`) with a plasma viscosity of 1.2 mPA s (`visc=muval`). The circuit is solved numerically (`solver=solvtechnique`), with default inlet radius computation (mean of the radii emanating from the inlet): 
 
-Once 
+Upon declaration of the _pipenet_ object, the vascular network is solved. We can now check, for example, the volumetric flow rate (VFR) in mm$^3$/s in each capillary:
+```
+>>> print(net.flowmat)
+[[        nan  0.00138352  0.00411648]
+ [-0.00138352         nan  0.00138352]
+ [-0.00411648 -0.00138352         nan]]
+```
+or the blood velocity (BV) in mm/s in each capillary:
+```
+>>> print(net.velmat)
+[[         nan  17.61550894  26.74115613]
+ [-17.61550894          nan   6.88105818]
+ [-26.74115613  -6.88105818          nan]]
+```
 
+Note that the VFR and BV are two attributes of the object `net`, namely `flowmat` and `velmat`. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary going from node _i_ to node _j_. These two have the same sign, and is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (as well as `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
 
 
 ## Drawing a network on histology and using it to initialise a _pipenet_ object
