@@ -178,7 +178,7 @@ plt.show()
 ```
 
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/connectivityexample.png" alt="MRHistoillustration" width="900" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/connectivityexample.png" alt="MRHistoillustration" width="450" height="auto">
 </div>
 
 [Here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) you can find a detailed description of these vascular networks and of their corresponding flow properties. 
