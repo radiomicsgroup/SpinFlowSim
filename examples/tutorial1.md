@@ -173,7 +173,7 @@ plt.show()
 [Here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) you can find a detailed description of these vascular networks and of their corresponding flow properties. 
 
 
-## Plot some properties of a vascular network
+## Plotting some properties of a vascular network
 
 **THIS PART OF THE TUTORIAL WILL BE ADDED IN THE COMING DAYS. APOLOGIES FOR THE INCONVENIENCE**
 
