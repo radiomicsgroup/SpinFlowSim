@@ -17,7 +17,7 @@ To create an object from the _pipenet_ class ones needs the following mandatory 
     * idxout:    index of the output node in the node matrix (nodes[:,idxout] provides the x,y,z coordinates
                  of such an input node)
 
-Additional optional parameters are the fluid viscosity, the radius at the inlet, the model used to solve the fluid dynamics and the type of solver. The full manual of the _pipenet_ class is provided here.
+Additional optional parameters are the fluid viscosity, the radius at the inlet, the model used to solve the fluid dynamics and the type of solver. The full manual of the _pipenet_ class is provided [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md).
 
 For example, this code creates an initialises a _pipenet_ object describing a simple 2D 3-capillary network, depicted below. 
 
@@ -64,11 +64,13 @@ or the blood velocity (BV) in mm/s in each capillary:
 
 Note that the VFR and BV are two attributes of the object `net`, namely `flowmat` and `velmat`. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary going from node _i_ to node _j_. These two have the same sign, and is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (as well as `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
 
-Here you can find a complete description of all methods and attributes of the _pipenet_ class. You can print the same manual as:
+[Here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md) you can find a complete description of all methods and attributes of the _pipenet_ class. You can print the same manual as:
 ```
 import numpy as np
 import sys
 sys.path.insert(0, '../code' )      # Add the SpinFlowSim "code" folder where the syn.py and visu.py files are stored
+import syn
+
 help(syn.pipenet)
 ```
 
@@ -130,9 +132,20 @@ The table below illustrates the content of the CSV file.
 | 37            | 1.82385           | 10083.96    | 10073.92   | 0      | 10134.48    | 10068.24   | 0    | 1                     | 26                |
 
 
-Place the .csv file in the same directory as [script01_initnet.py](./script01_initnet.py), and run the latter to initalize the network.  
+We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py) shows how to load the spreadsheet with [_pandas_](https://pandas.pydata.org/) and how to create the input parameters that can be used to resolve the kidney network shown above.  
 
 
 ## Loading the realistic vascular networks that we distribute with SpinFlowSim
 
 TEXT TO GO HERE
+
+
+## Plot some properties of a vascular network
+
+**THIS PART OF THE TUTORIAL WILL BE ADDED IN THE COMING DAYS. APOLOGIES FOR THE INCONVENIENCE**
+
+
+## Synthesising vascular diffusion MRI signals
+
+**THIS PART OF THE TUTORIAL WILL BE ADDED IN THE COMING DAYS. APOLOGIES FOR THE INCONVENIENCE**
+
