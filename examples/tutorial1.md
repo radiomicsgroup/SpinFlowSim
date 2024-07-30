@@ -109,6 +109,9 @@ The table below illustrates the content of the CSV file.
 | 37            | 1.82385           | 10083.96    | 10073.92   | 0      | 10134.48    | 10068.24   | 0    | 1                     | 26                |
 
 
-
-
 Place the .csv file in the same directory as [script01_initnet.py](./script01_initnet.py), and run the latter to initalize the network.  
+
+
+## Loading the realistic vascular networks that we distribute with SpinFlowSim
+
+TEXT TO GO HERE
