@@ -131,12 +131,39 @@ The table below illustrates the content of the CSV file.
 | 37            | 1.82385           | 10083.96    | 10073.92   | 0      | 10134.48    | 10068.24   | 0    | 1                     | 26                |
 
 
-We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py) shows how to load the network information contained in the spreadsheet with [_pandas_](https://pandas.pydata.org/) and how to use it to initialise a _pipenet_ object. In the script, as an example, it is assumed that the inlet/outlet are respectively nodes 0/16.
+We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py) shows how to load the network information contained in the CSV with [_pandas_](https://pandas.pydata.org/), so that it can be used to initialise a _pipenet_ object. In the script, we assume, as an example, that the inlet/outlet of the network are respectively nodes 0/16.
 
 
 ## Loading the realistic vascular networks that we distribute with SpinFlowSim
 
-TEXT TO GO HERE
+In the folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) we include different instantiations of 15 vascular networks that we have drawn on histological images of humman liver biopsies. We are including 100 instantiations per network, by varying the inlet/outlet and input VFR, for a total of 1500.
+
+All these 1500 networks, already resolved, have been stored as binary files. Loading one of such files into python gives you access to an initialised _pipenet_ object, which you can use to synthesise vascular diffusion MRI (dMRI) signals. 
+
+In this code below we show, for example, how to load one of such networks, and how to plot its VFR matrix (attribute `flowmat`). We assume that the code is run from inside the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples) where this tutorial is stored, and that matplotlibt is installed in your pything environment.
+
+```
+import numpy as np
+import sys
+from matplotlib import pyplot as plt
+import pickle as pk
+sys.path.insert(0, '../code' )      # Add the SpinFlowSim "code" folder where the syn.py and visu.py files are stored
+import syn
+
+# Load network Net10, input node 0, output node 28, input VFR 0.0007 mm3/s
+h = open('../networks/Net10/net10_Nin0_Nout28_Qin0.0007.bin','rb')
+net = pk.load(h)
+h.close()
+
+# Plot the Volumetric Flow Rate matrix
+plt.imshow(net.flowmat,aspect='auto')
+plt.title('VFR matrix in mm3/s')
+plt.colorbar()
+plt.show()
+
+```
+
+[Here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) you can find a detailed description of these vascular networks and of their corresponding flow properties. 
 
 
 ## Plot some properties of a vascular network
