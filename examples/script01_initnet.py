@@ -10,7 +10,7 @@ import time
 
 ### Load spreadsheet and set user-defined network parameters
 nodein = 0                 # Define an input node
-nodeout = 1                # Define an output node
+nodeout = 16                # Define an output node
 qinput = 0.0055            # Define an input volumetric flow rate in mm3/s
 muval = 1.2                # Define the viscosity of the fluid in mPa x s
 bloodmodel = 'blinder'     # Define the flow model
