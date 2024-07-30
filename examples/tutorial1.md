@@ -44,7 +44,7 @@ solvtechnique = 'numerical'  # Solve the pipe circuit numerically using PySpice
 net = syn.pipenet(nodepos,r,qin,inputnode,outputnode,visc=muval,flowmodel=bloodmodel,solver=solvtechnique)
 
 ```
-For the network initialisiation, we ensure that the fluid dynamics follows the model used in Blinder et al (Blinder P et al, Nature Neuroscience volume 16, pages 889–897 (2013), doi: [10.1038/nn.3426](https://doi.org/10.1038/nn.3426); optional parameter `flowmodel=bloodmodel`) with a cell-free plasma viscosity of 1.2 mPA s (`visc=muval`). The circuit is solved numerically (`solver=solvtechnique`), with default inlet radius computation (mean of the radii emanating from the inlet): 
+For the network initialisiation, we ensure that the fluid dynamics follows the model used in Blinder et al (Blinder P et al, Nature Neuroscience volume 16, pages 889–897 (2013), doi: [10.1038/nn.3426](https://doi.org/10.1038/nn.3426); optional parameter `flowmodel=bloodmodel`) with a cell-free plasma viscosity of 1.2 mPa s (`visc=muval`). The circuit is solved numerically (`solver=solvtechnique`), with default inlet radius computation (mean of the radii emanating from the inlet): 
 
 Upon declaration of the _pipenet_ object, the vascular network is solved. We can now check, for example, the volumetric flow rate (VFR) in mm$^3$/s in each capillary:
 ```
