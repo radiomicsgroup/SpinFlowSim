@@ -10,7 +10,7 @@ The network dataset has been augmented to 1500 realizations by varying input flo
 
 
 
-You can start running SpinFlowSim by choosing from any of the 1500 network realizations (in binary `.bin` format) stored within this folder.
+You can start running SpinFlowSim by choosing from any of the 1500 network realizations (in binary `.bin` format) stored within this folder, and synthesising corresponding diffusion MRI (dMRI) signals for any protocol of interest. In [this tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md) we show how.
 
 ### Directory Description
 
