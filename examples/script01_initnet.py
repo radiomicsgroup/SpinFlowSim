@@ -1,5 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
+import sys
+sys.path.insert(0, '../code' )      # Add the SpinFlowSim folder where the syn.py and visu.py files are stored
 import syn
 import visu
 import pandas as pd
@@ -12,11 +14,11 @@ nodeout = 1                # Define an output node
 qinput = 0.0055            # Define an input volumetric flow rate in mm3/s
 muval = 1.2                # Define the viscosity of the fluid in mPa x s
 bloodmodel = 'blinder'     # Define the flow model
-outfile = 'script01_initnet.bin'        # Name of output file
-dset = pd.read_csv('Network_stats.csv') # Name of spreadsheet with vascular network data
+outfile = 'script01_initnet.bin'        # Name of output file storing the resolved vascular network
+dset = pd.read_csv('Network_stats.csv') # Name of spreadsheet with vascular network data derived from histology
 
 ### Get relevant fields from the spreadsheet
-rads = dset.RadiiMean_um   # Mean radius in um
+rads = dset.RadiiMean_um   # Mean radii in um
 
 
 ninstr = dset.Node_at_Xstart_Ystart # Input node of segment
