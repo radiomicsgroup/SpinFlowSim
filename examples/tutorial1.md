@@ -143,7 +143,7 @@ The table below illustrates the content of the CSV file.
 | 37            | 1.82385           | 10083.96    | 10073.92   | 0      | 10134.48    | 10068.24   | 0    | 1                     | 26                |
 
 
-We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py) shows how to load the network information contained in the CSV with [_pandas_](https://pandas.pydata.org/), so that it can be used to initialise a _pipenet_ object. In the script, we assume, as an example, that the inlet/outlet of the network are respectively nodes 0/16.
+We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py), also included in the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) , shows how to load the network information contained in the CSV with [_pandas_](https://pandas.pydata.org/), so that it can be used to initialise a _pipenet_ object. In the script, we assume, as an example, that the inlet/outlet of the network are respectively nodes 0/16.
 
 
 ## Loading the realistic vascular networks that we distribute with SpinFlowSim
@@ -176,6 +176,10 @@ plt.colorbar()
 plt.show()
 
 ```
+
+<div align="center">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/connectivityexample.png" alt="MRHistoillustration" width="900" height="auto">
+</div>
 
 [Here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) you can find a detailed description of these vascular networks and of their corresponding flow properties. 
 
