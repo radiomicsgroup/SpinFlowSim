@@ -20,7 +20,7 @@ To create an object from the _pipenet_ class ones needs the following mandatory 
 
 Additional optional parameters are the fluid viscosity, the radius at the inlet, the model used to solve the fluid dynamics and the type of solver. The full manual of the _pipenet_ class constructor is provided here.
 
-For example, this code creates a _pipenet_ object describing a small, two-dimensional 3-capillary network, depicted below. It also ensures that the fluid dynamics follows the model used in Blinder et al, Nat Neurosci 2013, doi: , which is solved numerically, with default inlet radius computation (mean of the radii emanating from the inlet): 
+For example, this code creates an initialises a _pipenet_ object describing a small, two-dimensional 3-capillary network, as the one depicted below. 
 
 ```
 import numpy as np
@@ -35,35 +35,38 @@ r[0][1] = r[1][0] = 0.005
 r[0][2] = r[2][0] = 0.007
 r[1][2] = r[2][1] = 0.008
 
-qin = 0.0055               # Input volumetric flow rate in mm3/s
-inputnode = 0              # Inlet of the whole network
-outputnode = 2             # Outlet of the whole network
+qin = 0.0055                 # Input volumetric flow rate in mm3/s
+inputnode = 0                # Inlet of the whole network
+outputnode = 2               # Outlet of the whole network
 
-muval = 1.2                # Define the viscosity of pure plasma in mPa x s
-bloodmodel = 'blinder'     # Define the flow model
-
-net = syn.pipenet(nodepos,r,qin,inputnode,outputnode,visc=muval,flowmodel=bloodmodel)
+muval = 1.2                  # Define the viscosity of pure plasma in mPa x s
+bloodmodel = 'blinder'       # Define the flow model
+solvtechnique = 'numerical'  # Solve the pipe circuit numerically using PySpice
+net = syn.pipenet(nodepos,r,qin,inputnode,outputnode,visc=muval,flowmodel=bloodmodel,solver=solvtechnique)
 
 ```
+For the network initialisiation, we ensure that the fluid dynamics follows the model used in Blinder et al, Nat Neurosci 2013, doi: (optional parameter `flowmodel=bloodmodel`) with a plasma viscosity of 1.2 mPA s (`visc=muval`). The circuit is solved numerically (`solver=solvtechnique`), with default inlet radius computation (mean of the radii emanating from the inlet): 
+
+Once 
 
 
 
-The easiest way to start building this object is by loading a spreadsheet in .csv format with the network data as described below.
+## Drawing a network on histology and using it to initialise a _pipenet_ object
+With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries.
 
-## Network Data
-Here we have a histology image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries.
+The network is made of 26 nodes, connected among each other through 37 straight capillaries. The easiest way to start building this object is by loading a spreadsheet in .csv format with the network data as described below.
+![labels_githhubreoi](https://github.com/user-attachments/assets/0364164f-4f12-4cf2-9fae-3c7f37770e81)
 
-Each straight capillary segment is characterized by annotation in [Network_stats.csv](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv) the following:
+We have stored the information realted to the network as a CSV spreadsheet. Each straight capillary is described by a row in [Network_stats.csv](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv). Each row is described by the following variables:
 - segmented ID (SegmentNumber)
 - mean radius (RadiiMean_um) in µm; computed by averaging three radii measured over the length of a segment
-- starting coordinates (Xstart,Ystart,Zstart)in µm
+- starting coordinates (Xstart,Ystart,Zstart) in µm
 - ending coordinates (Xend,Yend,Zend) in µm
 - starting node ID (Node_at_Xstart_Ystart)
 - ending node ID (Node_at_Xend_Yend)
-  
-![labels_githhubreoi](https://github.com/user-attachments/assets/0364164f-4f12-4cf2-9fae-3c7f37770e81)
 
-### Data Table
+The table below illustrates the content of the CSV file.
+
 
 | SegmentNumber | RadiiMean_um      | Xstart      | Ystart     | Zstart | Xend        | Yend       | Zend | Node_at_Xstart_Ystart | Node_at_Xend_Yend |
 |---------------|-------------------|-------------|------------|--------|-------------|------------|------|-----------------------|-------------------|
