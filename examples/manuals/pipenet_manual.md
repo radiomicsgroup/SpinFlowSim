@@ -1,4 +1,4 @@
-The [syn.py](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) module contains the _pipenet_ class. Find below a detailed description of the class, of its methods, and of its attributes.
+In the [syn.py](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) module we define the _pipenet_ class. Below you can find a detailed description of the class, of its methods, and of its attributes.
 
 ```
 Help on class pipenet in module syn:
