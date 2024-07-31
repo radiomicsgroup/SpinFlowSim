@@ -35,14 +35,18 @@ _Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi 
 # Requirements
 
 </div>
-SpinFlowSim has been developed with python 3.10.8. It requires the following third-party packages:
+SpinFlowSim has been developed with python 3.10.8. To use SpinFlowSim and go through all its tutorials, the following third-party packages are required:
 
 - [numpy](https://numpy.org) (developed with version 1.24.2)
 - [pandas](https://pandas.pydata.org) (developed with version 1.5.3)
-- [Lcapy](https://lcapy.readthedocs.io) (developed with Lcapy 1.10)
-- [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with PySpice 1.5)
-- [graph-tool](https://graph-tool.skewed.de) (developed with graph-tool 2.45, commit b1a649d8)
+- [Lcapy](https://lcapy.readthedocs.io) (developed with version 1.10)
+- [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with version 1.5)
+- [graph-tool](https://graph-tool.skewed.de) (developed with version 2.45, commit b1a649d8)
+- [nibabel](https://nipy.org/nibabel) (developed with version '5.1.0');
+- [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1');
+- [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4').
 
+  
 # Installation
 </div>
 Obtain SpinFlowSim by cloning this repository:
