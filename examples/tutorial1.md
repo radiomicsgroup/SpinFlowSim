@@ -31,7 +31,7 @@ Additional optional parameters are the fluid viscosity, the radius at the inlet,
 For example, this code creates an initialises a _pipenet_ object describing a simple 2D 3-capillary network, made of 3 nodes, namely nodes 0, 1 and 2, as illustrated below. Connections are between nodes 0 and 1, between 0 and 2, and between 1 and 2; the input flow, of 0.0055 mm<sup>3</sup>/s, comes from node 0, and the output node is 2.
 
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/networkexample.png" alt="MRHistoillustration" width="900" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/networkexample.png" width="700" height="auto">
 </div>
 
 ```
@@ -183,7 +183,7 @@ visu.spin_animation(rperiodic, 'spinvideo_periodic.gif')
 ```
 
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/spinvideo_periodic.gif" width="900" height="auto" >
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/spinvideo_periodic.gif" width="1000" height="auto" >
 </div>
 
 
@@ -199,7 +199,7 @@ visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
 ```
 
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/spinvideo_feedback.gif" width="900" height="auto" >
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/spinvideo_feedback.gif" width="1000" height="auto" >
 </div>
 
 
