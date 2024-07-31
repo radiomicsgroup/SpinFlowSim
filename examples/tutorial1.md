@@ -279,7 +279,7 @@ plt.show()
 </div>
 
 
-The plots reveal several interesting features, e.g., non-mono-exponential decay of the signal magnitude with oscillatory patterns, characteristics of spins whose flow regime is ballistic, or presence of wraps in the signal phase as a function of the b-value, which are seen more clearly at long diffusion time.
+The plots reveal several interesting features, e.g., non-mono-exponential decay of the signal magnitude with oscillatory patterns, characteristic of spins whose flow regime is ballistic. We also observe wraps in the signal phase as a function of _b_, seen more clearly at long diffusion time.
 
 
 ## Final remarks
