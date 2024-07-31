@@ -32,9 +32,7 @@ _Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi 
 # Requirements
 
 </div>
-SpinFlowSim has been developed with python 3.10.8.
-
-It requires the following third-party packages:
+SpinFlowSim has been developed with python 3.10.8. It requires the following third-party packages:
 - [numpy](https://numpy.org) (developed with version 1.24.2)
 - [pandas](https://pandas.pydata.org) (developed with version 1.5.3)
 - [Lcapy](https://lcapy.readthedocs.io) (developed with Lcapy 1.10)
