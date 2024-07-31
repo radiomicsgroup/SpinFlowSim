@@ -152,9 +152,9 @@ We are including this CSV file inside the same directory [**examples**](https://
 
 ## Loading the realistic vascular networks that we distribute with SpinFlowSim
 
-In the folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) we include different instantiations of 15 vascular networks that we have drawn on histological images of human liver biopsies. We are including 100 instantiations per network, by varying the inlet/outlet and input VFR, for a total of 1500.
+In the folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) we include different instantiations of 15 vascular networks that we have drawn on histological images of human liver biopsies. We are including 100 instantiations per network, by varying the inlet/outlet and input VFR, for a total of 1500 unique nets. [Here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) you can find a detailed description of these vascular networks and of their corresponding flow properties. 
 
-All these 1500 networks, already resolved, have been stored as binary files. Loading one of such files into python gives you access to an initialised _pipenet_ object, which you can use to synthesise vascular diffusion MRI (dMRI) signals. 
+All these 1500 nets, already resolved for you, have been stored as binary files. Loading one of such files into python gives you access to an initialised _pipenet_ object, which you can use to synthesise vascular diffusion MRI (dMRI) signals. 
 
 In this code below we show, for example, how to load one of such networks, and how to plot its VFR matrix (attribute `flowmat`). We assume that the code is run from inside the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples) where this tutorial is stored, and that matplotlibt is installed in your _python_ environment.
 
@@ -184,8 +184,6 @@ plt.show()
 <div align="center">
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/connectivityexample.png" alt="MRHistoillustration" width="450" height="auto">
 </div>
-
-[Here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) you can find a detailed description of these vascular networks and of their corresponding flow properties. 
 
 
 ## Plotting some properties of a vascular network
