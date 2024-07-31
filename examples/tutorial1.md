@@ -85,17 +85,8 @@ These have been evaluated with [graph-tools](https://graph-tool.skewed.de/) usin
 
 A final note. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary **going from node _i_ to node _j_. Their sign is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_**. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (and, similarly, `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
 
+[Here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) you can find a complete description of all methods and attributes of the _pipenet_ class.
 
-
-[Here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) you can find a complete description of all methods and attributes of the _pipenet_ class. You can print this manual at any time as:
-```
-import numpy as np
-import sys
-sys.path.insert(0, '../code' )      # Add the SpinFlowSim "code" folder where the syn.py and visu.py files are stored
-import syn
-
-help(syn.pipenet)
-```
 
 ## Drawing a network on histology and using it to initialise a _pipenet_ object
 With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries. The network is made of 26 nodes, connected among each other through 37 straight capillaries. 
@@ -217,8 +208,10 @@ From the GIF animations, it is apparent that spins flowing through different cap
 CODE_TO_BE_ADDED_SOON
 ```
 
-
 ## Synthesising vascular diffusion MRI signals
+Finally, once we have drawn a vascular network on histology, and used such data to initialise a _pipenet_ vascular network obkect, we can use it to generate realistic vascular dMRI signals! Continuing the example above, we now show you how to generate signals from the kidney vascular network initialised by previous script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py).
+
+
 
 **THIS PART OF THE TUTORIAL WILL BE ADDED IN THE COMING DAYS. APOLOGIES FOR THE INCONVENIENCE**
 
