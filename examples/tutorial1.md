@@ -200,7 +200,7 @@ We know illustrate how to visualise some useful properties of a resolved vascula
 
 The code below shows how to load the vascular network, previously saved as a binary file by script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py). We then generate illustrative trajectories for 100 time steps of 750 spins, using a temporal resolution of 10<sup>-5</sup> s (i.e., 10 µs). We also use a seed number to initialise spin positions (`seednumber=20181019`), for reproducibility purposes, and adopt a _periodic_ boundary condition (option `boundary='periodic`, which is the default). This means that if a spin reaches the network output node, it will continue its trajectory on a "virtual copy" of the network itself, whose input node coincides exactly with the output node.
 
-We can visualise the trajectories with the [_visu.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/visu.py) module (whose manual can be found [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/visu_manual.md)): the module contains the `spin_animation()` functions, which allows you to show a video of the flowing spins, and to save it as a GIF file.
+We can visualise the trajectories with the [_visu.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/visu.py) module (whose manual can be found [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/visu_manual.md)): the module contains the `spin_animation()` function, which allows you to show a video of the flowing spins, and to save it as a GIF file.
 
 ```
 import numpy as np
@@ -211,20 +211,28 @@ sys.path.insert(0, '../code' )      # Add the SpinFlowSim folder where the syn.p
 import syn
 import visu
 
-
 ### Load the kidney vascular networks created with previous script script01_initnet.py
 h = open('./script01_initnet_kidneyexample.bin','rb')
 net = pk.load(h)
 h.close()
 
-
-### Generate spins trajectories: as an example, 750 spins for 100 time steps of dt = 10 us  
+### Generate spins trajectories: as an example, 750 spins for 100 time steps of dt = 10 us; boundary condition 'periodic'  
 rperiodic = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-05, seednumber=20181019, boundary='periodic' )
 
 ### Let's save them as a GIF
 visu.spin_animation(rperiodic, 'spinvideo_periodic.gif')
 ```
 
+Another boundary condition can be used, which we refer to as _feedback_ (option `boundary='feedback'`). In this case, spins that reach the outled are fed back instantaneously to the input node. We point out that this introduces "jumps" on the spin trajectories, since these may affect the synthesis of your dMRI signals. Here you can see the same spin trajectories of the animation above, but this the "feedback" boundary condition.
+
+```
+### Generate spins trajectories: as an example, 750 spins for 100 time steps of dt = 10 us; boundary condition 'periodic'  
+rfeedback = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-05, seednumber=20181019, boundary='feedback' )
+
+### Let's save them as a GIF
+visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
+
+```
 
 
 ## Synthesising vascular diffusion MRI signals
