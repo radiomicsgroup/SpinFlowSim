@@ -1,7 +1,7 @@
-<h1 align="center">SpinFlowSim: synthesize dMRI signals from spins flowing in capillary networks</h1>
+<h1 align="center">SpinFlowSim: dMRI signal synthesis from spins flowing in capillary networks</h1>
 
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/overview.png" alt="MRHistoillustration" width="900" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/overview.png" alt="MRHistoillustration" width="1300" height="auto">
 </div>
 
 </div>
