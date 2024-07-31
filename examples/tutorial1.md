@@ -118,7 +118,7 @@ The table below illustrates the first few lines of the CSV file.
 We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py), also included in the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) , shows how to load the network information contained in the CSV with [_pandas_](https://pandas.pydata.org/), so that it can be used to initialise a _pipenet_ object. In the script, we assume, as an example, that the inlet/outlet of the network are respectively nodes 0/16.
 
 
-## Loading the realistic vascular networks that we distribute with SpinFlowSim
+## Loading the realistic vascular networks included with SpinFlowSim
 
 In the folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) we include different instantiations of 15 vascular networks that we have drawn on histological images of human liver biopsies. We are including 100 instantiations per network, by varying the inlet/outlet and input VFR, for a total of 1500 unique nets. [Here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) you can find a detailed description of these vascular networks and of their corresponding flow properties. 
 
@@ -155,7 +155,7 @@ plt.show()
 
 
 ## Plotting some properties of a vascular network
-We know illustrate how to visualise some useful properties of a resolved vascular network. Let's assume, for example, that we want to visualise results from the exemplificatory kidney vascular network that we derived from histology above. 
+We now illustrate how to visualise some useful properties of a resolved vascular network. Let's assume, for example, that we want to visualise results from the exemplificatory kidney vascular network that we derived from histology above. 
 
 The code below shows how to load the vascular network, previously saved as a binary file by script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py). We then generate illustrative trajectories for 100 time steps of 750 spins, using a temporal resolution of 10<sup>-5</sup> s (i.e., 10 µs). We also use a seed number to initialise spin positions (`seednumber=20181019`), for reproducibility purposes, and adopt a _periodic_ boundary condition (option `boundary='periodic`, which is the default). This means that if a spin reaches the network output node, it will continue its trajectory on a "virtual copy" of the network itself, whose input node coincides exactly with the output node.
 
