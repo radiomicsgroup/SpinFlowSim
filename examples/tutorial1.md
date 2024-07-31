@@ -223,7 +223,7 @@ rperiodic = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-05, seednumber=2018101
 visu.spin_animation(rperiodic, 'spinvideo_periodic.gif')
 ```
 
-Another boundary condition can be used, which we refer to as _feedback_ (option `boundary='feedback'`). In this case, spins that reach the outled are fed back instantaneously to the input node. We point out that this introduces "jumps" on the spin trajectories, since these may affect the synthesis of your dMRI signals. Here you can see the same spin trajectories of the animation above, but this the "feedback" boundary condition.
+Another avilable boundary condition is the _feedback_ one (option `boundary='feedback'`). In this case, spins reaching the outlet are fed back instantaneously to the inlet. Note that this introduces "jumps" on the spin trajectories, which may affect the synthesis of your dMRI signals - so use it with care. Below are the same spin trajectories of above, but with the "feedback" condition.
 
 ```
 ### Generate spins trajectories: again, 750 spins, 100 time steps, dt = 10 us, but boundary condition 'feedback'  
@@ -232,6 +232,11 @@ rfeedback = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-05, seednumber=2018101
 ### Let's save them as a GIF
 visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
 ```
+
+<div align="center">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/spinvideo_feedback.gif" width="450" height="auto" >
+</div>
+
 
 
 ## Synthesising vascular diffusion MRI signals
