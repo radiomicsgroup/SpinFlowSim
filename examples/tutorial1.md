@@ -275,7 +275,7 @@ plt.show()
 ```
 
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/signal_example.png" width="900" height="auto" >
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/signal_example.png" width="1000" height="auto" >
 </div>
 
 
