@@ -212,6 +212,11 @@ visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
 </div>
 
 
+From the GIF animations, it is apparent that spins flowing through different capillaries experience very different velocities. Below we show how to generate a plot in which we colour each capillary of the network according to the velocity of the spins flowing through the capillary itself:
+```
+CODE_TO_BE_ADDED_SOON
+```
+
 
 ## Synthesising vascular diffusion MRI signals
 
