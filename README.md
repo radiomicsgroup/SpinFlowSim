@@ -60,8 +60,8 @@ To obtain SpinFlowSim, make sure to install to your python environment the requi
 # Repository description
 The SpinFlowSim repository includes several sub-fodlers:
 * The folder [**code**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code) stores the actual simulation and visualisation tools behind SpinFlowSim:
-    * the file [`syn.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/syn.py) defines the _pipenet_ class, with which we represent and resolve vascular networks. An initialised _pipenet_ object can be used to synthesise microvascular signals for any dMRI protocol of interest;
-    * the file [`visu.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/visu.py) defines useful tools to visualise spins flowing within a vascular network as a video.
+    * the file [`syn.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/syn.py) introduces the _syn_ module, where the _pipenet_ class is defined to work with vascular networks and to synthesise vascular dMRI signals. The manual of the _syn_ module can be found [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md).
+    * the file [`visu.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/visu.py) intrdocudes the _visu_ module, where useful tools are defined to visualise spins flowing through vascular networks. The manual of the _visu_ module can be found [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md).
 * The folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) contains some tutorials that illustrate how to use SpinFlowSim in practice.
 * The folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) contains the resolved vascular networks generated for our [preprint](https://doi.org/10.1101/2024.07.15.24310335). These can be used to synthesise vascular dMRI signals for any acquisition protocol of interest (find [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) how).
     
