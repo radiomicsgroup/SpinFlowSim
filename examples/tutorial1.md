@@ -122,7 +122,6 @@ The table below illustrates the first few lines of the CSV file.
 | 3             | 2.2855166666666666| 10182.86    | 10164.91   | 0      | 10088.94    | 10136.81   | 0    | 2                     | 3                 |
 | 4             | 3.306783333333333 | 10056.36    | 10111.85   | 0      | 10088.94    | 10136.81   | 0    | 0                     | 3                 |
 ....
-....
 
 
 We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py), also included in the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) , shows how to load the network information contained in the CSV with [_pandas_](https://pandas.pydata.org/), so that it can be used to initialise a _pipenet_ object. In the script, we assume, as an example, that the inlet/outlet of the network are respectively nodes 0/16.
