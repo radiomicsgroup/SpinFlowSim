@@ -31,7 +31,7 @@ FUNCTIONS
         
         OPTIONAL INPUT PARAMETERS
         ----------    
-        outvideo:  string indicating the path of an .mp4 
+        outvideo:  string indicating the path of a GIF 
                    where the animation will be saved
                    as a video (default: None - no video saved)
             
