@@ -226,7 +226,6 @@ h = open('./script01_initnet_kidneyexample.bin','rb')
 net = pk.load(h)
 h.close()
 
-
 ### Simulate two diffusion times for 100 b-values between 0 and 100 s/mm2. 
 # We will get magnitude and phase for 3000 spins and a temporal resolution of 30 us 
 # We use the 'periodic' boundary condition, and fix the seed number of reproducibility
@@ -250,12 +249,10 @@ gsep = 0.020*np.ones(bval.shape)
 gsep[bval==0] = 0
 smag1,sph1 = net.dMRISynProt(bval, gdur, gsep, gdir, Nwater=Nspins, deltat=tempres, seed=seednumber, boundcon=mycond)
 
-
 ### Get magnitue and phase for a gradient separation of 70 ms
 gsep = 0.070*np.ones(bval.shape)      
 gsep[bval==0] = 0
 smag2,sph2 = net.dMRISynProt(bval, gdur, gsep, gdir, Nwater=Nspins, deltat=tempres, seed=seednumber, boundcon=mycond)
-
 
 ### Let's plot magnitude
 plt.subplot(1,2,1)
