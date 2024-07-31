@@ -42,8 +42,8 @@ SpinFlowSim has been developed with python 3.10.8. To use SpinFlowSim and go thr
 - [Lcapy](https://lcapy.readthedocs.io) (developed with version 1.10)
 - [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with version 1.5)
 - [graph-tool](https://graph-tool.skewed.de) (developed with version 2.45, commit b1a649d8)
-- [nibabel](https://nipy.org/nibabel) (developed with version '5.1.0');
-- [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1');
+- [nibabel](https://nipy.org/nibabel) (developed with version '5.1.0')
+- [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1')
 - [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4').
 
   
