@@ -49,7 +49,7 @@ SpinFlowSim has been developed with python 3.10.8. To use SpinFlowSim and go thr
   
 # Installation
 </div>
-To obtain SpinFlowSim, make sure to install to your python environment the requirements listed above. Then simply clone:
+To obtain SpinFlowSim, make sure to install to your python environment the requirements listed above. Then simply clone our code:
 
  ```sh
  git clone https://github.com/radiomicsgroup/SpinFlowSim
