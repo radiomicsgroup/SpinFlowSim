@@ -22,7 +22,7 @@ _Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi 
 <div align="center">
     
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/qr.png" alt="MRHistoillustration" width="100" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/qr.png" alt="MRHistoillustration" width="160" height="auto">
 </div>
     
 <a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#repository-description">Repository description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;
