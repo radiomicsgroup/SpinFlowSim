@@ -283,8 +283,6 @@ The plots reveal several interesting features, e.g., non-mono-exponential decay 
 
 
 ## Final remarks
-This tutorial has shown you how to use the _pipenet_ class defined in the module [_syn_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) to define and resolve vacular networks, and how to use a resolved network to synthesise dMRI signals. 
-
-We have taken you through some basic usage: however, SpinFlowSim allows you to do much more! For example:
+This tutorial has shown you how to use the _pipenet_ class defined in the module [_syn_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) to define and resolve vacular networks, and how to use a resolved network to synthesise dMRI signals. We have taken you through some basic usage: however, SpinFlowSim allows you to do much more! For example:
 * ex1
 * ex2
