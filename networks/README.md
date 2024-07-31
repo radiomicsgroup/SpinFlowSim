@@ -1,18 +1,12 @@
 # Capillary networks for vascular dMRI signal synthesis
 
-SpinFlowSim was showcased on vascular networks reconstructed from 2D histological images. The networks were drawn manually, tracing visible capillaries in 11 stained liver biopsies.
-
-The SpinFlowSim dataset consists of **15 vascular networks**:
+SpinFlowSim was showcased on vascular networks reconstructed from 2D histological images. The networks were drawn manually, tracing visible capillaries in 11 stained liver biopsies. We have drawn **15 vascular networks** on human liver biopsies, as detailed in our [preprint](https://doi.org/10.1101/2024.07.15.24310335):
 
 <div align="center">
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/nets.png" width="950" height="auto">
 </div>
 
-The network dataset has been augmented to 1500 realizations by varying input flow in [1.5 × 10⁻⁴ ; 5.5 × 10⁻³] mm³/s and inlet/outlet nodes.
-
-
-
-You can start running SpinFlowSim by choosing from any of the 1500 network realizations (in binary `.bin` format) stored within this folder, and synthesising corresponding diffusion MRI (dMRI) signals for any protocol of interest. In [this tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md) we show how.
+For each network, we varied the input volumetric flow rate (VFR) in [1.5 × 10⁻⁴ ; 5.5 × 10⁻³] mm³/s and inlet/outlet nodes (10 input VFRs × 10 unique pairs of inlet/outlet), for a total of 100 realisations per network. This lead to **a total of 1500 vascular networks, which we include here in our repository**. You can start running SpinFlowSim by choosing from any of the 1500 network realizations (in binary `.bin` format) stored within this folder, and synthesising corresponding diffusion MRI (dMRI) signals for any protocol of interest. In [this tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md) we show how.
 
 ### Directory Description
 
