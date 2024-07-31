@@ -1,4 +1,0 @@
-numpy==1.24.2
-lcapy==1.10
-graph-tool==2.45
-pandas==1.5.3
