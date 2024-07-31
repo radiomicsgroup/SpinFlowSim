@@ -35,9 +35,9 @@ Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi S
 SpinFlowSim has been developed with python 3.10.8.
 
 It requires the following third-party packages:
-
-- [pandas](https://pandas.pydata.org/) (developed with version 1.5.3)
-- [lcapy](https://lcapy.readthedocs.io/en/latest) (developed with lcapy 1.10)
+- [numpy](https://numpy.org) (developed with version 1.24.2)
+- [pandas](https://pandas.pydata.org) (developed with version 1.5.3)
+- [Lcapy](https://lcapy.readthedocs.io) (developed with Lcapy 1.10)
 - [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with PySpice 1.5)
 - [graph-tool](https://graph-tool.skewed.de) (developed with graph-tool 2.45, commit b1a649d8)
 
