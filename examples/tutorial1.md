@@ -283,7 +283,7 @@ The plots reveal several interesting features, e.g., non-mono-exponential decay 
 
 
 ## Final remarks
-This tutorial has shown you how to use the _pipenet_ class defined in module [_syn_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) to resolve vacular networks and to synthesise vascular dMRI signals. We have taken you through some basic usage: however, SpinFlowSim allows you to do much more! 
+This tutorial has shown you how to use the _pipenet_ class defined in module [_syn_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) to resolve vascular networks and to synthesise vascular dMRI signals. We have taken you through some basic usage: however, be aware that SpinFlowSim can do much more! 
 
 For example:
 * methods from a _pipenet_ [object](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) can be used to generate illustrative spins trajectories ([`GetTrajUniformSeed()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) method) or to control the details of the signals generation (methods [`dMRISynMea()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) and [`dMRISynProt()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md), which enable dMRI signal synthesis for **any, custom gradient waveform**);
