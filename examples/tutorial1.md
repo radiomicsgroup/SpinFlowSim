@@ -67,14 +67,14 @@ while the corresponding blood velocity (BV) values (in mm/s) are stored in the `
  [-17.61550894          nan   6.88105818]
  [-26.74115613  -6.88105818          nan]]
 ```
-We can also check, for example, the complete set of paths that connect the input node with the output node, represented as lists of consecutive nodes:
+We can also check, for example, the set of paths connecting inlet/outlet, represented as lists of consecutive nodes:
 ```
 >>> print(net.iopaths)
 [array([0, 1, 2], dtype=uint64), array([0, 2], dtype=uint64)]
 ```
-This shows that in our simple 3-capillary network, there are only two possible paths from inlet to outlet.
+These have been evaluated with [graph-tools](https://graph-tool.skewed.de/) using graph theory, since our networks are essentially directed graphs. In our simple 3-capillary network example, we can see that there are only two possible paths from inlet to outlet.
 
-Note that the VFR and BV are two attributes of the object `net`, namely `flowmat` and `velmat`. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary going from node _i_ to node _j_. These two have the same sign, and is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (as well as `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
+A final note. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary **going from node _i_ to node _j_. Their sign is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_**. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (and, similarly, `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
 
 
 
