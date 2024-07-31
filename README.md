@@ -49,23 +49,13 @@ SpinFlowSim has been developed with python 3.10.8. To use SpinFlowSim and go thr
   
 # Installation
 </div>
-Obtain SpinFlowSim by cloning this repository:
+To obtain SpinFlowSim, make sure to install to your python environment the requirements listed above. Then simply clone:
 
  ```sh
  git clone https://github.com/radiomicsgroup/SpinFlowSim
  ```
 </div>
-Start using SpinFlowSim by creating a new environment:
 
-```
-$:- conda create --name pipenet  -c conda-forge graph-tool  python=3.10.8
-$:- conda activate pipenet
-```
-Install the required packages
-
-```
-$:- pip install -r requirements.txt
-```
 
 # Repository description
 The SpinFlowSim repository includes several sub-fodlers:
