@@ -154,7 +154,7 @@ In the folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/
 
 All these 1500 networks, already resolved, have been stored as binary files. Loading one of such files into python gives you access to an initialised _pipenet_ object, which you can use to synthesise vascular diffusion MRI (dMRI) signals. 
 
-In this code below we show, for example, how to load one of such networks, and how to plot its VFR matrix (attribute `flowmat`). We assume that the code is run from inside the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples) where this tutorial is stored, and that matplotlibt is installed in your pything environment.
+In this code below we show, for example, how to load one of such networks, and how to plot its VFR matrix (attribute `flowmat`). We assume that the code is run from inside the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples) where this tutorial is stored, and that matplotlibt is installed in your _python_ environment.
 
 ```
 import numpy as np
