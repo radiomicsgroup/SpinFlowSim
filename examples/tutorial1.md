@@ -212,6 +212,72 @@ CODE_TO_BE_ADDED_SOON
 Finally, once we have drawn a vascular network on histology, and used such data to initialise a _pipenet_ vascular network obkect, we can use it to generate realistic vascular dMRI signals! Continuing the example above, we now show you how to generate signals from the kidney vascular network initialised by previous script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py).
 
 Let's assume that we want to generate the complex-valued dMRI signal for a standard Pulsed Gradient Spin Echo (PGSE) sequence. We are interested in a rich set of b-values, ranging in [0; 100] s/mm<sup>2</sup> and three diffusion times, e.g., Δ = {20, 50, 80} ms, with δ fixed to 15 ms. We can use the method `dMRISynProt()` of a _pipenet_ object.
+```
+import numpy as np
+from matplotlib import pyplot as plt
+import sys
+import pickle as pk
+sys.path.insert(0, '../code' )      # Add the SpinFlowSim folder where the syn.py and visu.py files are stored
+import syn
+import visu
+
+## Load previously resolved vascular network
+h = open('./script01_initnet_kidneyexample.bin','rb')
+net = pk.load(h)
+h.close()
+
+
+### Simulate two diffusion times for 100 b-values between 0 and 100 s/mm2. 
+# We will get magnitude and phase for 3000 spins and a temporal resolution of 30 us 
+# We use the 'periodic' boundary condition, and fix the seed number of reproducibility
+# We will also use a fixed gradient -- g = [1 0 0] for all b-values, as an example
+# We fix the gradient duration to 15 ms, and try two different gradient separations
+Nspins=3000 
+tempres=3e-05
+seednumber=100287
+mycond='periodic'
+bval = np.linspace(0,100,100)   
+gdir = np.zeros((bval.size,3))
+gdir[:,0] = 1.0
+gdir[:,1] = 0.0
+gdir[:,2] = 0.0
+gdir[0,0] = 0.0     # Make sure b = 0 as gradient direction [0 0 0]
+gdur = 0.015*np.ones(bval.shape)  
+gdur[bval==0] = 0
+
+### Get magnitue and phase for a gradient separation of 20 ms
+gsep = 0.020*np.ones(bval.shape)      
+gsep[bval==0] = 0
+smag1,sph1 = net.dMRISynProt(bval, gdur, gsep, gdir, Nwater=Nspins, deltat=tempres, seed=seednumber, boundcon=mycond)
+
+
+### Get magnitue and phase for a gradient separation of 70 ms
+gsep = 0.070*np.ones(bval.shape)      
+gsep[bval==0] = 0
+smag2,sph2 = net.dMRISynProt(bval, gdur, gsep, gdir, Nwater=Nspins, deltat=tempres, seed=seednumber, boundcon=mycond)
+
+
+### Let's plot magnitude
+plt.subplot(1,2,1)
+plt.plot(bval,smag1,label='δ = 15ms; Δ = 20 ms')
+plt.plot(bval,smag2,label='δ = 15ms; Δ = 70 ms')
+plt.yscale('log')
+plt.xlabel('b-values [s/mm$^2$]')
+plt.ylabel('Signal magnitude')
+plt.legend()
+
+### Let's plot phase in deg
+plt.subplot(1,2,2)
+plt.plot(bval,sph1*180.0/np.pi,label='δ = 15ms; Δ = 20 ms')
+plt.plot(bval,sph2*180.0/np.pi,label='δ = 15ms; Δ = 70 ms')
+plt.xlabel('b-values [s/mm$^2$]')
+plt.ylabel('Signal phase [deg]')
+plt.legend()
+
+plt.show()
+```
+
+The plots reveal several interesting features, e.g., non-mono-exponential decay of the signal magnitude with oscillatory patterns, characteristics of spins whose flow regime is ballistic, or presence of wraps in the signal phase as a function of the b-value, which are seen more clearly at long diffusion time.
 
 
 ## Final remarks
