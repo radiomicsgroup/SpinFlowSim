@@ -49,28 +49,30 @@ solvtechnique = 'numerical'  # Solve the pipe circuit numerically using PySpice
 net = syn.pipenet(nodepos,r,qin,inputnode,outputnode,visc=muval,flowmodel=bloodmodel,solver=solvtechnique)
 
 ```
-For the network initialisiation, we ensure that the fluid dynamics follows the model used in Blinder et al (Blinder P et al, Nature Neuroscience volume 16, pages 889–897 (2013), doi: [10.1038/nn.3426](https://doi.org/10.1038/nn.3426); optional parameter `flowmodel=bloodmodel`) with a cell-free plasma viscosity of 1.2 mPa s (`visc=muval`). The circuit is solved numerically (`solver=solvtechnique`), with default inlet radius computation (mean of the radii emanating from the inlet): 
+For the network initialisiation, we ensure that the fluid dynamics follows the model used in Blinder et al (Blinder P et al, Nature Neuroscience volume 16, pages 889–897 (2013), doi: [10.1038/nn.3426](https://doi.org/10.1038/nn.3426); optional parameter `flowmodel=bloodmodel`) with a cell-free plasma viscosity of 1.2 mPa s (`visc=muval`). The network is solved numerically (`solver=solvtechnique`), with default inlet radius computation (mean of the radii emanating from the inlet).
 
-Upon declaration of the _pipenet_ object, the vascular network is solved. We can now check, for example, the volumetric flow rate (VFR) in mm<sup>3</sup>/s in each capillary,
+Upon declaration of the _pipenet_ object, the vascular network is solved, meaning that the volumetric flow rate (VFR) is calculated in each capillary segment. This calculation is done by default numerically (`solver='numerical'` parameter in the _pipenet_ constructor), using routines borrowed from [PySpice](https://github.com/PySpice-org/PySpice). Exact, analytical VFR estimation can also be performed with [Lcapy](https://lcapy.readthedocs.io), setting `solver='symbolic'`. Be aware though that in this case the computation time is much longer, and practically unfeasible when the number of capillary is higher than approximately 20-25. 
+
+Once we have initialised a _pipenet_ object, we have solved the network, and we have hence reconstructed the VFR (in mm<sup>3</sup>/s) in each capillary. Such VFR values are stored in the `flowmat` attribute,
 ```
 >>> print(net.flowmat)
 [[        nan  0.00138352  0.00411648]
  [-0.00138352         nan  0.00138352]
  [-0.00411648 -0.00138352         nan]]
 ```
-the blood velocity (BV) in mm/s in each capillary,
+while the corresponding blood velocity (BV) values (in mm/s) are stored in the `velmat` attribute: 
 ```
 >>> print(net.velmat)
 [[         nan  17.61550894  26.74115613]
  [-17.61550894          nan   6.88105818]
  [-26.74115613  -6.88105818          nan]]
 ```
-or the list of paths that connect the input node with the output node,
+We can also check, for example, the complete set of paths that connect the input node with the output node, represented as lists of consecutive nodes:
 ```
 >>> print(net.iopaths)
 [array([0, 1, 2], dtype=uint64), array([0, 2], dtype=uint64)]
 ```
-which shows that in this simple network, there are only two possible paths from inlet to outlet.
+This shows that in our simple 3-capillary network, there are only two possible paths from inlet to outlet.
 
 Note that the VFR and BV are two attributes of the object `net`, namely `flowmat` and `velmat`. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary going from node _i_ to node _j_. These two have the same sign, and is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (as well as `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
 
