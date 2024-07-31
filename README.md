@@ -16,7 +16,7 @@ The SpinFlowSim code was written by Francesco Grussu (<fgrussu@vhio.net>), Anna 
 
 Foster open science by citing our preprint if you use SpinFlowSim in your research: 
 
-Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Nuria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Roser Sala-Llonch, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu. **"SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer"**. medRxiv 2024.07.15.24310335; doi: [10.1101/2024.07.15.24310335](https://doi.org/10.1101/2024.07.15.24310335).
+_Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Nuria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Roser Sala-Llonch, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu. **"SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer"**. medRxiv 2024.07.15.24310335; doi: [10.1101/2024.07.15.24310335](https://doi.org/10.1101/2024.07.15.24310335)_.
 
 <div align="center">
     
