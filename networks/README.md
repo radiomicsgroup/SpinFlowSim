@@ -5,7 +5,7 @@ SpinFlowSim was showcased on vascular networks reconstructed from 2D histologica
 The SpinFlowSim dataset consists of **15 vascular networks**:
 
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/nets.png" width="900" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/nets.png" width="950" height="auto">
 </div>
 
 The network dataset has been augmented to 1500 realizations by varying input flow in [1.5 × 10⁻⁴ ; 5.5 × 10⁻³] mm³/s and inlet/outlet nodes.
