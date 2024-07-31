@@ -150,7 +150,7 @@ We are including this CSV file inside the same directory [**examples**](https://
 
 ## Loading the realistic vascular networks that we distribute with SpinFlowSim
 
-In the folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) we include different instantiations of 15 vascular networks that we have drawn on histological images of humman liver biopsies. We are including 100 instantiations per network, by varying the inlet/outlet and input VFR, for a total of 1500.
+In the folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) we include different instantiations of 15 vascular networks that we have drawn on histological images of human liver biopsies. We are including 100 instantiations per network, by varying the inlet/outlet and input VFR, for a total of 1500.
 
 All these 1500 networks, already resolved, have been stored as binary files. Loading one of such files into python gives you access to an initialised _pipenet_ object, which you can use to synthesise vascular diffusion MRI (dMRI) signals. 
 
