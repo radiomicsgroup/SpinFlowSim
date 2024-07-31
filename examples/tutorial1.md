@@ -226,12 +226,11 @@ visu.spin_animation(rperiodic, 'spinvideo_periodic.gif')
 Another boundary condition can be used, which we refer to as _feedback_ (option `boundary='feedback'`). In this case, spins that reach the outled are fed back instantaneously to the input node. We point out that this introduces "jumps" on the spin trajectories, since these may affect the synthesis of your dMRI signals. Here you can see the same spin trajectories of the animation above, but this the "feedback" boundary condition.
 
 ```
-### Generate spins trajectories: again, 750 spins for 100 time steps of dt = 10 us; but boundary condition 'periodic'  
+### Generate spins trajectories: again, 750 spins, 100 time steps, dt = 10 us, but boundary condition 'feedback'  
 rfeedback = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-05, seednumber=20181019, boundary='feedback' )
 
 ### Let's save them as a GIF
 visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
-
 ```
 
 
