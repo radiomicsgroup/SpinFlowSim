@@ -91,7 +91,9 @@ help(syn.pipenet)
 ## Drawing a network on histology and using it to initialise a _pipenet_ object
 With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries. The network is made of 26 nodes, connected among each other through 37 straight capillaries. 
 
-![labels_githhubreoi](https://github.com/user-attachments/assets/0364164f-4f12-4cf2-9fae-3c7f37770e81)
+<div align="center">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/kidneynet.png" width="300" height="auto">
+</div>
 
 We have stored the information realted to the network as a CSV spreadsheet. Each straight capillary is described by a row in [Network_stats.csv](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv). Each row is described by the following variables:
 - segmented ID (SegmentNumber)
