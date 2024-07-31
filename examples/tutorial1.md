@@ -60,7 +60,7 @@ net = syn.pipenet(nodepos,r,qin,inputnode,outputnode,visc=muval,flowmodel=bloodm
 ```
 For the network initialisiation, we ensure that the fluid dynamics follows the model used in Blinder et al (Blinder P et al, Nature Neuroscience volume 16, pages 889–897 (2013), doi: [10.1038/nn.3426](https://doi.org/10.1038/nn.3426); optional parameter `flowmodel=bloodmodel`) with a cell-free plasma viscosity of 1.2 mPa s (`visc=muval`). The network is solved numerically (`solver=solvtechnique`), with default inlet radius computation (mean of the radii emanating from the inlet).
 
-Upon declaration of the _pipenet_ object, the vascular network is solved, meaning that the volumetric flow rate (VFR) is calculated in each capillary segment. This calculation is done by default numerically (`solver='numerical'` parameter in the _pipenet_ constructor), using [PySpice](https://github.com/PySpice-org/PySpice). Exact, analytical VFR estimation can also be performed with [Lcapy](https://lcapy.readthedocs.io), setting `solver='symbolic'`. Be aware though that in this case the computation time is much longer, and practically unfeasible when the number of capillary is higher than approximately 20-25. 
+Upon declaration of the _pipenet_ object, the vascular network is solved, meaning that the volumetric flow rate (VFR) is calculated in each capillary segment. This calculation is done by default numerically (`solver='numerical'` parameter in the _pipenet_ constructor), using [PySpice](https://github.com/PySpice-org/PySpice). Exact analytical VFR estimation can also be performed with [Lcapy](https://lcapy.readthedocs.io), setting `solver='symbolic'`. Be aware though that in this case the computation time is much longer, and practically unfeasible when the number of capillaries is higher than approximately 20-25. 
 
 Once we have initialised a _pipenet_ object, we have solved the network, and we have hence reconstructed the VFR (in mm<sup>3</sup>/s) in each capillary. Such VFR values are stored in the `flowmat` attribute,
 ```
@@ -83,7 +83,7 @@ We can also check, for example, the set of paths connecting inlet/outlet, repres
 ```
 These have been evaluated with [graph-tools](https://graph-tool.skewed.de/) using graph theory, since our networks are essentially directed graphs. In our simple 3-capillary network example, we can see that there are only two possible paths from inlet to outlet.
 
-A final note. Elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary **going from node _i_ to node _j_. Their sign is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_**. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (and, similarly, `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
+A final note: elements `flowmat[i][j]` and `velmat[i][j]` respectively store the VFR and BV of the capillary **going from node _i_ to node _j_. Their sign is > 0 if the flow goes from node _i_ to node _j_, while it is < 0 if the flow goes from node _j_ to node _i_**. By definition then, it follows that `flowmat[i][j]` and `flowmat[j][i]` (and, similarly, `velmat[i][j]` and `velmat[j][i]`) have opposite signs.  
 
 [Here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) you can find a complete description of all methods and attributes of the _pipenet_ class.
 
@@ -115,7 +115,7 @@ The table below illustrates the first few lines of the CSV file.
 ....
 
 
-We are including this CSV file inside the same directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py), also included in the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) , shows how to load the network information contained in the CSV with [_pandas_](https://pandas.pydata.org/), so that it can be used to initialise a _pipenet_ object. In the script, we assume, as an example, that the inlet/outlet of the network are respectively nodes 0/16.
+We are including this CSV file within the directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py), also included in the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples), shows how to load the network information contained in the CSV with [_pandas_](https://pandas.pydata.org), so that it can be used to initialise a _pipenet_ object. In the script, we assume, as an example, that the inlet/outlet of the network are respectively nodes 0/16.
 
 
 ## Loading the realistic vascular networks included with SpinFlowSim
