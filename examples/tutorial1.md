@@ -1,11 +1,14 @@
 # Initialising _pipenet_ objects to resolve a vascular network
 
-This tutorial shows you how to create vascular networks, and how to use them to synthesise diffusion MRI (dMRI) signals. To go through this tutorial, you will need:
-* [nibabel](https://nipy.org/nibabel) (tested with version '5.1.0');
-* [numpy](https://numpy.org) (tested with version '1.23.5');
-* [scipy](https://scipy.org) (tested with version '1.10.1');
-* [pandas](https://pandas.pydata.org/) (tested with version '1.5.3');
-* [matplotlib](https://matplotlib.org) (tested with version '3.7.1').
+This tutorial shows you how to create vascular networks, and how to use them to synthesise diffusion MRI (dMRI) signals. To go through our tutorials, remember that you need:
+- [numpy](https://numpy.org) (developed with version 1.24.2)
+- [pandas](https://pandas.pydata.org) (developed with version 1.5.3)
+- [Lcapy](https://lcapy.readthedocs.io) (developed with version 1.10)
+- [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with version 1.5)
+- [graph-tool](https://graph-tool.skewed.de) (developed with version 2.45, commit b1a649d8)
+- [nibabel](https://nipy.org/nibabel) (developed with version '5.1.0')
+- [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1')
+- [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4').
 
 ## The _pipenet_ class
 
