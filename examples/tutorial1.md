@@ -15,7 +15,7 @@ The tutorial contains the following sections:
 * [Generating a new network from histology](#drawing-net)
 * [Loading our pre-computed vascular networks](#pre-computed-network)
 * [Plotting properties of a vascular network](#plot-network)
-* [Synthesising vascular diffusion MRI signals](#dMRI-signals)
+* [Synthesising vascular diffusion MRI signals](#dmri-signals)
 * [Final remarks](#remarks)
 
 
@@ -268,7 +268,7 @@ plt.show()
 </div>
 
 
-## Synthesising vascular diffusion MRI signals <a name="dMRI-signals"></a>
+## Synthesising vascular diffusion MRI signals <a name="dmri-signals"></a>
 Finally, once we have drawn a vascular network on histology, and used such data to initialise a _pipenet_ vascular network obkect, we can use it to generate realistic vascular dMRI signals! Continuing the example above, we now show you how to generate signals from the kidney vascular network initialised by previous script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py).
 
 Let's assume that we want to generate the complex-valued dMRI signal for a standard Pulsed Gradient Spin Echo (PGSE) sequence. We are interested in a rich set of b-values, ranging in [0; 100] s/mm<sup>2</sup> and three diffusion times, e.g., Δ = {20, 50, 80} ms, with δ fixed to 15 ms. We can use the method `dMRISynProt()` of a _pipenet_ object.
