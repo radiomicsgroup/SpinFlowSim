@@ -292,8 +292,8 @@ The plots reveal several interesting features, e.g., non-mono-exponential decay 
 
 
 ## Final remarks <a name="remarks"></a>
-This tutorial has shown you how to use the _pipenet_ class defined in module [_syn_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) to resolve vascular networks and to synthesise vascular dMRI signals. We have taken you through some basic usage: however, be aware that SpinFlowSim can do much more! 
+This tutorial has shown you how to use the _pipenet_ class defined in module [_syn_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) to resolve vascular networks and synthesise dMRI signals from them. We have taken you through some basic usage; however, be aware that SpinFlowSim can do much more! 
 
-For example:
-* methods from a _pipenet_ [object](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) can be used to generate illustrative spins trajectories ([`GetTrajUniformSeed()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) method) or to control the details of the signals generation (methods [`dMRISynMea()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) and [`dMRISynProt()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md), which enable dMRI signal synthesis for **any, custom gradient waveform**);
-* several methods of the _syn_ module, [not included](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) in the definition of the _pipenet_ class, enable complex processing that is required to work with vascular networks. For example, ..... [`SegmentIn2Out()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) .....
+* The methods [`dMRISynMea()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) and [`dMRISynProt()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) of a _pipenet_ object can synthesise dMRI signal synthesis for **any, arbitary, input custom gradient waveform**. In this tutorial we have shown signals from standard PGSE, but more advanced diffusion encodings can also be investigated (e.g., b-tensor encoding, Oscillating Gradient Spin Echo (OGSE), flow-compensated diffusion encoding, etc).
+* The _syn_ module includes functions outside of the _pipenet_ class. For example:
+** [`SegmentIn2Out()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) .....
