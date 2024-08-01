@@ -6,7 +6,7 @@ This tutorial will show on our vascular networks data how synthetic signals can 
 ## Data for Plots
 ### Parameters
 
-The parameter data used for generating the plots can be found in the `data_for_plots` folder for each network, grouped by network. 
+The parameter data used for generating the plots can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
 e.g. Net1 data_for_plots `data_for_plots/Net1/` contains
 
 - [Net1_Pars_vm.npy](data_for_plots/Net1/Net1_Pars_vm.npy)
