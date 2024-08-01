@@ -30,7 +30,7 @@ To instantiate a new object from the _pipenet_ class you need the following mand
 * **the index of the input node** in the node matrix (nodes[:,idxin] provides the x,y,z coordinates of such a input node);
 * **the index of the output node** in the node matrix (nodes[:,idxout] provides the x,y,z coordinates of such an input node).
 
-Additional optional parameters are the **fluid viscosity**, the **radius at the inlet**, the **fluid dynamics model** and the **type of solver**. The full manual of the _pipenet_ class is provided [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md).
+Additional optional parameters are the **fluid viscosity**, the **radius at the inlet**, the **fluid dynamics model** and the **type of solver**. The full manual of the _pipenet_ class can be read [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md).
 
 For example, this code creates an initialises a _pipenet_ object describing a simple 2D 3-capillary network, made of 3 nodes, namely nodes 0, 1 and 2, as illustrated below. Connections are between nodes 0 and 1, between 0 and 2, and between 1 and 2; the input flow, of 0.0055 mm<sup>3</sup>/s, comes from node 0, and the output node is 2.
 
