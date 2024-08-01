@@ -20,7 +20,7 @@ Each of these .npy arrays has 100 entries, reporting average network properties 
 
 ### Signals
 
-The signals used for the estimation can be found in the `data_for_plots` folder for each network, grouped by network. 
+The signals used for the estimation can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
 e.g. Net1 data_for_plots `data_for_plots/Net1/` contains
 
 - [Net1_Sigs_TRSE.npy](data_for_plots/Net1/Net1_Sigs_TRSE.npy)
