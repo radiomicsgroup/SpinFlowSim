@@ -99,7 +99,7 @@ With SpinFlowSim, one can simulate flow in realistic capillary networks that hav
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/kidneynet.png" width="750" height="auto">
 </div>
 
-We have stored the information realted to the network as a CSV spreadsheet. Each straight capillary is described by a row in [Network_stats.csv](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv). Each row is described by the following variables:
+We have stored the information realted to the segmentation as a CSV spreadsheet. Each straight capillary is described by a row in [Network_stats.csv](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv). Each row is described by the following variables:
 - segmented ID (SegmentNumber)
 - mean radius (RadiiMean_um) in µm; computed by averaging three radii measured over the length of a segment
 - starting coordinates (Xstart,Ystart,Zstart) in µm
