@@ -295,5 +295,11 @@ The plots reveal several interesting features, e.g., non-mono-exponential decay 
 This tutorial has shown you how to use the _pipenet_ class defined in module [_syn_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) to resolve vascular networks and synthesise dMRI signals from them. We have taken you through some basic usage; however, be aware that SpinFlowSim can do much more! 
 
 * The methods [`dMRISynMea()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) and [`dMRISynProt()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) of a _pipenet_ object can synthesise dMRI signal synthesis for **any, arbitary, input custom gradient waveform**. In this tutorial we have shown signals from standard PGSE, but more advanced diffusion encodings can also be investigated (e.g., b-tensor encoding, Oscillating Gradient Spin Echo (OGSE), flow-compensated diffusion encoding, etc).
-* The _syn_ module includes functions outside of the _pipenet_ class. For example:
-** [`SegmentIn2Out()`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) .....
+* The [`syn`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) module includes functions outside of the _pipenet_ class. For example:
+  * `SegmentIn2Out()` calculates the trajectory of a spin flowing at a given velocity along a straight line connecting two points;
+  * `ComputeResHagPois()` calculates flow resistances with the Hagen-Poiseuille law;
+  * `ComputeResModHagPois()` calculates flow resistances with the modified Hagen-Poiseuille law as in Blinder et al, Nat Neurosci 2013, 16(7): 889-897, doi: [10.1038/nn.3426](https://doi.org/10.1038/nn.3426);
+  * `ComputeFlow()` calculates the volumetric flow rate between each pair of 2 nodes in a vascular network;
+  * `ComputeAllPaths()` finds all paths connecting the input node to the output node of a network given its connecivity matrix. It returns a directed graph given the connectivity matrix;
+  * `Traj2Signal()` synthesises a diffusion-weighted MRI signal from a set of spin trajectories (not necessarily from flowing spins, but even for pure diffusion!);
+  * `getGradPGSE()` generates diffusion encoding gradient wave forms for an ideal PGSE sequence.
