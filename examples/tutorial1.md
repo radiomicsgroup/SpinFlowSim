@@ -12,7 +12,7 @@ This tutorial shows you how to create vascular networks, and how to use them to 
 
 The tutorial contains the following sections:
 
-<a href=#"The _pipenet_ class">The _pipenet_ class</a>
+[link text](#The _pipenet_ class)
 
 ## The _pipenet_ class
 
