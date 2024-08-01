@@ -208,8 +208,57 @@ visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
 
 
 From the GIF animations, it is apparent that spins flowing through different capillaries experience very different velocities. Below we show how to generate a plot in which we colour each capillary of the network according to the velocity of the spins flowing through the capillary itself:
+<div align="center">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/kidneynet_velocityplot.png" width="1000" height="auto" >
+</div>
 ```
-CODE_TO_BE_ADDED_SOON
+import pickle as pk
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.colors import Normalize
+
+# Load initialized vascular network
+infile = 'script01_initnet_kidneyexample.bin'
+h = open(infile,'rb')
+net = pk.load(h)
+h.close()
+
+# Retrieve network properties
+v = net.velmat  # Get velocity matrix
+connectivity = net.connmat # Get connectivity matrix
+velmax = np.nanmax( np.abs( np.unique(net.velmat) ) )
+velmin = 0.0
+
+# Create plot
+fig, ax = plt.subplots(figsize=(14, 12))
+# Loop over each connection
+for i in range(connectivity.shape[0]):
+    for j in range(connectivity.shape[1]):
+        if connectivity[i, j] > 0:  # Exclude zero or negative values
+            velocity = v[i, j]
+            if velocity > 0:
+                x1, y1, z1 = net.nodepos[:, i]
+                x2, y2, z2 = net.nodepos[:, j]
+                # Plot each line with color based on velocity
+                color = plt.cm.viridis(velocity / velmax)
+                ax.plot([x1, x2], [y1, y2], color=color,linewidth=4)
+
+
+# Add colorbar
+norm = Normalize(vmin=velmin, vmax=velmax)
+cmap = plt.set_cmap('viridis')
+sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+sm.set_array(v)
+cbar = plt.colorbar(sm, ax=ax, pad=0.015, shrink=0.85)
+cbar.set_label('$[mm/s]$', rotation=90, fontsize=11)
+cbar.set_ticks([velmin, velmax])
+cbar.ax.set_title('$v$', fontsize=15)
+
+plt.axis('equal')
+plt.xlabel('x-position [mm]')
+plt.ylabel('y-position [mm]')
+plt.title('Spin paths coloured by velocity')
+plt.show()
 ```
 
 ## Synthesising vascular diffusion MRI signals <a name="dMRI-signals"></a>
