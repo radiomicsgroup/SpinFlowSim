@@ -46,7 +46,7 @@ import syn                          # import syn.py, where the pipenet class is 
 
 nodepos = np.transpose( np.array([ [0.0, 0.0, 0.0], [0.010, 0.020, 0.0], [0.030, 0.0, 0.0] ] ) )    # Node positions in mm
 
-r = np.zeros((3,3))           # Node positions in mm
+r = np.zeros((3,3))           # Capillary radii in mm
 r[0][0] = r[1][1] = r[2][2] = np.nan
 r[0][1] = r[1][0] = 0.005
 r[0][2] = r[2][0] = 0.007
