@@ -21,7 +21,7 @@ The tutorial contains the following sections:
 
 ## The _pipenet_ class <a name="pipenet-class"></a>
 
-We have defined the _pipenet_ to work with vascular networks. In our framework, a vascular network is nothing else but a collection _pipes_, representing capillaries, which conned a set of _nodes_.  
+We have defined the _pipenet_ class to work with vascular networks. In our framework, a vascular network is nothing else but a collection _pipes_, representing capillaries, which connect a set of _nodes_.  
 
 To create an object from the _pipenet_ class ones needs the following mandatory input parameters:
 
