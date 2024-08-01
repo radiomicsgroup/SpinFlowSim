@@ -12,8 +12,7 @@ This tutorial shows you how to create vascular networks, and how to use them to 
 
 The tutorial contains the following sections:
 
-<a href="#The _pipenet_ class">The _pipenet_ class</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#Drawing a network on histology and using it to initialise a _pipenet_ object">Drawing a network on histology and using it to initialise a _pipenet_ object</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#precomputed-network">Loading one of our pre-computed, realistic vascular networks</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#plot-properties">Plotting some properties of a vascular network</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#synthesise-signals">Synthesising vascular diffusion MRI signals</a>&nbsp;&nbsp;&nbsp;
-<br/><br/>
+<a href=#"The _pipenet_ class">The _pipenet_ class</a>
 
 ## The _pipenet_ class
 
