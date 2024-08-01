@@ -1,4 +1,4 @@
-# Resolving vascular networks for dMRI signal synthesis
+# Tutorial 1: resolving vascular networks for dMRI signal synthesis
 
 This tutorial shows you how to create vascular networks, and how to use them to synthesise diffusion MRI (dMRI) signals. To go through our tutorials, remember that you need:
 - [numpy](https://numpy.org) (developed with version 1.24.2)
