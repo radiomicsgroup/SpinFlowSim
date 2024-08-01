@@ -93,7 +93,7 @@ A final note: elements `flowmat[i][j]` and `velmat[i][j]` respectively store the
 
 
 ## Generating a new network from histology <a name="drawing-net"></a>
-With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries. The network is made of 26 nodes, connected among each other through 37 straight capillaries. 
+With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries manually. The network is made of 26 nodes, connected among each other through 37 straight capillaries. A characteristic radius for each capillary has also been obtained by averaging radius measuerements performed at the extremities and in the middle of the capillary.  
 
 <div align="center">
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/kidneynet.png" width="750" height="auto">
