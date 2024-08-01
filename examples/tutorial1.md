@@ -13,6 +13,9 @@ This tutorial shows you how to create vascular networks, and how to use them to 
 The tutorial contains the following sections:
 
 <a href="#pipenet">The _pipenet_ class</a>&nbsp;&nbsp;&nbsp;
+<a href="#drawing">Drawing a network on histology and using it to initialise a _pipenet_ object</a>&nbsp;&nbsp;&nbsp;
+
+
 
 ## The _pipenet_ class
 
