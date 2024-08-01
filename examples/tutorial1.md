@@ -12,7 +12,7 @@ This tutorial shows you how to create vascular networks, and how to use them to 
 
 The tutorial contains the following sections:
 * [The _pipenet_ class](#pipenet-class)
-* [Generating a new from histology](#drawing-net)
+* [Generating a new network from histology](#drawing-net)
 * [Loading our pre-computed vascular networks](#pre-computed-network)
 * [Plotting properties of a vascular network](#plot-network)
 * [Synthesising vascular diffusion MRI signals](#dMRI-signals)
@@ -92,7 +92,7 @@ A final note: elements `flowmat[i][j]` and `velmat[i][j]` respectively store the
 [Here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md) you can find a complete description of all methods and attributes of the _pipenet_ class.
 
 
-## Generating a new from histology <a name="drawing-net"></a>
+## Generating a new network from histology <a name="drawing-net"></a>
 With SpinFlowSim, one can simulate flow in realistic capillary networks that have been carefully reconstructed from histology. Here we show an example of a Hematoxylin and Eosin (HE) image of a mouse kidney slice, where a vascular network has been segmented by tracing visible capillaries. The network is made of 26 nodes, connected among each other through 37 straight capillaries. 
 
 <div align="center">
