@@ -208,9 +208,11 @@ visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
 
 
 From the GIF animations, it is apparent that spins flowing through different capillaries experience very different velocities. Below we show how to generate a plot in which we colour each capillary of the network according to the velocity of the spins flowing through the capillary itself:
+
 <div align="center">
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/kidneynet_velocityplot.png" width="1000" height="auto" >
 </div>
+
 ```
 import pickle as pk
 import numpy as np
@@ -260,6 +262,7 @@ plt.ylabel('y-position [mm]')
 plt.title('Spin paths coloured by velocity')
 plt.show()
 ```
+
 
 ## Synthesising vascular diffusion MRI signals <a name="dMRI-signals"></a>
 Finally, once we have drawn a vascular network on histology, and used such data to initialise a _pipenet_ vascular network obkect, we can use it to generate realistic vascular dMRI signals! Continuing the example above, we now show you how to generate signals from the kidney vascular network initialised by previous script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py).
