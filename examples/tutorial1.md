@@ -209,29 +209,29 @@ visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
 
 From the GIF animations, it is apparent that spins flowing through different capillaries experience very different velocities. Below we show how to generate a plot in which we colour each capillary of the network according to the velocity of the spins flowing through the capillary itself:
 
-<div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/kidneynet_velocityplot.png" width="1000" height="auto" >
-</div>
-
 ```
 import pickle as pk
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
+import sys
+sys.path.insert(0, '../code' )      # Add the SpinFlowSim folder where the syn.py and visu.py files are stored
+import syn
+import visu
 
-# Load initialized vascular network
+#### Load the initialized kidney vascular network
 infile = 'script01_initnet_kidneyexample.bin'
 h = open(infile,'rb')
 net = pk.load(h)
 h.close()
 
-# Retrieve network properties
+#### Retrieve network properties
 v = net.velmat  # Get velocity matrix
 connectivity = net.connmat # Get connectivity matrix
 velmax = np.nanmax( np.abs( np.unique(net.velmat) ) )
 velmin = 0.0
 
-# Create plot
+#### Create plot: draw capillaries and colour them depending on the velocity of spins through the capillary
 fig, ax = plt.subplots(figsize=(14, 12))
 # Loop over each connection
 for i in range(connectivity.shape[0]):
@@ -246,7 +246,7 @@ for i in range(connectivity.shape[0]):
                 ax.plot([x1, x2], [y1, y2], color=color,linewidth=4)
 
 
-# Add colorbar
+#### Add a colorbar
 norm = Normalize(vmin=velmin, vmax=velmax)
 cmap = plt.set_cmap('viridis')
 sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
@@ -262,6 +262,10 @@ plt.ylabel('y-position [mm]')
 plt.title('Spin paths coloured by velocity')
 plt.show()
 ```
+
+<div align="center">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/kidneynet_velocityplot.png" width="600" height="auto" >
+</div>
 
 
 ## Synthesising vascular diffusion MRI signals <a name="dMRI-signals"></a>
