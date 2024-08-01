@@ -10,6 +10,11 @@ This tutorial shows you how to create vascular networks, and how to use them to 
 - [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1')
 - [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4').
 
+The tutorial contains the following sections:
+
+<a href="#pipenet-class">The _pipenet_ class</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#drawing-network">Drawing a network on histology and using it to initialise a _pipenet_ object</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#precomputed-network">Loading one of our pre-computed, realistic vascular networks</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#plot-properties">Plotting some properties of a vascular network</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#synthesise-signals">Synthesising vascular diffusion MRI signals</a>&nbsp;&nbsp;&nbsp;
+<br/><br/>
+
 ## The _pipenet_ class
 
 We have defined the _pipenet_ to work with vascular networks. In our framework, a vascular network is nothing else but a collection _pipes_, representing capillaries, which conned a set of _nodes_.  
@@ -118,7 +123,7 @@ The table below illustrates the first few lines of the CSV file.
 We are including this CSV file within the directory [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) (file [_Network_stats.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/Network_stats.csv)). The script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py), also included in the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples), shows how to load the network information contained in the CSV with [_pandas_](https://pandas.pydata.org), so that it can be used to initialise a _pipenet_ object. In the script, we assume, as an example, that the inlet/outlet of the network are respectively nodes 0/16.
 
 
-## Loading the realistic vascular networks included with SpinFlowSim
+## Loading one of our pre-computed, realistic vascular networks
 
 In the folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) we include different instantiations of 15 vascular networks that we have drawn on histological images of human liver biopsies. We are including 100 instantiations per network, by varying the inlet/outlet and input VFR, for a total of 1500 unique nets. [Here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) you can find a detailed description of these vascular networks and of their corresponding flow properties. 
 
