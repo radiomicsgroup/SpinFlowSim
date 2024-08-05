@@ -154,4 +154,4 @@ for i in range(len(par_list)):
     os.system('rm -v buffer.nii')
 
     #### Run fitting
-    os.system('python dictmaxlik.py s{}_noisy_mat_SNR{}.nii sig{}_trainset.npy par{}_trainset.npy testfit0{}/fit --noise s{}_noisy_mat_SNR{}_sigma.nii --ncpu 24 --sldim 0'.format(i+1,snr,i+1,i+1,i+1,i+1,snr))
+    os.system('python mri2micro_dictml.py s{}_noisy_mat_SNR{}.nii sig{}_trainset.npy par{}_trainset.npy testfit0{}/fit --noise s{}_noisy_mat_SNR{}_sigma.nii --ncpu 24 --sldim 0'.format(i+1,snr,i+1,i+1,i+1,i+1,snr))

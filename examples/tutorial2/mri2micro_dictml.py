@@ -1,3 +1,8 @@
+### Copyright (c) 2024, Fundació Privada Institut d’Investigació Oncològica de Vall d’Hebron (Vall d'Hebron Institute of Oncology, VHIO, Barcelona, Spain). 
+#   All rights reserved.
+#   This code is distributed under the Attribution-NonCommercial-ShareAlike 4.0 International license ([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0)).
+#   Its use MUST also comply with the requirements of the individual licenses of all its dependencies.
+
 import argparse, os, sys
 from configparser import Interpolation
 import nibabel as nib
@@ -21,7 +26,7 @@ def _train_rbf(pars,sigs,smooth,poldeg):
 	while(dict_too_big):
 		
 		print('        (using {} % of the dictionary)'.format(dict_size[cnt]*100.0))
-		try:		
+		try:	
 			nmicro = pars.shape[0]
 			nsmall = int(np.round(dict_size[cnt]*nmicro))
 			if(nsmall==nmicro):
@@ -34,12 +39,11 @@ def _train_rbf(pars,sigs,smooth,poldeg):
 		except:
 			cnt = cnt + 1
 			if(cnt==dict_size.size):
-				raise RuntimeError('ERROR. Your dictionary is too big. Try using fewer than {} % of its total entries.'.format(100.0*dict_size[-1]))
+				raise RuntimeError('ERROR. Your dictionary may be too big. Try using fewer than {} % of its total entries.'.format(100.0*dict_size[-1]))
 	
 	# Return RBF interpolator 	
 	return myrbf
 
-	
 	
 def _train_linearND(pars,sigs,scaleflag):
 	mylinearND = LinearNDInterpolator(pars, sigs, rescale=scaleflag)
@@ -129,7 +133,7 @@ def _procslice(inlist):
 				norm_acc = norm_acc + ( 0.5 - (dict_pars[aa,bb] - prngmin[bb])/(prngmax[bb] - prngmin[bb]) )*( 0.5 - (dict_pars[aa,bb] - prngmin[bb])/(prngmax[bb] - prngmin[bb]) )
 			else:
 				raise RuntimeError('ERROR. An L{}-norm is not supported for objective function regularisation'.format(Ln))
-		dict_pars_Lnorm[aa] = norm_acc
+		dict_pars_Lnorm[aa] = norm_acc/float(ntissue)
 
 		
 	# Allocate output maps
@@ -154,13 +158,10 @@ def _procslice(inlist):
 				
 				# Get actual MRI measurements and normalise them
 				mvox = m_data[ii,jj,:]                # MRI measurements
-				mvox_scaling = np.max(mvox)           			
-				mvox = mvox/mvox_scaling              # Rescale the signal between 0 and 1
 						
 				# Get noise level if it was provided
 				if(sgm_exist):				
 					sgm_vox = sgm_data[ii,jj]
-					sgm_vox = sgm_vox/mvox_scaling    # Rescale the noise level
 				else:
 					sgm_vox = 0.0
 
@@ -240,7 +241,7 @@ def _procslice(inlist):
 	
 
 
-def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, navg=1, pmin=None, pmax=None, regnorm=2, regw=0.001, nthread=1, slicedim=2, nlinalgo='trust-constr', rgalgo='rbf', rgpar=None):
+def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, navg=1, Nword=0, pmin=None, pmax=None, regnorm=2, regw=0.001, nthread=1, slicedim=2, nlinalgo='trust-constr', rgalgo='rbf', rgpar=None):
 	''' This tool performs maximum-likelihood fitting of a quantitative MRI signal model that is not known analytically, 
 	    but that is approximated numerically given examples of signals and tissue parameters. 
 	    
@@ -249,7 +250,7 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 	    Developed and validated with versions: nibabel 3.2.1, numpy 1.21.5, scipy 1.7.3. 
 	    
 	    Author: Francesco Grussu, Vall d Hebron Institute of Oncology (VHIO). 
-	    Email: <francegrussu@gmail.com> <fgrussu@vhio.net>
+	    Email: <fgrussu@vhio.net>
 	    
 	    USAGE
 	    run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, navg=1, ...
@@ -258,22 +259,17 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 	    
 	    * mrifile:    path of a 4D NIFTI file storing M quantitative MRI measurements acquired
 	                  (e.g., diffusion MRI at different b-values and/or diffusion time; relaxometry at
-	                  increasing echo times; etc).
-	                  NOTE: "mrifile" is meant to vary in the range [0; 1]: each voxel MUST have been
-	                  normalised by a reference offset signal level (e.g., for diffusion, 
-	                  this should store A = Signal(b) / Signal(b = 0).
+	                  increasing echo times; etc). Each voxel should contain a signal defined in [0; 1].
+	                  In diffusion MRI, this can be obtained by dividing each voxel for the signal at b = 0
 	                  
 	    * sdictfile:  path of a NumPy binary file (.npy) storing a dictionary of synthetic MRI measurements to be used for
 	                  model fitting. The file should contain a variable storing a 2D numpy matrix of size Nmicro x M,
 	                  where Nmicro is the number of example microstructures in the dictionary and Nmeas is the number of MRI 
 	                  signal measurements.  This implies that different example microstructures are arranged along rows, 
 	                  while the different MRI measurements coming from a given microstructure are arranged along columns. 
-	                  NOTE: the quantitative MRI protocol used to generate "sdictfile" MUST match that used to acquire 
-	                  the scan to fit stored in the "mrifile" NIFTI. 
-	                  NOTE: "sdictfile" is meant to vary in the range [0; 1]: each voxel MUST have been
-	                  normalised by a reference offset signal level, in a similar way as done for the NIFTI file
-	                  stored in "mrifile" (e.g., for diffusion, this should store A = Signal(b) / Signal(b = 0) 
-	                  voxel). 
+	                  NOTE 1: the quantitative MRI protocol used to generate "sdictfile" MUST match that used to acquire 
+	                  the scan to fit stored in the "mrifile" NIFTI
+	                  NOTE 2: the signal dictionary should be defined in [0; 1]
 	    
 	    * pdictfile:  path of a NumPy binary file (.npy) storing a dictionary of tissue parameters corresponding to the 
 	                  signals stored in the signal dictionary "sdictfile", to be used for model fitting. 
@@ -286,7 +282,8 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 	                  (FLOAT64), and will store the estimated parametric maps. The number of parametric maps outputted depends
 	                  on number of parameters contained in the tissue parameter dictionary "pdictfile". If that dictionary
 	                  contains P tissue parameters, then there will be P output parameteric maps (one per each tissue parameter 
-	                  of "pdictfile", in the same order). These will be stored as *_par1.nii, *_par2.nii, ...,  *_parP.nii
+	                  of "pdictfile", in the same order). These will be stored as *_par1.nii, *_par2.nii, ...,  *_parP.nii.
+					  
 	                  
 	                  Additionally, an output exit code map will also be stored as *_exit.nii (voxels containing -1: warning, 
 	                  failure in non-linear fitting; voxels containing 0: background; voxels containing 1: 
@@ -305,17 +302,24 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 	                  noise floor given the estimate of the noise standard deviation (default: 1; ignored if noisefile = None)
 	                  Note that in some vendors, this parameter is referred to as number of excitations (NEX)
 	    
+	    * Nword:      number of values to test for each tissue parameter in the grid search. If set to 0, the
+	                  tissue parameter dictionary contained in "pdictfile" used to learn the foward model
+	                  will also be used for the grid search. If Nword > 0, then a uniformly-sampled grid will be generated.
+	                  Default: 0 (i.e., use the same dictionary to learn the forward model and for the grid search)  		  
+
 	    * pmin:       list or array of P elements storing the lower bounds for tissue parameters. The length of pmin must
 	                  match the number of tissue parameters contained in the tissue parameter dictionary "pdictfile".
-	                  This parameter can be used to select a subset of the dictionary contained in "pdictfile", i.e., to
-	                  reduce the ranges for estimation of the tissue parameters. If pmin is not set, then the whole range
-	                  of tissue parameters spanned in the dictionary "pdictfile" will be used. 
+	                  This parameter can be used i) to select a subset of the dictionary contained in "pdictfile", i.e., to
+	                  reduce the ranges of estimation for each tissue parameter, or ii) to extend the range of 
+	                  estimation beyond min/max values contained in the dictionary. If pmin is not set, then the lower bounds
+	                  of estimation will be the same as the min values contained in "pdictfile". 
 	    
 	    * pmax:       list or array of P elements storing the upper bounds for tissue parameters. The length of pmax must
 	                  match the number of tissue parameters contained in the tissue parameter dictionary "pdictfile".
-	                  This parameter can be used to select a subset of the dictionary contained in "pdictfile", i.e., to
-	                  reduce the ranges for estimation of the tissue parameters. If pmax is not set, then the whole range
-	                  of tissue parameters spanned in the dictionary "pdictfile" will be used.   
+	                  This parameter can be used i) to select a subset of the dictionary contained in "pdictfile", i.e., to
+	                  reduce the ranges of estimation for each tissue parameter, or ii) to extend the range of 
+	                  estimation beyond min/max values contained in the dictionary. If pmax is not set, then the upper bounds
+	                  of estimation will be the same as the min values contained in "pdictfile". 
 
 	    * regnorm:    type of L-norm for regularisation (1 for LASSO, 2 for Tikhonov; default: 2) 
 		
@@ -359,7 +363,7 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 	    - scipy 1.7.3
 
 	    Author: Francesco Grussu, Vall d'Hebron Institute of Oncology, November 2022
-		    <fgrussu@vhio.net> <francegrussu@gmail.com>'''
+		    <fgrussu@vhio.net>'''
 
 
 	### Get time
@@ -476,8 +480,13 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 	if(dict_sigs.shape[0]!=dict_pars.shape[0]):
 		raise RuntimeError('ERROR: the numbers of unique microstructures in the signal and tissue parameter dictionaries ({} and {}) do not match'.format(sdictfile,pdictfile))
 	
-	
-	
+	if(np.max(dict_sigs)>1.0):
+		raise RuntimeError('ERROR: the maximum signal magnitude in the signal dictionary {} should not be > 1.0'.format(sdictfile))
+	if(np.min(dict_sigs)<0.0):
+		raise RuntimeError('ERROR: the minimum signal magnitude in the signal dictionary {} should not be < 0.0'.format(sdictfile))
+
+
+		
 	## Manage tissue parameter lower and upper bounds
 	npars = dict_pars.shape[1]
 	if pmin is not None:
@@ -510,11 +519,9 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 		keeplist_all = keeplist & keeplist_all                # All conditions on all tissue parameters must be satisfied - this is a logical AND	 
 	final_dict_sigs = dict_sigs[keeplist_all,:]               # Final dictionary of signals
 	final_dict_pars = dict_pars[keeplist_all,:]               # Final dictionary of tissue parameters
-	
-	## Rescale signal dictionary in the same way as measured MRI signals will be rescaled
-	final_dict_sigs_rescaled = np.zeros(final_dict_sigs.shape)
-	for mm in range(0,final_dict_sigs.shape[0]):
-		final_dict_sigs_rescaled[mm,:] = final_dict_sigs[mm,:]/np.max(final_dict_sigs[mm,:])      # Rescale signals from the mm-th microstructure between 0 and 1
+
+	## Legacy variable name change
+	final_dict_sigs_rescaled = np.copy(final_dict_sigs)
 
 	## Train a regressor using the paired examples tissue parameters - signals from the discrete dictionary (but only if non-linear fitting beyond grid search is required)
 	print('')
@@ -529,6 +536,121 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 		reg_trained = _train_linearND( final_dict_pars, final_dict_sigs_rescaled, bool( np.array([rgpar]) ) )
 	else:
 		raise RuntimeError('ERROR: unkown regression algorithm {}'.format(rgalgo))
+
+	## Generate uniformly-spaced dictionaries for the grid search, as one would do for standard fitting of analytical models
+	
+	# Get tissue parameter grid
+	gridres = int(Nword)
+	
+	# If the grid depth is 0, the user has flagged that for the grid search they want to use the same dictionary employed to learn the forward model p --> S(p)
+	if(gridres==0):
+		pdict_uniform = np.copy(final_dict_pars)
+		sdict_uniform = np.copy(final_dict_sigs_rescaled)
+	
+	# If the grid depth is not 0, the user has flagged that for the grid search they want to sample uniformly the tissue parameter space
+	else:
+		if(npars==1):
+			p1_array = np.linspace(pmin[0],pmax[0],num=gridres)
+			pdict_uniform = np.zeros((gridres,1))
+			pdict_uniform[0,:] = p1_array
+		elif(npars==2):
+			p1_array = np.linspace(pmin[0],pmax[0],num=gridres)
+			p2_array = np.linspace(pmin[1],pmax[1],num=gridres)
+			p1_mat, p2_mat = np.meshgrid(p1_array,p2_array)
+			pdict_uniform = np.zeros((p1_mat.size,2))
+			pdict_uniform[:,0] = p1_mat.flatten()
+			pdict_uniform[:,1] = p2_mat.flatten()
+		elif(npars==3):
+			p1_array = np.linspace(pmin[0],pmax[0],num=gridres)
+			p2_array = np.linspace(pmin[1],pmax[1],num=gridres)
+			p3_array = np.linspace(pmin[2],pmax[2],num=gridres)
+			p1_mat, p2_mat, p3_mat = np.meshgrid(p1_array,p2_array,p3_array)
+			pdict_uniform = np.zeros((p1_mat.size,3))
+			pdict_uniform[:,0] = p1_mat.flatten()
+			pdict_uniform[:,1] = p2_mat.flatten()
+			pdict_uniform[:,2] = p3_mat.flatten()
+		elif(npars==4):
+			p1_array = np.linspace(pmin[0],pmax[0],num=gridres)
+			p2_array = np.linspace(pmin[1],pmax[1],num=gridres)
+			p3_array = np.linspace(pmin[2],pmax[2],num=gridres)
+			p4_array = np.linspace(pmin[3],pmax[3],num=gridres)
+			p1_mat, p2_mat, p3_mat, p4_mat = np.meshgrid(p1_array,p2_array,p3_array,p4_array)
+			pdict_uniform = np.zeros((p1_mat.size,4))
+			pdict_uniform[:,0] = p1_mat.flatten()
+			pdict_uniform[:,1] = p2_mat.flatten()
+			pdict_uniform[:,2] = p3_mat.flatten()
+			pdict_uniform[:,3] = p4_mat.flatten()
+		elif(npars==5):
+			p1_array = np.linspace(pmin[0],pmax[0],num=gridres)
+			p2_array = np.linspace(pmin[1],pmax[1],num=gridres)
+			p3_array = np.linspace(pmin[2],pmax[2],num=gridres)
+			p4_array = np.linspace(pmin[3],pmax[3],num=gridres)
+			p5_array = np.linspace(pmin[4],pmax[4],num=gridres)
+			p1_mat, p2_mat, p3_mat, p4_mat, p5_mat = np.meshgrid(p1_array,p2_array,p3_array,p4_array,p5_array)
+			pdict_uniform = np.zeros((p1_mat.size,5))
+			pdict_uniform[:,0] = p1_mat.flatten()
+			pdict_uniform[:,1] = p2_mat.flatten()
+			pdict_uniform[:,2] = p3_mat.flatten()
+			pdict_uniform[:,3] = p4_mat.flatten()
+			pdict_uniform[:,4] = p5_mat.flatten()
+		elif(npars==6):
+			p1_array = np.linspace(pmin[0],pmax[0],num=gridres)
+			p2_array = np.linspace(pmin[1],pmax[1],num=gridres)
+			p3_array = np.linspace(pmin[2],pmax[2],num=gridres)
+			p4_array = np.linspace(pmin[3],pmax[3],num=gridres)
+			p5_array = np.linspace(pmin[4],pmax[4],num=gridres)
+			p6_array = np.linspace(pmin[5],pmax[5],num=gridres)
+			p1_mat, p2_mat, p3_mat, p4_mat, p5_mat, p6_mat = np.meshgrid(p1_array,p2_array,p3_array,p4_array,p5_array,p6_array)
+			pdict_uniform = np.zeros((p1_mat.size,6))
+			pdict_uniform[:,0] = p1_mat.flatten()
+			pdict_uniform[:,1] = p2_mat.flatten()
+			pdict_uniform[:,2] = p3_mat.flatten()
+			pdict_uniform[:,3] = p4_mat.flatten()
+			pdict_uniform[:,4] = p5_mat.flatten()
+			pdict_uniform[:,5] = p6_mat.flatten()
+		elif(npars==7):
+			p1_array = np.linspace(pmin[0],pmax[0],num=gridres)
+			p2_array = np.linspace(pmin[1],pmax[1],num=gridres)
+			p3_array = np.linspace(pmin[2],pmax[2],num=gridres)
+			p4_array = np.linspace(pmin[3],pmax[3],num=gridres)
+			p5_array = np.linspace(pmin[4],pmax[4],num=gridres)
+			p6_array = np.linspace(pmin[5],pmax[5],num=gridres)
+			p7_array = np.linspace(pmin[6],pmax[6],num=gridres)
+			p1_mat, p2_mat, p3_mat, p4_mat, p5_mat, p6_mat, p7_mat = np.meshgrid(p1_array,p2_array,p3_array,p4_array,p5_array,p6_array,p7_array)
+			pdict_uniform = np.zeros((p1_mat.size,7))
+			pdict_uniform[:,0] = p1_mat.flatten()
+			pdict_uniform[:,1] = p2_mat.flatten()
+			pdict_uniform[:,2] = p3_mat.flatten()
+			pdict_uniform[:,3] = p4_mat.flatten()
+			pdict_uniform[:,4] = p5_mat.flatten()
+			pdict_uniform[:,5] = p6_mat.flatten()
+			pdict_uniform[:,6] = p7_mat.flatten()
+		elif(npars==8):
+			p1_array = np.linspace(pmin[0],pmax[0],num=gridres)
+			p2_array = np.linspace(pmin[1],pmax[1],num=gridres)
+			p3_array = np.linspace(pmin[2],pmax[2],num=gridres)
+			p4_array = np.linspace(pmin[3],pmax[3],num=gridres)
+			p5_array = np.linspace(pmin[4],pmax[4],num=gridres)
+			p6_array = np.linspace(pmin[5],pmax[5],num=gridres)
+			p7_array = np.linspace(pmin[6],pmax[6],num=gridres)
+			p8_array = np.linspace(pmin[7],pmax[7],num=gridres)
+			p1_mat, p2_mat, p3_mat, p4_mat, p5_mat, p6_mat, p7_mat, p8_mat = np.meshgrid(p1_array,p2_array,p3_array,p4_array,p5_array,p6_array,p7_array,p8_array)
+			pdict_uniform = np.zeros((p1_mat.size,8))
+			pdict_uniform[:,0] = p1_mat.flatten()
+			pdict_uniform[:,1] = p2_mat.flatten()
+			pdict_uniform[:,2] = p3_mat.flatten()
+			pdict_uniform[:,3] = p4_mat.flatten()
+			pdict_uniform[:,4] = p5_mat.flatten()
+			pdict_uniform[:,5] = p6_mat.flatten()
+			pdict_uniform[:,6] = p7_mat.flatten()
+			pdict_uniform[:,7] = p8_mat.flatten()
+		else:
+			raise RuntimeError('ERROR. Currently this tool supports the estimation of a maximum of 8 tissue parameters from MRI measurements.')
+
+		# Get signal grid corresponding to uniformly-sampled parameters	
+		sdict_uniform = np.zeros((pdict_uniform.shape[0],final_dict_sigs_rescaled.shape[1]))
+		for gg in range(0,pdict_uniform.shape[0]):
+			sdict_uniform[gg,:] = _sig(pdict_uniform[gg,:],rgalgo,reg_trained)
 
 	### Allocate output parametric maps
 	Tparmap = np.zeros((m_size[0],m_size[1],m_size[2],npars))     # Allocate output: parametric maps to be estimated
@@ -577,8 +699,9 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 			raise RuntimeError('ERROR: invalid slice dimension slicedim = {}'.format(slicedim)) 
 
 		
-		sliceinfo = [navg,final_dict_pars,final_dict_sigs_rescaled,k_data_sl,m_data_sl,sgm_exist,sgm_data_sl,ww,pmin,pmax,nlinalgo,rgalgo,reg_trained,regnorm,regw]
-		inputlist.append(sliceinfo)	
+		#sliceinfo = [navg,final_dict_pars,final_dict_sigs_rescaled,k_data_sl,m_data_sl,sgm_exist,sgm_data_sl,ww,pmin,pmax,nlinalgo,rgalgo,reg_trained,regnorm,regw]
+		sliceinfo = [navg,pdict_uniform,sdict_uniform,k_data_sl,m_data_sl,sgm_exist,sgm_data_sl,ww,pmin,pmax,nlinalgo,rgalgo,reg_trained,regnorm,regw]
+		inputlist.append(sliceinfo)
 
 	
 	# Send slice to process in parallel if nthread>1	
@@ -728,16 +851,17 @@ def run(mrifile, sdictfile, pdictfile, output, maskfile=None, noisefile=None, na
 if __name__ == "__main__":
 
 	### Print help and parse arguments
-	parser = argparse.ArgumentParser(description='This tool performs maximum-likelihood fitting of a quantitative MRI signal model that is not known analytically, but that is approximated numerically given examples of signals and tissue parameters. Third-party dependencies: nibabel, numpy, scipy. Developed and validated with versions: nibabel 3.2.1, numpy 1.21.5, scipy 1.7.3. Author: Francesco Grussu, Vall d Hebron Institute of Oncology (VHIO). Email: <francegrussu@gmail.com> <fgrussu@vhio.net>.')
-	parser.add_argument('s_file', help='path of a 4D NIFTI file storing M quantitative MRI measurements acquired                    (e.g., diffusion MRI at different b-values and/or diffusion time; relaxometry at                    increasing echo times; etc).        NOTE: "mrifile" is meant to vary in the range [0; 1]: each voxel MUST have been        normalised by a reference offset signal level (e.g., for diffusion,         this should store A = Signal(b) / Signal(b = 0).')
-	parser.add_argument('sig_dict', help='path of a NumPy binary file (.npy) storing a dictionary of synthetic MRI measurements to be used formodel fitting. The file should contain a variable storing a 2D numpy matrix of size Nmicro x M,where Nmicro is the number of example microstructures in the dictionary and Nmeas is the number of MRIsignal measurements.  This implies that different example microstructures are arranged along rows,while the different MRI measurements coming from a given microstructure are arranged along columns.NOTE: the quantitative MRI protocol used to generate "sdictfile" MUST match that used to acquirethe scan to fit stored in the "mrifile" NIFTI.NOTE: "sdictfile" is meant to vary in the range [0; 1]: each voxel MUST have beennormalised by a reference offset signal level, in a similar way as done for the NIFTI filestored in "mrifile" (e.g., for diffusion, this should store A = Signal(b) / Signal(b = 0)voxel).')
+	parser = argparse.ArgumentParser(description='This tool performs maximum-likelihood fitting of a quantitative MRI signal model that is not known analytically, but that is approximated numerically given examples of signals and tissue parameters. Third-party dependencies: nibabel, numpy, scipy. Developed and validated with versions: nibabel 3.2.1, numpy 1.21.5, scipy 1.7.3. Author: Francesco Grussu, Vall d Hebron Institute of Oncology (VHIO). Email: <fgrussu@vhio.net>.')
+	parser.add_argument('s_file', help='path of a 4D NIFTI file storing M quantitative MRI measurements acquired (e.g., diffusion MRI at different b-values and/or diffusion time; relaxometry at increasing echo times; etc). Each voxel should contain a signal defined in [0; 1]. In diffusion MRI, this can be obtained by dividing each voxel for the signal at b = 0')
+	parser.add_argument('sig_dict', help='path of a NumPy binary file (.npy) storing a dictionary of synthetic MRI measurements to be used formodel fitting. The file should contain a variable storing a 2D numpy matrix of size Nmicro x M,where Nmicro is the number of example microstructures in the dictionary and Nmeas is the number of MRIsignal measurements.  This implies that different example microstructures are arranged along rows,while the different MRI measurements coming from a given microstructure are arranged along columns. NOTE 1: the quantitative MRI protocol used to generate "sdictfile" MUST match that used to acquirethe scan to fit stored in the "mrifile" NIFTI. NOTE 2: the signal dictionary should be defined in [0; 1].')
 	parser.add_argument('par_dict', help='path of a NumPy binary file (.npy) storing a dictionary of tissue parameters corresponding to the signals stored in the signal dictionary "sdictfile", to be used for model fitting. The file should contain a variable storing a 2D numpy matrix of size Nmicro x P, where Nmicro is the number of example microstructures in the dictionary and P is the number of tissue parameters. This implies that different example microstructures are arranged along rows, while the values of the different tissue parameters of each microstructure are arranged along columns.')
 	parser.add_argument('out', help='root file name of output files. Output NIFTIs will be stored as double-precision floating point images (FLOAT64), and will store the estimated parametric maps. The number of parametric maps outputted depends on number of parameters contained in the tissue parameter dictionary "pdictfile". If that dictionary contains P tissue parameters, then there will be P output parameteric maps (one per each tissue parameter of "pdictfile", in the same order). These will be stored as *_par1.nii, *_par2.nii, ...,  *_parP.nii Additionally, an output exit code map will also be stored as *_exit.nii (voxels containing -1: warning, failure in non-linear fitting; voxels containing 0: background; voxels containing 1: successful parameter estimation). If a noise map was provided with the noisefile input parameter, additional output NIFTI files storing quality of fit metrics are stored, i.e.: *_logL.nii (log-likelihood), *_BIC.nii (Bayesian Information Criterion), and *_AIC.nii (Akaike Information Criterion).')
 	parser.add_argument('--mask', metavar='<file>', help='3D mask in NIFTI format (computation will be performed only in voxels where mask = 1)')
 	parser.add_argument('--noise', metavar='<file>', help='3D noise standard deviation map in NIFTI format. If provided, the signal level will be compared to the an estimate of the noise floor when comparing the objective function (offset-Gaussian model).')
 	parser.add_argument('--savg', metavar='<num>', default='1', help='number of signal averages used for MRI data acquisition (default: 1). This parameter is used for the estimation of the noise floor (it is ignored if the option --noise is not used). Note that in some vendors, this parameter is also referred to as number of excitations (NEX).')
-	parser.add_argument('--pmin', metavar='<list>', help='comma-separated list of P elements storing the lower bounds for tissue parameters. The length of the list must match the number of tissue parameters contained in the tissue parameter dictionary "par_dict". This option can be used to select a subset of the dictionary contained in "par_dict", i.e., to reduce the ranges for estimation of the tissue parameters. If not set, then the whole range of tissue parameters spanned in the dictionary "par_dict" will be used.')
-	parser.add_argument('--pmax', metavar='<list>', help='comma-separated list of P elements storing the upper bounds for tissue parameters. The length of the list must match the number of tissue parameters contained in the tissue parameter dictionary "par_dict". This option can be used to select a subset of the dictionary contained in "par_dict", i.e., to reduce the ranges for estimation of the tissue parameters. If not set, then the whole range of tissue parameters spanned in the dictionary "par_dict" will be used.')
+	parser.add_argument('--nw', metavar='<num>', default='0', help='number of values to test for each unknown tissue parameter in the grid search (it must be an integer). If set to 0, the tissue parameter dictionary contained in "par_dict" used to learn the foward model will be used also for the grid search. If > 0, then a uniformly-sampled grid will be generated. Default: 0 (i.e., use the same dictionary to learn the forward model and for the grid search)')
+	parser.add_argument('--pmin', metavar='<list>', help='comma-separated list of P elements storing the lower bounds for tissue parameters. The length of the list must match the number of tissue parameters contained in the tissue parameter dictionary "par_dict".This option can be used i) to select a subset of the dictionary contained in "par_dict", i.e., to reduce the ranges for estimation for each tissue parameters, or ii) to extend the range of estimation beyond the min/max values contained in the dictionary. If not set, then the lower bounds contained in the dictionary "par_dict" will be used.')
+	parser.add_argument('--pmax', metavar='<list>', help='comma-separated list of P elements storing the upper bounds for tissue parameters. The length of the list must match the number of tissue parameters contained in the tissue parameter dictionary "par_dict".This option can be used i) to select a subset of the dictionary contained in "par_dict", i.e., to reduce the ranges for estimation for each tissue parameters, or ii) to extend the range of estimation beyond the min/max values contained in the dictionary. If not set, then the upper bounds contained in the dictionary "par_dict" will be used.')
 	parser.add_argument('--reg', metavar='<Lnorm,weight>', help='comma-separated list of parameters for fitting regularisation specifying i) the type of L-norm (1 for LASSO, 2 for Tikhonov), ii) the weight of the regulariser, ranging in [0.0,1.0]. Default: 2,0.001 (L2 norm, with a weight of 0.001). Set 2,0.0 for a standard non-linear least square fitting with no regularisation.')
 	parser.add_argument('--ncpu', metavar='<num>', default='1', help='number of threads to be used for computation (default: 1, single thread)')
 	parser.add_argument('--sldim', metavar='<num>', default='2', help='image dimension along which parallel computation will be exectued when nthread > 1 (it can be 0, 1, 2; default 2, implying parallel processing along the 3rd image dimension)')
@@ -755,6 +879,7 @@ if __name__ == "__main__":
 	maskfile = args.mask
 	sgmfile = args.noise
 	nex = int(args.savg)
+	nword = int(args.nw)
 	cpucnt = int(args.ncpu)
 	slptr = int(args.sldim)
 	nlopt = args.nlalgo
@@ -808,7 +933,7 @@ if __name__ == "__main__":
 	### Print feedback
 	print('')
 	print('***********************************************************************')
-	print('                                dictmaxlik.py                          ')
+	print('                           mri2micro_dictml.py                         ')
 	print('***********************************************************************')
 	print('')
 	print('** 4D NIFTI file with MRI measurements: {}'.format(sfile))
@@ -819,6 +944,7 @@ if __name__ == "__main__":
 	print('** Non-linear fitting constrained minimisation algorithm (inverse model): {}'.format(nlopt))
 	print('** Number of threads for parallel slice processing: {}'.format(cpucnt))
 	print('** Slice dimension for parallel processing: {}'.format(slptr))
+	print('** Number of words for each tissue parameter grid search: {}'.format(nword))
 	print('** Lower bound for tissue parameters: {}'.format(pMin))
 	print('** Upper bound for tissue parameters: {}'.format(pMax))
 	print('** Fitting regularisation options: Lnorm = {}, weight = {}'.format(Lnorm,Lweight))
