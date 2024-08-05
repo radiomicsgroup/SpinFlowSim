@@ -35,12 +35,12 @@ Each of these arrays has 100 x n measurements, storing signals for each simulate
 
 ### Parameter estimation from signals
 
-The [run_estimation.py](tutorial2/run_estimation.py) script carries out model fitting to estimate microvascular parameters from synthetic signals. 
+The [run_estimation.py](data_for_plots/run_estimation.py) script carries out model fitting to estimate microvascular parameters from synthetic signals. 
 
-The fitting is performed with [mri2micro_dictml.py](tutorial2/mri2micro_dictml.py) tool, part of bodymritools [mri2micro_dictml.py](https://github.com/fragrussu/bodymritools/blob/main/mrifittools/mri2micro_dictml.py)
+The fitting is performed with [mri2micro_dictml.py](data_for_plots/mri2micro_dictml.py) tool, part of bodymritools [mri2micro_dictml.py](https://github.com/fragrussu/bodymritools/blob/main/mrifittools/mri2micro_dictml.py)
 Note that mri2micro_dictml.py can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
 
-Begin by cloning this repository, and execute `run_estimation.py`  use it like in the following command:
+Begin by cloning this repository, navigate to [examples/data_for_plots](examples/data_for_plots) and execute `run_estimation.py` like in the following command:
 
 ```bash
 python run_estimation.py --protocol subsetPGSE --snr 20
