@@ -34,12 +34,15 @@ Each of these arrays has 100 x n measurements, storing signals for each simulate
 - **subsetPGSE**: a second PGSE protocol. It is a subset of the former, containing 3 b=0 and 6 diffusion-weighted (DW) measurements, namely b = {50, 100} for 3 different diffusion times. The gradient duration δ was fixed to 20 ms, while the 3 diffusion times were achieved by varying ∆ as ∆= {30, 50, 70} ms.
 
 ### Parameter estimation from signals
-The run_estimation.py script carries out model fitting to estimate microvascular parameters from synthetic signals. 
+
+The [run_estimation.py](tutorial2/run_estimation.py) script carries out model fitting to estimate microvascular parameters from synthetic signals. 
+
 The fitting is performed with [mri2micro_dictml.py](tutorial2/mri2micro_dictml.py) tool, part of bodymritools [mri2micro_dictml.py](https://github.com/fragrussu/bodymritools/blob/main/mrifittools/mri2micro_dictml.py)
+Note that mri2micro_dictml.py can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
 
+Begin by cloning this repository, and execute `run_estimation.py`  use it like in the following command:
 
-
- (script mri2micro_dictml.py). Note that mri2micro_dictml.py can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
-
-
+```bash
+python run_estimation.py --protocol subsetPGSE --snr 20
+```
 
