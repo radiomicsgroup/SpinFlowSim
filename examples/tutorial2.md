@@ -1,5 +1,3 @@
-**WE ARE POLISHING THIS CODE. IT WILL BE HERE IN THE COMING DAYS - APOLOGIES FOR THE INCONVENIENCE!!**
-
 This tutorial will show on our vascular networks data how synthetic signals can be used to inform microvasculature parameter estimation.
 
 
@@ -34,3 +32,14 @@ Each of these arrays has 100 x n measurements, storing signals for each simulate
 - **richPGSE**: ultra-rich pulsed gradient spin echo (richPGSE) with a total of 99 measurements. Consisting of 9 b = 0 and 10 non-zero b-values b = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100} s/mm<sup>2</sup>,  each acquired for 9 unique diffusion times, corresponding to (δ,∆) = {10, 20, 30} ms × {30, 50, 70} ms.
   
 - **subsetPGSE**: a second PGSE protocol. It is a subset of the former, containing 3 b=0 and 6 diffusion-weighted (DW) measurements, namely b = {50, 100} for 3 different diffusion times. The gradient duration δ was fixed to 20 ms, while the 3 diffusion times were achieved by varying ∆ as ∆= {30, 50, 70} ms.
+
+### Parameter estimation from signals
+The run_estimation.py script carries out model fitting to estimate microvascular parameters from synthetic signals. 
+The fitting is performed with [mri2micro_dictml.py](tutorial2/mri2micro_dictml.py) tool, part of bodymritools [mri2micro_dictml.py](https://github.com/fragrussu/bodymritools/blob/main/mrifittools/mri2micro_dictml.py)
+
+
+
+ (script mri2micro_dictml.py). Note that mri2micro_dictml.py can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
+
+
+
