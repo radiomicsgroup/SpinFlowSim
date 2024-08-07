@@ -8,7 +8,7 @@ This tutorial shows you how to create vascular networks, and how to use them to 
 - [graph-tool](https://graph-tool.skewed.de) (developed with version 2.45, commit b1a649d8)
 - [nibabel](https://nipy.org/nibabel) (developed with version '5.1.0')
 - [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1')
-- [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4' - we call the MrTrix command line tool `dwidenoise` from within python using `os.command()`).
+- [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4';  note that we simply call the MrTrix command line tool `dwidenoise` from within python using `os.command()`).
 
 The tutorial contains the following sections:
 * [The _pipenet_ class](#pipenet-class)
