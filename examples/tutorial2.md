@@ -1,7 +1,22 @@
-This tutorial will show on our vascular networks data how synthetic signals can be used to inform microvasculature parameter estimation.
 
+# Tutorial 2: using synthetic dMRI signal to inform microvasculature parameter estimation
 
-## Data for Plots
+This tutorial shows you how the diffusion MRI (dMRI) signals you synthesized in Tutorial 1 can be used to estimate microvascular properties of vascular networks.  Please remember that to go through our tutorials you need python 3 with:
+- [numpy](https://numpy.org) (developed with version 1.24.2)
+- [pandas](https://pandas.pydata.org) (developed with version 1.5.3)
+- [Lcapy](https://lcapy.readthedocs.io) (developed with version 1.10)
+- [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with version 1.5)
+- [graph-tool](https://graph-tool.skewed.de) (developed with version 2.45, commit b1a649d8)
+- [nibabel](https://nipy.org/nibabel) (developed with version '5.1.0')
+- [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1')
+- [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4';  note that we use MrTrix command line tool `dwidenoise` from within python with `os.system()`, to estimate the noise level in synthetic vascular dMRI signals).
+
+Tutorial 2 contains the following sections:
+* [Data for Plots](#data-4-plots)
+* [Parameter estimation from signals](#parameter-est)
+* [Final remarks](#remarks)
+
+## Data for Plots  <a name="data-4-plots"></a>
 ### Parameters
 
 The parameter data used for generating the plots can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
@@ -33,7 +48,7 @@ Each of these arrays has 100 x n measurements, storing signals for each simulate
   
 - **subsetPGSE**: a second PGSE protocol. It is a subset of the former, containing 3 b=0 and 6 diffusion-weighted (DW) measurements, namely b = {50, 100} for 3 different diffusion times. The gradient duration δ was fixed to 20 ms, while the 3 diffusion times were achieved by varying ∆ as ∆= {30, 50, 70} ms.
 
-### Parameter estimation from signals
+## Parameter estimation from signals <a name="par-est"></a>
 
 The [run_estimation.py](data_for_plots/run_estimation.py) script carries out model fitting to estimate microvascular parameters from synthetic signals. 
 
