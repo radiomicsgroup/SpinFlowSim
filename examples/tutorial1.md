@@ -1,6 +1,6 @@
 # Tutorial 1: resolving vascular networks for dMRI signal synthesis
 
-This tutorial shows you how to create vascular networks, and how to use them to synthesise diffusion MRI (dMRI) signals. To go through our tutorials, remember that you need:
+This tutorial shows you how to create vascular networks, and how to use them to synthesise diffusion MRI (dMRI) signals. Please remember that to go through our tutorials you need python 3 with:
 - [numpy](https://numpy.org) (developed with version 1.24.2)
 - [pandas](https://pandas.pydata.org) (developed with version 1.5.3)
 - [Lcapy](https://lcapy.readthedocs.io) (developed with version 1.10)
@@ -8,9 +8,9 @@ This tutorial shows you how to create vascular networks, and how to use them to 
 - [graph-tool](https://graph-tool.skewed.de) (developed with version 2.45, commit b1a649d8)
 - [nibabel](https://nipy.org/nibabel) (developed with version '5.1.0')
 - [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1')
-- [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4';  note that we simply call the MrTrix command line tool `dwidenoise` from within python using `os.command()`).
+- [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4';  note that we use MrTrix command line tool `dwidenoise` from within python with `os.command()` in tutorial 2, to estimate the noise level in synthetic vascular dMRI signals).
 
-The tutorial contains the following sections:
+Tutorial 1 contains the following sections:
 * [The _pipenet_ class](#pipenet-class)
 * [Generating a new network from histology](#drawing-net)
 * [Loading our pre-computed vascular networks](#pre-computed-network)
