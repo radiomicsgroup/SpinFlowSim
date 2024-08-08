@@ -56,7 +56,7 @@ The [run_estimation.py](data_for_plots/run_estimation.py) script carries out mod
 The fitting is performed with [mri2micro_dictml.py](data_for_plots/mri2micro_dictml.py) tool, part of bodymritools [mri2micro_dictml.py](https://github.com/fragrussu/bodymritools/blob/main/mrifittools/mri2micro_dictml.py)
 Note that mri2micro_dictml.py can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
 
-Begin by cloning this repository, navigate to [examples/data_for_plots](examples/data_for_plots) and execute `run_estimation.py` like in the following command:
+Begin by cloning this repository, navigate to [data_for_plots](data_for_plots) and execute `run_estimation.py` like in the following command:
 
 ```bash
 python run_estimation.py --protocol subsetPGSE --snr 20
