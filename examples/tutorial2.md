@@ -63,7 +63,13 @@ Begin by cloning this repository, navigate to [data_for_plots](data_for_plots) a
 python run_estimation.py --protocol subsetPGSE --snr 20
 ```
 ## Scatter plots showing correlation<a name="corr"></a>
+
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/estimation.png" width="950" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/estimation.PNG" width="950" height="auto">
 </div>
 
+Visualizing the estimation results with a correlation coefficient is as easy as running `get_plots.py` from [data_for_plots](data_for_plots), with the command below:
+
+```bash
+python get_plots.py --save True 
+```
