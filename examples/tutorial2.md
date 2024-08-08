@@ -64,6 +64,6 @@ python run_estimation.py --protocol subsetPGSE --snr 20
 ```
 ## Scatter plots showing correlation<a name="corr"></a>
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/nets.png" width="950" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/estimation.png" width="950" height="auto">
 </div>
 
