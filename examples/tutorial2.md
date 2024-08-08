@@ -14,6 +14,7 @@ This tutorial shows you how the diffusion MRI (dMRI) signals you synthesized in 
 Tutorial 2 contains the following sections:
 * [Data for Plots](#data-4-plots)
 * [Parameter estimation from signals](#parameter-est)
+* [Scatter plots showing correlation](#corr)
 * [Final remarks](#remarks)
 
 ## Data for Plots  <a name="data-4-plots"></a>
@@ -61,4 +62,8 @@ Begin by cloning this repository, navigate to [data_for_plots](data_for_plots) a
 ```bash
 python run_estimation.py --protocol subsetPGSE --snr 20
 ```
+## Scatter plots showing correlation<a name="corr"></a>
+<div align="center">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/nets.png" width="950" height="auto">
+</div>
 
