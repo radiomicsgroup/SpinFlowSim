@@ -8,14 +8,14 @@ This tutorial shows you how the diffusion MRI (dMRI) signals you synthesized in 
 - [PySpice](https://github.com/FabriceSalvaire/PySpice) (developed with version 1.5)
 - [graph-tool](https://graph-tool.skewed.de) (developed with version 2.45, commit b1a649d8)
 - [nibabel](https://nipy.org/nibabel) (developed with version '5.1.0')
+- [scipy](https://scipy.org) (developed with version '1.11.3')
 - [matplotlib](https://matplotlib.org) (examples tested with version '3.7.1')
 - [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4';  note that we use MrTrix command line tool `dwidenoise` from within python with `os.system()`, to estimate the noise level in synthetic vascular dMRI signals).
 
 Tutorial 2 contains the following sections:
 * [Data for Plots](#data-4-plots)
-* [Parameter estimation from signals](#parameter-est)
+* [Parameter estimation from signals](#par-est)
 * [Scatter plots showing correlation](#corr)
-* [Final remarks](#remarks)
 
 ## Data for Plots  <a name="data-4-plots"></a>
 ### Parameters
@@ -72,11 +72,20 @@ The [run_estimation.py](data_for_plots/run_estimation.py) script carries out mod
 The fitting is performed with [mri2micro_dictml.py](data_for_plots/mri2micro_dictml.py) tool, part of bodymritools [mri2micro_dictml.py](https://github.com/fragrussu/bodymritools/blob/main/mrifittools/mri2micro_dictml.py)
 Note that mri2micro_dictml.py can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
 
+
 Begin by cloning this repository, navigate to [data_for_plots](data_for_plots) and execute `run_estimation.py` like in the following command:
 
 ```bash
 python run_estimation.py --protocol subsetPGSE --snr 20
 ```
+
+For the model fitting, the script needs:
+- the noisy signals with the specified `snr` in NIFTI format
+- a text file with the diffusion protocol
+- and an optional noise map, also in NIFTI format
+
+Examples of the necessary files are provided in [data_for_plots](data_for_plots).
+
 ## Scatter plots showing correlation<a name="corr"></a>
 
 <div align="center">
