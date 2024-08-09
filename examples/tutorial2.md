@@ -59,7 +59,10 @@ Each of these arrays has 100 x n measurements, storing signals for each simulate
   - δ was fixed to 20 ms, while the 3 diffusion times were achieved by varying ∆ as ∆= {30, 50, 70} ms.
 
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/gradient.png" width="950" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/sequences.png" width="950" height="auto">
+</div>
+<div align="center">
+  (a) PGSE pulse sequence (b) TRSE pulse sequence
 </div>
 
 ## Parameter estimation from signals <a name="par-est"></a>
