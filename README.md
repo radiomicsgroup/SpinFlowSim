@@ -70,8 +70,8 @@ The SpinFlowSim repository includes several sub-fodlers:
 
 We have included some tutorials in the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) to illustrate how to use SpinFlowSim for your diffusion MRI analyses. 
 
-* In this first [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md), we show **how to create and initialise a SpinFlowSim _pipenet_ object to resolve a vascular network drawn on histology, and to synthesise dMRI signals from the resolved vascular network**.
-* In this second [tutorial](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md), we show **how synthetic signals can be used to inform microvasculature property inference**, replicating the _in silico_ parameter estimation experiments of our [preprint](https://doi.org/10.1101/2024.07.15.24310335).
+* In [**tutorial 1**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md), we show **how to create and initialise a SpinFlowSim _pipenet_ object to resolve a vascular network drawn on histology, and to synthesise dMRI signals from the resolved vascular network**.
+* In [**tutorial 2**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md), we show **how synthetic signals can be used to inform microvasculature property inference**, replicating the _in silico_ parameter estimation experiments of our [preprint](https://doi.org/10.1101/2024.07.15.24310335).
 
 
 
