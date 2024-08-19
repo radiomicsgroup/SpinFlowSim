@@ -15,13 +15,13 @@ parser.add_argument('--protocol', type=str, required=True, help='Input protocol 
 parser.add_argument('--snr', type=int, required=True, help='Signal-to-noise ratio')
 parser.add_argument('--bval_file', type=str, help='Path to the .bval file if protocol is not one of the predefined (subsetPGSE, TRSE, richPGSE)')
 args = parser.parse_args()
-protocol = args.protocol
+protocol = args.protocol.lower()
 snr = args.snr
 bval_file = args.bval_file
 
 print(f"SNR: {snr}")
 print(f"Protocol: {protocol}")
-if protocol not in ['subsetPGSE', 'TRSE', 'richPGSE']:
+if protocol not in ['subsetpgse', 'trse', 'richpgse']:
     if not bval_file or not os.path.isfile(bval_file):
         raise ValueError("Protocol bval data not found. You must supply a .bval file with the --bval_file argument.")
     print(f'Using custom protocol bvals defined in: {bval_file}')
@@ -86,7 +86,6 @@ for i in range(len(par_list)):
     print(f'par_trainset shape is: {par_train.shape}')
 
     ### Create noisy test set
-    # snr = 20    # Define SNR
     s_noisy = np.sqrt(   ( s_list[i] + (1.0/snr)*np.random.randn(s_list[i].shape[0],s_list[i].shape[1])  )**2   +   (  (1.0/snr)*np.random.randn(s_list[i].shape[0],s_list[i].shape[1])  )**2  )
     nmeas = s_noisy.shape[1]   # Number of signal measurements 
 
@@ -130,18 +129,24 @@ for i in range(len(par_list)):
 
 
     # Create .bval file with list of b-values, based on input protocol
-    if protocol == 'subsetPGSE':
-        print(f'The {protocol} bval list is: ')
-        print('0.0 50.0 100.0 0.0 50.0 100.0 0.0 50.0 100.0')
-        os.system('echo "0.0 50.0 100.0 0.0 50.0 100.0 0.0 50.0 100.0" > s{}_noisy_mat.bval'.format(i+1))
-    elif protocol == "RichPGSE":
-        print(f'The {protocol} bval list is: ')
-        print('[0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0] x 9')
-        os.system('echo "0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 " > s{}_noisy_mat.bval'.format(i+1))
-    elif protocol == 'TRSE':
-        print(f'The {protocol} bval list is: ')
-        print('0.0 50.0 100.0 0.0 50.0 100.0 0.0 50.0 100.0')
-        os.system('echo "0.0 50.0 100.0 0.0 50.0 100.0 0.0 50.0 100.0" > s{}_noisy_mat.bval'.format(i+1))
+    if protocol == 'subsetpgse':
+        sequence = "0.0 50.0 100.0"
+        print(f'The subsetPGSE bval list is: ')
+        print(f'[{sequence}] x 3')
+        line = " ".join([sequence] * 3)
+        os.system('echo "{}" > s{}_noisy_mat.bval'.format(line,i+1))
+    elif protocol == "richpgse":
+        sequence = "0.0 10.0 20.0 30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0"
+        print(f'The richPGSE bval list is: ')
+        print(f'[{sequence}] x 9')
+        line = " ".join([sequence] * 9)
+        os.system('echo "{}" > s{}_noisy_mat.bval'.format(line,i+1))
+    elif protocol == 'trse':
+        sequence = "0.0 50.0 100.0"
+        print(f'The TRSE bval list is: ')
+        print(f'[{sequence}] x 3')
+        line = " ".join([sequence] * 3)
+        os.system('echo "{}" > s{}_noisy_mat.bval'.format(line,i+1))
     else:
         print(f'Using custom protocol with bval: {bval_file}')
         with open(bval_file, 'r') as f:
