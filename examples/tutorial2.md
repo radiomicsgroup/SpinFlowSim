@@ -32,7 +32,8 @@ Each of these .npy arrays has 100 entries, reporting average network properties 
 - **variable _vs_**: standard deviation of the blood velocity distribution, in `mm/s`;
 - **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`.
 
-These parameters are calculated and stored by running the [`calculate_microvascular_properties.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/calculate_microvascular_properties.py) script. 
+These parameters are calculated and stored by running the [`calculate_microPars.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/calculate_microPars.py) script. The [`parsana.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/parsana.py)
+module contains the functions used for this analysis. 
 ### Signals
 
 The signals used for the estimation can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
