@@ -20,6 +20,12 @@ print(f"Option to save: {save}")
 
 ### Function to calculate Spearman and Pearson correlation between prediction and ground truth results
 def get_corr_metrics(prediction, groundtruth):
+    '''
+    Function to calculate Spearman rank-order correlation coefficient 
+    and Pearson correlation coefficient, both with associated p-values,
+    between a list of prediction and a list of ground truth results. 
+
+    '''
 
     prediction = np.asarray(prediction).flatten()
     groundtruth = np.asarray(groundtruth).flatten()
@@ -33,6 +39,24 @@ def get_corr_metrics(prediction, groundtruth):
 
 ### Function to plot the prediction results, optionally displaying the Spearman and Pearson correlation values
 def plot_parameter(prediction, ground_truth, label=None, units=None, spearman_corr=None, pearson_corr=None, save=None):
+
+    '''
+    Create plot to visualize the goodness of parameter estimation by means of a scatter plot,
+    for Ground truth (x-axis) and Predicted (y-axis) results. 
+    Optionally it displays Spearman and Pearson correlation values in text.
+
+    MANDATORY INPUT PARAMETERS
+        * prediction: list containing predicted/estimated parameters for all networks (units: parameter units);
+        * ground_truth: aist containing ground truth parameters for all networks (units: parameter units);
+
+    OPTIONAL INPUT PARAMETERS
+        * spearman_corr: array containing Spearman's rank correlation coefficient `r_s`. If provided, the correlation value will be displayed on the plot.
+        * pearson_corr: array containing Pearson's correlation coefficient `r`. If provided, the correlation value will be displayed on the plot.
+        * save: (bool) If `True`, the plot will be saved as a `.png` file. If `False` or not provided, the plot will only be displayed on screen.
+
+
+    '''
+
     
     # Flatten list arrays and create DataFrame for plotting
     data = np.array([ground_truth, prediction])
