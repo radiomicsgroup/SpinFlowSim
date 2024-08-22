@@ -6,8 +6,6 @@ import matplotlib
 
 def _ptupdate(num,x,y,z,graph,txt):
     txt.set_text('T={:d}'.format(num))
-    # No fancy stuff needed here, each new row contains the respective new 
-    # positions for each spin
     new_x = x[num]
     new_y = y[num]
     new_z = z[num]
@@ -31,9 +29,9 @@ def _spin_animation_setup(array):
     x : numpy.array
         Array containing all the x positions with shape (Nsteps, Nspins)
     y : numpy.array
-        See x
+        Array containing all the y positions with shape (Nsteps, Nspins)
     z : numpy.array
-        See x
+        Array containing all the z positions with shape (Nsteps, Nspins)
     Nsteps : int
         Number of steps of the simulation
 
@@ -47,7 +45,7 @@ def _spin_animation_setup(array):
         x.append(array[0,i,:])
         y.append(array[1,i,:])
         z.append(array[2,i,:])
-    x = np.array(x) # x[0] positions of all spins for timestep 0
+    x = np.array(x) # e.g. x[0] positions of all spins for timestep 0
     y = np.array(y)
     z = np.array(z)
     
