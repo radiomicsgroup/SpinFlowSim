@@ -18,7 +18,7 @@ Tutorial 2 contains the following sections:
 * [Scatter plots showing parameter estimation results](#corr)
 
 ## Description of the data of this tutorial  <a name="data-4-plots"></a>
-To run this tutorial, we need synthetic dMRI signals and corresponding sets of vascular parameters. We will work with the 15 vascular networks used in our [preprint](https://doi.org/10.1101/2024.07.15.24310335), which we distribute with SpinFlowSim [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks).
+To run this tutorial, we need synthetic dMRI signals and corresponding sets of vascular parameters. We will work with the 15 vascular networks used in our [preprint](https://doi.org/10.1101/2024.07.15.24310335), which we distribute with _SpinFlowSim_ [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks).
 
 
 ### Vascular parameters
