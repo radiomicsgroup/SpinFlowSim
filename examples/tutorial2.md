@@ -45,22 +45,25 @@ e.g. Net1 data_for_plots `data_for_plots/Net1/` contains
 
 Each of these arrays has 100 x n measurements, storing signals for each simulated protocol:
 
-- **TRSE**: twice-refocused spin echo (TRSE) pulse sequence.
+- **TRSE**: a twice-refocused spin echo (TRSE) protocol.
   The protocol included b-values b = {0, 50, 100} s/mm<sup>2</sup> acquired at 3 different diffusion times:
   - δ1 = 8.9 ms, δ2 = 17.6 ms, δ3 = 20.4 ms, δ4 = 6.0 ms, ∆1,2 = 17.4 ms and ∆1,4 = 63.9 ms at short diffusion time;
   - δ1 = 13.2 ms, δ2 = 19.3 ms, δ3 = 24.8 ms, δ4 = 7.7 ms, ∆1,2 = 21.7 ms and ∆1,4 = 74.2 ms at intermediate diffusion time;
   - δ1 = 18.9 ms, δ2 = 21.0 ms, δ3 = 30.5 ms, δ4 = 9.5 ms, ∆1,2 = 27.5 ms and ∆1,4 = 87.5 ms at long diffusion time.
   
-- **richPGSE**: ultra-rich pulsed gradient spin echo (richPGSE).
+- **richPGSE**: an ultra-rich pulsed gradient spin echo (PGSE) protocol, referred to as _richPGSE_.
   This protocol consists of 9 b = 0 and 10 non-zero b-values b = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100} s/mm<sup>2</sup>,  each acquired for 9 unique diffusion times:
   - (δ,∆) = {10, 20, 30} ms × {30, 50, 70} ms.
   
-- **subsetPGSE**: a second PGSE protocol that is a subset of the former.
+- **subsetPGSE**: a second PGSE protocol that is a subset of the former, referred to as _subsetPGSE_.
   It contains 3 b=0 and 6 diffusion-weighted (DW) measurements, namely b = {50, 100} for 3 different diffusion times:
   - δ was fixed to 20 ms, while the 3 diffusion times were achieved by varying ∆ as ∆= {30, 50, 70} ms.
 
+
+The figure below illustrates the TRSE and PGSE diffusion encodings used in for vascular signal synthesis.
+
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/sequences.png" width="950" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/sequences.png" width="650" height="auto">
 </div>
 <div align="center">
   (a) PGSE pulse sequence (b) TRSE pulse sequence
