@@ -1,5 +1,5 @@
 
-# Tutorial 2: using synthetic dMRI signal to inform microvasculature parameter estimation
+# Tutorial 2: using synthetic dMRI signals to inform microvasculature parameter estimation
 
 This tutorial shows you how the diffusion MRI (dMRI) signals you synthesized as explained in [Tutorial 1](https://github.com/radiomicsgroup/SpinFlowSim/edit/main/examples/tutorial1.md), can be used to inform the estimation of properties of the vascular networks.  Please remember that to go through our tutorials you need python 3 with:
 - [numpy](https://numpy.org) (developed with version 1.24.2)
