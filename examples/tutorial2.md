@@ -34,6 +34,7 @@ Each of these .npy arrays has 100 entries, reporting average network properties 
 
 These parameters are calculated and stored by running the [`calculate_microPars.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/calculate_microPars.py) script. The [`parsana.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/parsana.py)
 module contains the functions used for this analysis. 
+
 ### Signals
 
 The signals used for the estimation can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
@@ -60,7 +61,7 @@ Each of these arrays has 100 x n measurements, storing signals for each simulate
   - δ was fixed to 20 ms, while the 3 diffusion times were achieved by varying ∆ as ∆= {30, 50, 70} ms.
 
 
-The figure below illustrates the TRSE and PGSE diffusion encodings used in for vascular signal synthesis.
+Signals were synthesised using the same approach described in previous [tutorial 1](https://github.com/radiomicsgroup/SpinFlowSim/edit/main/examples/tutorial1.md). The figure below illustrates the TRSE and PGSE diffusion encodings used in for vascular signal synthesis. 
 
 <div align="center">
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/sequences.png" width="650" height="auto">
@@ -71,24 +72,26 @@ The figure below illustrates the TRSE and PGSE diffusion encodings used in for v
 
 ## Parameter estimation from signals <a name="par-est"></a>
 
-The [run_estimation.py](data_for_plots/run_estimation.py) script carries out model fitting to estimate microvascular parameters from synthetic signals. 
+Now that we have put together rich sets of synthetic dMRI signals and corresponding microvascular parameters from 15 vascular networks, we will illustrate how these can be used to devise a strategy enabling the microvascular parameter estimation from new, unseen signals. 
 
-The fitting is performed with [mri2micro_dictml.py](data_for_plots/mri2micro_dictml.py) tool, part of bodymritools [mri2micro_dictml.py](https://github.com/fragrussu/bodymritools/blob/main/mrifittools/mri2micro_dictml.py)
-Note that mri2micro_dictml.py can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
+In short, we use noise-free signals and corresponding vascular parameters from 14 networks to learn a numerical forward signal model that maps vascular parameters to dMRI signals. Afterwards, we plut such a forward signal model into standard maximum-likelihood fitting, through which we estimate vascular parameters from noisy signals from 15th substrate. We perform this experiment in a leave-one-out fashin, obtaining vasuclar parameter estimates for all 15 networks. 
+
+The [`run_estimation.py`](data_for_plots/run_estimation.py) script carries out this experiment. The script relies on the [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) tool, which is essentially a copy of a script5 included as part of our **bodymritools** repository (available [here](https://github.com/fragrussu/bodymritools)). `mri2micro_dictml.py` can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
 
 
-Begin by cloning this repository, navigate to [data_for_plots](data_for_plots) and execute `run_estimation.py` like in the following command:
+Once you have clo by cloning this repository, navigate to [data_for_plots](data_for_plots) and execute `run_estimation.py` like in the following command:
 
 ```bash
 python run_estimation.py --protocol subsetPGSE --snr 20
 ```
 
-For the model fitting, the script needs:
-- the noisy signals with the specified `snr` in NIFTI format
-- a text file with the diffusion protocol
-- and an optional noise map, also in NIFTI format
+To use [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py), you require:
+- examples of noise-free signals and corresponding vascular parameters, to build a numerical forward signal model;
+- the noisy signals on which vascular parameter estimation should be performed as a 4D NIFTI file;
+- a text file with the diffusion protocol;
+- and an optional noise map, also in NIFTI format, in case you want to account for the noise floor in maximum-likelihood fitting.  
 
-Examples of the necessary files are provided in [data_for_plots](data_for_plots).
+The necessary files are included in [data_for_plots](data_for_plots), and used directly by [`run_estimation.py`](data_for_plots/run_estimation.py). An help manual of [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) can be found here.
 
 ## Scatter plots showing correlation<a name="corr"></a>
 
