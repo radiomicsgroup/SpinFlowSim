@@ -13,12 +13,12 @@ This tutorial shows you how the diffusion MRI (dMRI) signals you synthesized as 
 - [mrtrix](https://www.mrtrix.org) (developed with version '3.0.4';  note that we use MrTrix command line tool `dwidenoise` from within python with `os.system()`, to estimate the noise level in synthetic vascular dMRI signals).
 
 Tutorial 2 contains the following sections:
-* [Data for Plots](#data-4-plots)
-* [Parameter estimation from signals](#par-est)
-* [Scatter plots showing correlation](#corr)
+* [Description of the data of this tutorial](#data-4-plots)
+* [Vascular parameter estimation informed by synthetic signals](#par-est)
+* [Scatter plots showing parameter estimation results](#corr)
 
-## Data for Plots  <a name="data-4-plots"></a>
-### Parameters
+## Description of the data of this tutorial  <a name="data-4-plots"></a>
+### Vascular parameters
 
 The parameter data used for generating the plots can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
 e.g. Net1 data_for_plots `data_for_plots/Net1/` contains
@@ -35,7 +35,7 @@ Each of these .npy arrays has 100 entries, reporting average network properties 
 These parameters are calculated and stored by running the [`calculate_microPars.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/calculate_microPars.py) script. The [`parsana.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/parsana.py)
 module contains the functions used for this analysis. 
 
-### Signals
+### Synthetic dMRI signals
 
 The signals used for the estimation can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
 e.g. Net1 data_for_plots `data_for_plots/Net1/` contains
@@ -70,7 +70,7 @@ Signals were synthesised using the same approach described in previous [tutorial
   (a) PGSE pulse sequence (b) TRSE pulse sequence
 </div>
 
-## Parameter estimation from signals <a name="par-est"></a>
+## Vascular parameter estimation informed by synthetic signals <a name="par-est"></a>
 
 Now that we have put together rich sets of synthetic dMRI signals and corresponding microvascular parameters from 15 vascular networks, we will illustrate how these can be used to devise a strategy enabling the microvascular parameter estimation from new, unseen signals. 
 
@@ -93,7 +93,7 @@ Note that the [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) tool r
 
 The necessary files are included in [data_for_plots](data_for_plots), and used directly by [`run_estimation.py`](data_for_plots/run_estimation.py). An help manual of [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) can be found [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/mri2micro_dictml_manual.md).
 
-## Scatter plots showing correlation<a name="corr"></a>
+## Scatter plots showing parameter estimation results<a name="corr"></a>
 
 <div align="center">
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/estimation.PNG" width="950" height="auto">
