@@ -18,33 +18,34 @@ Tutorial 2 contains the following sections:
 * [Scatter plots showing parameter estimation results](#corr)
 
 ## Description of the data of this tutorial  <a name="data-4-plots"></a>
+To run this tutorial, we need synthetic dMRI signals and corresponding sets of vascular parameters. We will work with the 15 vascular networks used in our [preprint](https://doi.org/10.1101/2024.07.15.24310335), which we distribute with SpinFlowSim [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks).
+
+
 ### Vascular parameters
 
-The parameter data used for generating the plots can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
-e.g. Net1 data_for_plots `data_for_plots/Net1/` contains
+The vascular parameters required for this tutorial can be found in the [`data_for_plots`](data_for_plots) folder for each network. They are by network: e.g., folder [Net1](data_for_plots/Net1) contains parameters for network 1, [Net2](data_for_plots/Net2) for network 2, etc. Each of this folder contains three arrays: for network 1, for example, these are
 
 - [Net1_Pars_vm.npy](data_for_plots/Net1/Net1_Pars_vm.npy)
 - [Net1_Pars_vs.npy](data_for_plots/Net1/Net1_Pars_vs.npy)
 - [Net1_Pars_anb.npy](data_for_plots/Net1/Net1_Pars_anb.npy)
 
-Each of these .npy arrays has 100 entries, reporting average network properties for each network realization:
+Each of these .npy arrays has 100 entries, reporting average network properties for each network realization (remember that we obtain 100 different instantiations of each of our 15 networks, by varying inlet/outlet as well as the input flow - see more about this [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/README.md)). The three array report values of three different vascular properties, namely:
 - **variable _vm_**: mean value of the blood velocity distribution, in `mm/s`;
 - **variable _vs_**: standard deviation of the blood velocity distribution, in `mm/s`;
 - **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`.
 
 These parameters are calculated and stored by running the [`calculate_microPars.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/calculate_microPars.py) script. The [`parsana.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/parsana.py)
-module contains the functions used for this analysis. 
+module contains the functions used for this analysis. You can read more about them in our [preprint](https://doi.org/10.1101/2024.07.15.24310335), or in this [README file](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md). 
 
 ### Synthetic dMRI signals
 
-The signals used for the estimation can be found in the [`data_for_plots`](data_for_plots) folder for each network, grouped by network. 
-e.g. Net1 data_for_plots `data_for_plots/Net1/` contains
+Alongside vascular properties, we need synthetic dMRI signals. We have generated signals for different dMRI protocols, which we also include in the [`data_for_plots`](data_for_plots) folder. Signals are again grouped by network, e.g., folder [Net1](data_for_plots/Net1) contains signals for network 1, [Net2](data_for_plots/Net2) for network 2, etc. Each of this folder contains three arrays: for network 1, for example, these are
 
 - [Net1_Sigs_TRSE.npy](data_for_plots/Net1/Net1_Sigs_TRSE.npy)
 - [Net1_Sigs_richPGSE.npy](data_for_plots/Net1/Net1_Sigs_richPGSE.npy)
 - [Net1_Sigs_subsetPGSE.npy](data_for_plots/Net1/Net1_Sigs_subsetPGSE.npy)
 
-Each of these arrays has 100 x n measurements, storing signals for each simulated protocol:
+Each of these arrays has 100 x n measurements, storing signals for three different simulated dMRI protocols:
 
 - **TRSE**: a twice-refocused spin echo (TRSE) protocol.
   The protocol included b-values b = {0, 50, 100} s/mm<sup>2</sup> acquired at 3 different diffusion times:
@@ -77,7 +78,6 @@ Now that we have put together rich sets of synthetic dMRI signals and correspond
 In short, we use noise-free signals and corresponding vascular parameters from 14 networks to learn a numerical forward signal model that maps vascular parameters to dMRI signals. Afterwards, we plut such a forward signal model into standard maximum-likelihood fitting, through which we estimate vascular parameters from noisy signals from 15th substrate. We perform this experiment in a leave-one-out fashin, obtaining vasuclar parameter estimates for all 15 networks. 
 
 The [`run_estimation.py`](data_for_plots/run_estimation.py) script carries out this experiment. The script relies on the [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) tool, which is essentially a copy of a script5 included as part of our **bodymritools** repository (available [here](https://github.com/fragrussu/bodymritools)). `mri2micro_dictml.py` can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
-
 
 To run [`run_estimation.py`](data_for_plots/run_estimation.py), just navigate to [data_for_plots](data_for_plots) folder in your command line, and execute the script, selecting the protocol and a signal-to-noise ratio (SNR) level with options `--protocol` and `--snr`. For example, to estimate vascular parameters for protocol _subsetPGSE_ and an SNR of 20, simply execute:
 
