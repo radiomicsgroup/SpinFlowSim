@@ -95,6 +95,6 @@ Examples of the necessary files are provided in [data_for_plots](data_for_plots)
 
 Visualizing the estimation results as a scatter plot that includes the computation of a correlation coefficient between ground truth and estimated parameters, is as easy as running the script [`get_plots.py`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/data_for_plots/get_plots.py), which we include in the from [data_for_plots](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/data_for_plots) folder. This can be run easily like this:
 
-```bash
+```
 python get_plots.py --save True 
 ```
