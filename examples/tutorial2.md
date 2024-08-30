@@ -79,19 +79,19 @@ In short, we use noise-free signals and corresponding vascular parameters from 1
 The [`run_estimation.py`](data_for_plots/run_estimation.py) script carries out this experiment. The script relies on the [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) tool, which is essentially a copy of a script5 included as part of our **bodymritools** repository (available [here](https://github.com/fragrussu/bodymritools)). `mri2micro_dictml.py` can be used to fit any equation-free, numerical signal model, given examples of signals and corresponding vascular parameters for any given acquisition protocol.
 
 
-Once you have clo by cloning this repository, navigate to [data_for_plots](data_for_plots) and execute `run_estimation.py` like in the following command:
+To run [`run_estimation.py`](data_for_plots/run_estimation.py), just navigate to [data_for_plots](data_for_plots) folder in your command line, and execute the script, selecting the protocol and a signal-to-noise ratio (SNR) level with options `--protocol` and `--snr`. For example, to estimate vascular parameters for protocol _subsetPGSE_ and an SNR of 20, simply execute:
 
-```bash
+```
 python run_estimation.py --protocol subsetPGSE --snr 20
 ```
 
-To use [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py), you require:
+Note that the [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) tool requires:
 - examples of noise-free signals and corresponding vascular parameters, to build a numerical forward signal model;
 - the noisy signals on which vascular parameter estimation should be performed as a 4D NIFTI file;
 - a text file with the diffusion protocol;
 - and an optional noise map, also in NIFTI format, in case you want to account for the noise floor in maximum-likelihood fitting.  
 
-The necessary files are included in [data_for_plots](data_for_plots), and used directly by [`run_estimation.py`](data_for_plots/run_estimation.py). An help manual of [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) can be found here.
+The necessary files are included in [data_for_plots](data_for_plots), and used directly by [`run_estimation.py`](data_for_plots/run_estimation.py). An help manual of [`mri2micro_dictml.py`](data_for_plots/mri2micro_dictml.py) can be found [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/mri2micro_dictml_manual.md).
 
 ## Scatter plots showing correlation<a name="corr"></a>
 
