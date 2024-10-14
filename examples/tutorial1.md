@@ -179,8 +179,8 @@ h = open('./script01_initnet_kidneyexample.bin','rb')
 net = pk.load(h)
 h.close()
 
-### Generate spins trajectories: 750 spins for 100 time steps of dt = 10 us; boundary condition 'periodic'  
-rperiodic = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-05, seednumber=20181019, boundary='periodic' )
+### Generate spins trajectories: 750 spins for 100 time steps of dt = 1 ms; boundary condition 'periodic'  
+rperiodic = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-03, seednumber=20181019, boundary='periodic' )
 
 ### Let's save them as a GIF
 visu.spin_animation(rperiodic, 'spinvideo_periodic.gif')
@@ -195,8 +195,8 @@ visu.spin_animation(rperiodic, 'spinvideo_periodic.gif')
 Another avilable boundary condition is the _feedback_ one (option `boundary='feedback'`). In this case, spins reaching the outlet are fed back instantaneously to the inlet. Note that this introduces "jumps" on the spin trajectories, which may affect the synthesis of your dMRI signals - so use it with care. Below are the same spin trajectories of above, but with the "feedback" condition.
 
 ```
-### Generate spins trajectories: again, 750 spins, 100 time steps, dt = 10 us, but boundary condition 'feedback'  
-rfeedback = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-05, seednumber=20181019, boundary='feedback' )
+### Generate spins trajectories: again, 750 spins, 100 time steps, dt = 1 ms, but boundary condition 'feedback'  
+rfeedback = net.GetTrajUniformSeed(100, Nspins=750, dt=1e-03, seednumber=20181019, boundary='feedback' )
 
 ### Let's save them as a GIF
 visu.spin_animation(rfeedback, 'spinvideo_feedback.gif')
