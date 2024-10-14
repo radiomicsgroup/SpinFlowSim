@@ -118,7 +118,7 @@ def spin_animation(rpos,outvideo=None):
     
     OPTIONAL INPUT PARAMETERS
     ----------    
-    outvideo:  string indicating the path of an .mp4 
+    outvideo:  string indicating the path of a .mp4 
                where the animation will be saved
                as a video (default: None - no video saved)
         
@@ -134,9 +134,6 @@ def spin_animation(rpos,outvideo=None):
     tot_velocities = np.linalg.norm(velocities,axis=0) # compute the magnitude of all velocity vectors across all components (x, y, and z).
     np.save("spin_velocities.npy", tot_velocities)
     np.save("spin_trajectories.npy", trajectories)
-
-
-    # x, y, z, Nsteps, Nspins = spin_animation_setup("spin_trajectories.npy") s
     
     x, y, z, Nsteps, Nspins = spin_animation_setup(trajectories) 
 
@@ -153,7 +150,7 @@ def spin_animation(rpos,outvideo=None):
 
     #   Create animation by repeatedly running function for a number of frames
     ani = animation.FuncAnimation(
-        fig, update_point_pos, frames= Nsteps - 1, fargs=(x, y, z, vcolor, scatter_points, disp_fnum), interval=50) # 50
+        fig, update_point_pos, frames= Nsteps - 1, fargs=(x, y, z, vcolor, scatter_points, disp_fnum), interval=50) 
     ax.set_xlabel("x-position [mm]")
     ax.set_ylabel("y-position [mm]")
     ax.set_zlabel('z-position [mm]')
