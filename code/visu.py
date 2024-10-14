@@ -150,13 +150,12 @@ def spin_animation(rpos,outvideo=None):
 
     #   Create animation by repeatedly running function for a number of frames
     ani = animation.FuncAnimation(
-        fig, update_point_pos, frames= Nsteps - 1, fargs=(x, y, z, vcolor, scatter_points, disp_fnum), interval=50) 
+        fig, update_point_pos, frames= Nsteps - 1, fargs=(x, y, z, vcolor, scatter_points, disp_fnum)) 
     ax.set_xlabel("x-position [mm]")
     ax.set_ylabel("y-position [mm]")
     ax.set_zlabel('z-position [mm]')
     plt.show()
     # Save a video with the animation if required
-    print('outvideo',outvideo)
     if(outvideo is not None):
         ani.save(outvideo)
 
