@@ -8,7 +8,6 @@ import PySpice.Logging.Logging as Logging
 logger = Logging.setup_logging()
 from PySpice.Spice.Netlist import Circuit
 from PySpice.Unit import *
-from matplotlib import pyplot as plt
 
 class pipenet():
     ''' Class to define a vascular network and use it to simulate IVIM diffusion MRI signals
