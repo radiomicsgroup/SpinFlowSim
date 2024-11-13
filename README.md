@@ -49,10 +49,21 @@ SpinFlowSim has been developed with python 3.10.8. To use SpinFlowSim and go thr
   
 # Installation
 </div>
-To obtain SpinFlowSim, make sure to install to your python environment the requirements listed above. Then simply clone our code:
+Clone our repository as
 
  ```sh
  git clone https://github.com/radiomicsgroup/SpinFlowSim
+ ```
+
+To perform flow simulations with SpinFlowSim and to go through all the tutorails, you will need all the dependencies listed above. As a bear minimum, to simply synthesise vascular dMRI signals with the [`syn.py`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) tools, you will need [graph-tool](https://graph-tool.skewed.de), [Lcapy](https://lcapy.readthedocs.io), [PySpice](https://github.com/FabriceSalvaire/PySpice) and [numpy](https://numpy.org). with Anaconda, run:
+
+
+ ```sh
+conda create --name spinflowsim -c conda-forge graph-tool python=3.10.8
+conda activate spinflowsim
+conda install -n spinflowsim numpy
+conda install -n spinflowsim -c conda-forge pyspice
+pip install lcapy
  ```
 </div>
 
