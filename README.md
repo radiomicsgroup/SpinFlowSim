@@ -55,7 +55,7 @@ Clone our repository as
  git clone https://github.com/radiomicsgroup/SpinFlowSim
  ```
 
-To perform flow simulations with SpinFlowSim and to go through all the tutorails, you will need all the dependencies listed above. As a bear minimum, to simply synthesise vascular dMRI signals with the [`syn.py`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) tools, you will need [graph-tool](https://graph-tool.skewed.de), [Lcapy](https://lcapy.readthedocs.io), [PySpice](https://github.com/FabriceSalvaire/PySpice) and [numpy](https://numpy.org). with Anaconda, run:
+To perform flow simulations with SpinFlowSim and to go through all the tutorails, you will need all the dependencies listed above. As a bear minimum, to simply synthesise vascular dMRI signals with the [`syn.py`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) tools, you will need [graph-tool](https://graph-tool.skewed.de), [Lcapy](https://lcapy.readthedocs.io), [PySpice](https://github.com/FabriceSalvaire/PySpice) and [numpy](https://numpy.org). With Anaconda, run:
 
 
  ```sh
