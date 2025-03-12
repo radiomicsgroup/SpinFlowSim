@@ -1,6 +1,6 @@
 # Capillary networks for vascular dMRI signal synthesis
 
-SpinFlowSim was showcased on vascular networks reconstructed from 2D histological images. The networks were drawn manually, tracing visible capillaries in 11 stained liver biopsies. We have drawn **15 vascular networks** on human liver biopsies, as detailed in our [preprint](https://doi.org/10.1101/2024.07.15.24310335):
+SpinFlowSim was showcased on vascular networks reconstructed from 2D histological images. The networks were drawn manually, tracing visible capillaries in 11 stained liver biopsies. We have drawn **15 vascular networks** on human liver biopsies, as detailed in our [paper](https://doi.org/10.1016/j.media.2025.103531):
 
 <div align="center">
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/nets.png" width="950" height="auto">
