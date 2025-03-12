@@ -18,7 +18,7 @@ Tutorial 2 contains the following sections:
 * [Scatter plots showing parameter estimation results](#corr)
 
 ## Description of the data of this tutorial  <a name="data-4-plots"></a>
-To run this tutorial, we need synthetic dMRI signals and corresponding sets of vascular parameters. We will work with the 15 vascular networks used in our [preprint](https://doi.org/10.1101/2024.07.15.24310335), which we distribute with _SpinFlowSim_ [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks).
+To run this tutorial, we need synthetic dMRI signals and corresponding sets of vascular parameters. We will work with the 15 vascular networks used in our [paper](https://doi.org/10.1016/j.media.2025.103531), which we distribute with _SpinFlowSim_ [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks).
 
 
 ### Vascular parameters
@@ -35,7 +35,7 @@ Each of these .npy arrays has 100 entries, reporting average network properties 
 - **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`.
 
 These parameters are calculated and stored by running the [`calculate_microPars.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/calculate_microPars.py) script. The [`parsana.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/parsana.py)
-module contains the functions used for this analysis. You can read more about them in our [preprint](https://doi.org/10.1101/2024.07.15.24310335), or in this [README file](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md). 
+module contains the functions used for this analysis. You can read more about them in our [paper](https://doi.org/10.1016/j.media.2025.103531), or in this [README file](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md). 
 
 ### Synthetic dMRI signals
 
