@@ -15,14 +15,16 @@ The SpinFlowSim code was written by Francesco Grussu (<fgrussu@vhio.net>), Anna 
 
 **The project that gave rise to these results received the support of a fellowship from ”la Caixa” Foundation (ID 100010434). The fellowship code is "LCF/BQ/PR22/11920010"**.
 
-Foster open science by citing our preprint if you use SpinFlowSim in your research: 
+Foster open science by citing our paper if you use SpinFlowSim in your research: 
 
-_Anna Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Nuria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Roser Sala-Llonch, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu. **"SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer"**. medRxiv 2024.07.15.24310335; doi: [10.1101/2024.07.15.24310335](https://doi.org/10.1101/2024.07.15.24310335)_.
+_Anna Kira Voronova, Athanasios Grigoriou, Kinga Bernatowicz, Sara Simonetti, Garazi Serna, Núria Roson, Manuel Escobar, Maria Vieito, Paolo Nuciforo, Rodrigo Toledo, Elena Garralda, Els Fieremans, Dmitry S. Novikov, Marco Palombo, Raquel Perez-Lopez, Francesco Grussu._  
+  **"SpinFlowSim: a blood flow simulation framework for histology-informed diffusion MRI microvasculature mapping in cancer"**   
+  Medical Image Analysis, Volume 102, May 2025, 103531, ISSN 1361-8415, doi: [10.1016/j.media.2025.103531](https://doi.org/10.1016/j.media.2025.103531)
 
 <div align="center">
     
 <div align="center">
-  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/qr.png" width="160" height="auto">
+  <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/Media_screenshot.PNG" width="auto" height="auto">
 </div>
     
 <a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#repository-description">Repository description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;
@@ -74,7 +76,7 @@ The SpinFlowSim repository includes several sub-fodlers:
     * the file [`syn.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/syn.py) introduces the _syn_ module, where the _pipenet_ class is defined to work with vascular networks and to synthesise vascular dMRI signals. The manual of the _syn_ module can be found [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/syn_manual.md).
     * the file [`visu.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/code/visu.py) intrdocudes the _visu_ module, where useful tools are defined to visualise spins flowing through vascular networks. The manual of the _visu_ module can be found [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/visu_manual.md).
 * The folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) contains some tutorials that illustrate how to use SpinFlowSim in practice.
-* The folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) contains the resolved vascular networks generated for our [preprint](https://doi.org/10.1101/2024.07.15.24310335). These can be used to synthesise vascular dMRI signals for any acquisition protocol of interest (find [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) how).
+* The folder [**networks**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks) contains the resolved vascular networks generated for our [paper](https://doi.org/10.1016/j.media.2025.103531). These can be used to synthesise vascular dMRI signals for any acquisition protocol of interest (find [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md) how).
     
 
 # Usage
@@ -82,7 +84,7 @@ The SpinFlowSim repository includes several sub-fodlers:
 We have included some tutorials in the folder [**examples**](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples) to illustrate how to use SpinFlowSim for your diffusion MRI analyses. 
 
 * In [**tutorial 1**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md), we show **how to create and initialise a SpinFlowSim _pipenet_ object to resolve a vascular network drawn on histology, and to synthesise dMRI signals from the resolved vascular network**.
-* In [**tutorial 2**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md), we show **how synthetic signals can be used to inform microvasculature property inference**, replicating the _in silico_ parameter estimation experiments of our [preprint](https://doi.org/10.1101/2024.07.15.24310335).
+* In [**tutorial 2**](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md), we show **how synthetic signals can be used to inform microvasculature property inference**, replicating the _in silico_ parameter estimation experiments of our [paper](https://doi.org/10.1016/j.media.2025.103531).
 
 
 
