@@ -399,8 +399,11 @@ class pipenet():
         # Get trajectories given the current vascular network
         rmat_final = self.GetTrajUniformSeed(Ntpoints,Nspins,dt,seednumber=rndseed,boundary=bcon)  # Flow of Nspins for Ntpoints points over time; temporal/spatial resolution dt/dr [ms]/[mm]
 
-        # Get MRI signal and phase information
+        #### Get dMRI signal and phase information #################
         magtot, phasetot, phasespin = Traj2Signal(rmat_final,Gx,Gy,Gz,dt)
+        
+        
+        
 
         # Return, in this order: total signal, total phase, each individual spin phase, each individual spin trajectory, t array, Gx(t) array, Gy(t) array, Gz(t) array
         return magtot, phasetot, phasespin, rmat_final, tarray, Gx, Gy, Gz
@@ -408,22 +411,29 @@ class pipenet():
 
 
 
-    def dMRISynProt(self,bvarr,Gdurarr,Gseparr,Gdirarr,Nwater=2000,deltat=2e-5,Gradx=None,Grady=None,Gradz=None,Nrep=1,seed=20181019,boundcon='periodic',vb=True):
+    def dMRISynProt(self,bvarr,Gdurarr,Gseparr,Gdirarr,Nwater=2000,deltat=2e-5,Gradx=None,Grady=None,Gradz=None,Nrep=1,seed=20181019,boundcon='periodic',vb=True,velcomp=False):
         '''
         Synthesises a diffusion-weighted MRI protocol made of multiple measurements from
         protons flowing within a vascular network
+        
+        Adds Flow-Compensation if optional parameter velcomp is set to True.
 
         mag, phase = obj.dMRISynProt(<parameters>)
 
         MANDATORY INPUT PARAMETERS
-        * bvarr: array of b-values for a PGSE sequence (units: s/mm2; it must be a 1D array of size Nmeas)
-        * Gdurarr: array of gradient durations (small delta) for a PGSE sequence (1D array of size Nmeas; units: s)
-        * Gseparr: array of gradient separations (large Delta) for a PGSE sequence (1D array of size Nmeas; units: s)
+        * bvarr: array of b-values for a diffusion-weighted sequence (units: s/mm2; it must be a 1D array of size Nmeas)
+        * Gdurarr: array of gradient durations (small delta) for a PGSE sequence,
+                   or for flow-compensated sequence (velcomp = True) the oscillation half-period (tau).
+                   (1D array of size Nmeas; units: s)
+        * Gseparr: array of gradient separations (large Delta) for a PGSE sequence,
+                    or for flow-compensated sequence (velcomp = True) the diifference between the starting times 
+                    of the gradient lobes for a bipolar diffusion waveform.
+                    (1D array of size Nmeas; units: s)
         * Gdirarr: array of gradient directions for a PGSE sequence; it must be a 2D numpy array of size Nmeasx3,
                    where Gdirarr[m,0] stores the x-component of the gradient direction corresponding to the m-th
                    measurement; Gdirarr[m,1] the y-component; Gdirarr[m,2] the z-component
 
-        ***** NOTE THAT ALL INPUT PARAMETERS ABOUT b-value, GRADIENT DIRECTION/DURATION/SEPARATION ARE IGNORED
+        ***** NOTE THAT ALL INPUT PARAMETERS ABOUT b-value, GRADIENT DIRECTION/DURATION/SEPARATION and velcomp ARE IGNORED
               IF CUSTOM GRADIENT WAVEFORMS ARE PROVIDED WITH OPTION INPUT PARAMETERS Gradx, Grady, Gradz
               (SEE BELOW) 
 
@@ -484,6 +494,7 @@ class pipenet():
         * vb:       verbose. Set this parameter to True (or 1) if you want feedback on the simulation
                     duration to be printed on the standard output. Any other value will be trated as
                     a False and no feedback will be printed. Default: True
+        * velcomp:  Adds flow-compensation to the acquisition when set to True. Default: False
 
         RETURNS
         * mag:    1D or 2D array storing the magnitude of the synthesised MRI signals given the input protocol.
@@ -542,16 +553,18 @@ class pipenet():
             Ndmri = Gradx.shape[0]                # Number of measurement making up the diffusion MRI protocol to be simulated
 
 
-        # The user did not provide the waveforms Gx(t), Gy(t), Gz(t) - we've got to generate PGSE wave forms
+        # The user did not provide the waveforms Gx(t), Gy(t), Gz(t) - we've got to generate PGSE or FC waveforms
         else:
 
             # Make sure the user passed an array of b-values, Gdur, Gsep, and gradient directions
             if( bvarr.ndim!=1 ):
                 raise RuntimeError('ERROR. The b-value must be an 1D array (units: s/mm2), but you passed {}'.format(bvarr))
-            if( Gdurarr.ndim!=1  ):
+            if (Gdurarr.ndim != 1) and (velcomp is False):
                 raise RuntimeError('ERROR. The gradient duration must be 1D array (units: s), but you passed {}'.format(Gdurarr))
-            if( Gseparr.ndim!=1  ):
+            if (Gseparr.ndim != 1) and (velcomp is False):
                 raise RuntimeError('ERROR. The gradient separation must be a 1D array (units: s), but you passed {}'.format(Gseparr))
+            if (Gdurarr.ndim != 1) and (velcomp is True):
+                raise RuntimeError('ERROR. The oscillation half-period (tau) must be 1D array (units: s), but you passed {}'.format(Gdurarr))
             if( Gdirarr.ndim!=2  ):
                 raise RuntimeError('ERROR. The gradient direction array must have size Nmeas x 3, but you passed {}'.format(Gdirarr))
 
@@ -566,34 +579,63 @@ class pipenet():
             # Make sure that the gradient direction has 3 components (one for x, one for y, one for z)
             if( Gdirarr.shape[1]!=3 ):
                 raise RuntimeError('ERROR. The gradient direction array must have size Nmeas x 3')
+                     
+                
+            if velcomp:
 
-            # Find out the minimum number of time points required to simulate all the dMRI measurements making up the input protocol - if there are only b = 0, just simulate 40 ms
-            Ndmri = bvarr.size             # Number of measurements
-            tsim = Gseparr + Gdurarr       # Minimum time duration of the simulation required for each diffusion MRI measurements
-            tsim[bvarr==0.0] = np.nan
-            tsim[Gseparr==0.0] = np.nan
-            tsim[Gdurarr==0.0] = np.nan
-            try:
-                maxlenid = np.nanargmax(tsim)   # Index of the measurement requireing the longest simulation time - we will use that for all measurements
-                dummygrads = getGradPGSE(bvarr[maxlenid], Gdurarr[maxlenid], Gseparr[maxlenid], Gdirarr[maxlenid,:], deltat)  # Get quickly the gradient waveform for the dMRI measurement requiring the longest simulation time
-                Nstepsim = dummygrads[0].size     # Total number of simulation time steps required
-            except:
-                print('WARNING: you are simulating a protocol made of b = 0 measurements only. I will run the simulation for 40 ms')
-                Nstepsim = int(np.round(0.040/deltat))    # Number of time points required to simulate trajectories for 40 ms
-
-            # Generate all gradient waveforms for all dMRI measurements
-            Gradx = np.zeros((Ndmri,Nstepsim))
-            Grady = np.zeros((Ndmri,Nstepsim))
-            Gradz = np.zeros((Ndmri,Nstepsim))
-            for dd in range(0,Ndmri):
-                if(not np.isnan(tsim[dd])):
-                    # Get waveform for non-zero b-values
-                    glist = getGradPGSE(bvarr[dd],Gdurarr[dd],Gseparr[dd],Gdirarr[dd,:],deltat,Nsample=Nstepsim)
-                    Gradx[dd,:] = glist[0]
-                    Grady[dd,:] = glist[1]
-                    Gradz[dd,:] = glist[2]
-
-
+                # Find out the minimum number of time points required to simulate all the dMRI measurements making up the input protocol - if there are only b = 0, just simulate 40 ms
+                Ndmri = bvarr.size             # Number of measurements
+                tsim = Gseparr + Gdurarr + Gdurarr       # Minimum time duration of the simulation required for each diffusion MRI measurements
+                tsim[bvarr==0.0] = np.nan
+                tsim[Gseparr==0.0] = np.nan
+                tsim[Gdurarr==0.0] = np.nan
+                try:
+                    maxlenid = np.nanargmax(tsim)   # Index of the measurement requireing the longest simulation time - we will use that for all measurements
+                    dummygrads = getGradVelcomp(bvarr[maxlenid], Gdurarr[maxlenid], Gseparr[maxlenid], Gdirarr[maxlenid,:], deltat) # Get quickly the gradient waveform for the dMRI measurement requiring the longest simulation time
+                    Nstepsim = dummygrads[0].size     # Total number of simulation time steps required
+                except:
+                    print('WARNING: you are simulating a VELCOMP protocol made of b = 0 measurements only. I will run the simulation for 40 ms')
+                    Nstepsim = int(np.round(0.040/deltat))    # Number of time points required to simulate trajectories for 40 ms
+                # Generate all gradient waveforms for all dMRI measurements
+                Gradx = np.zeros((Ndmri,Nstepsim))
+                Grady = np.zeros((Ndmri,Nstepsim))
+                Gradz = np.zeros((Ndmri,Nstepsim))
+                for dd in range(0,Ndmri):
+                    if(not np.isnan(tsim[dd])):
+                        # Get waveform for non-zero b-values
+                        glist = getGradVelcomp(bvarr[dd], Gdurarr[dd], Gseparr[dd], Gdirarr[dd,:], deltat, Nsample=Nstepsim)
+                        Gradx[dd,:] = glist[0]
+                        Grady[dd,:] = glist[1]
+                        Gradz[dd,:] = glist[2]
+            
+            else:
+                # Find out the minimum number of time points required to simulate all the dMRI measurements making up the input protocol - if there are only b = 0, just simulate 40 ms
+                Ndmri = bvarr.size             # Number of measurements
+                tsim = Gseparr + Gdurarr       # Minimum time duration of the simulation required for each diffusion MRI measurements
+                tsim[bvarr==0.0] = np.nan
+                tsim[Gseparr==0.0] = np.nan
+                tsim[Gdurarr==0.0] = np.nan
+                try:
+                    maxlenid = np.nanargmax(tsim)   # Index of the measurement requireing the longest simulation time - we will use that for all measurements
+                    dummygrads = getGradPGSE(bvarr[maxlenid], Gdurarr[maxlenid], Gseparr[maxlenid], Gdirarr[maxlenid,:], deltat)  # Get quickly the gradient waveform for the dMRI measurement requiring the longest simulation time
+                    Nstepsim = dummygrads[0].size     # Total number of simulation time steps required
+                except:
+                    print('WARNING: you are simulating a protocol made of b = 0 measurements only. I will run the simulation for 40 ms')
+                    Nstepsim = int(np.round(0.040/deltat))    # Number of time points required to simulate trajectories for 40 ms
+    
+                # Generate all gradient waveforms for all dMRI measurements
+                Gradx = np.zeros((Ndmri,Nstepsim))
+                Grady = np.zeros((Ndmri,Nstepsim))
+                Gradz = np.zeros((Ndmri,Nstepsim))
+                for dd in range(0,Ndmri):
+                    if(not np.isnan(tsim[dd])):
+                        # Get waveform for non-zero b-values
+                        glist = getGradPGSE(bvarr[dd],Gdurarr[dd],Gseparr[dd],Gdirarr[dd,:],deltat,Nsample=Nstepsim)
+                        Gradx[dd,:] = glist[0]
+                        Grady[dd,:] = glist[1]
+                        Gradz[dd,:] = glist[2]
+                        
+        
         ### Synthesise measurements for current protocol
 
         # Allocate output signal and phase for the different repetitions
@@ -1705,3 +1747,133 @@ def getGradPGSE(bval, Gdur, Gsep, Gdir, dt, Nsample=None):
     return grx, gry, grz, timearr
 
 
+def getGradVelcomp(bval, tau , Gsep, Gdir, dt, Nsample=None):
+    '''
+    Generate diffusion-encoding bipolar waveforms, thus compensating for velocity.
+
+    grx, gry, grz, tm = getGradVelcomp(bval, tau, Gsep, Gdir, dt, Nsample=None)
+
+    MANDATORY INPUT PARAMETERS
+    * bval: b-value for the diffusion-weighted sequence (scalar; units: s/mm2);
+    * tau: oscillation half-period (scalar; units: s)
+    * Gsep: separation between the starting times of the bipolar gradient lobes(scalar; units: s)
+    * Gdir: gradient direction for a PGSE sequence; it must be a 1D numpy array of size 3, storing the
+            X, y and z components of the gradient direction
+    * dt: temporal resolution to be used to sample the diffusion gradient wavform (units: s)
+
+    OPTIONAL INPUT PARAMETERS
+    * Nsample: number of temporal samples to be used to generate the gradient waveform. If Nsample
+               is larger than the minimum number of samples required to construct a
+               waveform with gradient duration 2*tau and gradient separation Gsep given the temporal
+               resolution dt, then a tail of zeros will be added to the generated gradient waveform.
+               If Nsample is smaller than the minimum number of samples required to build the
+               waveform, then the latter will be used. Default: None.
+
+    RETURNS
+    * grx:       a 1D array storing the x component of the diffusion gradient (units: T/mm) over time
+    * gry:       a 1D array storing the y component of the diffusion gradient (units: T/mm) over time
+    * grz:       a 1D array storing the z component of the diffusion gradient (units: T/mm) over time
+    * tm:        a 1D array storing the time array, s.t. tm[0] = 0, tm[1] = dt, tm[2] = 2*dt, etc
+
+
+    '''
+
+    # Make sure inputs make sense
+    if( not np.isscalar(bval) ):
+        raise RuntimeError('ERROR. The b-value must be a scalar (units: s/mm2), but you passed {} s/mm2'.format(bval))
+    if( not np.isscalar(tau) ):
+        raise RuntimeError('ERROR. The oscillation half-period must be a scalar (units: s), but you passed {} s'.format(tau))
+    if( not np.isscalar(Gsep) ):
+        raise RuntimeError('ERROR. The gradient separation must be a scalar (units: s), but you passed {} s'.format(Gsep))
+    if(bval<0):
+        raise RuntimeError('ERROR. A negative b-value does not make sense, but you passed {} s/mm2'.format(bval))
+    if(tau<0):
+        raise RuntimeError('ERROR. A negative gradient duration does not make sense, but you passed {} s'.format(bval))
+    if(Gsep<0):
+        raise RuntimeError('ERROR. A negative gradient separation does not make sense, but you passed {} s'.format(bval))
+    if(Gsep<tau):
+        raise RuntimeError('ERROR. The gradient separation cannot be shorter than the duration - you passed a duration of {} and a separation of {} s'.format(tau,Gsep))
+    if( (Gdir.ndim!=1) or (Gdir.size!=3) ):
+        raise RuntimeError('ERROR. The gradient direction must be a 1D numpy array of size 3, but you passed {}'.format(Gdir))
+    if( not np.isscalar(dt) ):
+        raise RuntimeError('ERROR. The sampling period must be a scalar expressed in s')
+    if(dt<0.0):
+        raise RuntimeError('ERROR. The sampling period must be a number > 0 expressed in s')
+
+
+    # Gradient strength in T/mm
+    gammar = 267.522187*1e6                      # Proton gyromagnetic ratio in 1/(s x T)
+
+    # Deal with a b = 0.0 measurement
+    if( (bval==0.0) or (tau==0.0) or (Gsep==0.0) or (np.linalg.norm(Gdir)==0.0) ):
+
+        if(Nsample is not None):
+            grx = np.zeros(Nsample)
+            gry = np.zeros(Nsample)
+            grz = np.zeros(Nsample)
+            timearr = dt*np.linspace(0,float(Nsample)-1,Nsample)    # Time array (units: s)
+        else:
+            raise RuntimeError('ERROR. For a b = 0 measurement, the number of time points of the gradient waveform Nsample cannot be None')
+
+    # Deal with a DW measurement
+    else:
+
+        # Get the required gradient strength
+        Gval = (np.sqrt(3)/4) * np.sqrt(bval/(gammar**2 * tau**3))
+
+
+        # Make sure the gradient direction has unit norm
+        gn = Gdir/np.linalg.norm(Gdir)
+
+
+        # Generate the minimum length required given the requested diffusion times and temporal resolution
+        Nt_dur = int(np.round(tau/dt)+ 1)    # Number of time points required to cover the firstoscillation half-period  (tau)
+        Nt_sep = int(np.round(Gsep/dt)+ 1)    # Number of time points required to cover the gradient up to the rise of the second bipolar pulse  (gradient separation)
+
+        if(Nt_sep<=Nt_dur):
+            Nt_sep = Nt_dur + 1
+
+
+        ### Lobe values
+
+        Gbuffer1 = np.zeros(Nt_sep)
+
+        Gpos = Gval*np.ones(Nt_dur)
+        Gbuffer1[0:Nt_dur] = Gpos
+
+        Gneg = -Gval*np.ones(Nt_dur)
+        Gbuffer1[Nt_dur:Nt_dur+Nt_dur] = Gneg
+
+        Gbuffer2 = np.zeros(Nt_dur + Nt_dur)
+        Gbuffer2[:Nt_dur] = Gneg
+        Gbuffer2[Nt_dur:] = Gpos
+
+
+        Gtime= np.hstack((Gbuffer1,Gbuffer2))
+
+
+        Ntpoints_initial = Gtime.size                             # Number of time points required for the simulation
+
+        # Zero-padd the gradient waveform at the tail if a longer time series was required
+        if(Nsample is not None):
+            if(Ntpoints_initial>=Nsample):
+                Ntpoints_final = Ntpoints_initial     # If the generated waveform is already longer than the requested number of t-samples, just keep this longer one - it is the minimum you need for this PGSE measurement
+            else:
+                Nmissing = Nsample - Ntpoints_initial
+                Gtime = np.concatenate((Gtime,np.zeros(Nmissing)))    # Zero-padd at the end if the requested number of t-samples is larger than the duration of the gradient waveform obtained so far
+                Ntpoints_final = Gtime.size
+        else:
+            Ntpoints_final = Ntpoints_initial
+
+        # Get final time array
+        timearr = dt*np.linspace(0,float(Ntpoints_final)-1,Ntpoints_final)    # Time array (units: s)
+
+
+        # Get time-dependent components Gx(t), Gy(t), Gz(t)
+        grx = Gtime*gn[0]
+        gry = Gtime*gn[1]
+        grz = Gtime*gn[2]
+
+
+    # Return Gx(t), Gy(t), Gz(t) and time array
+    return grx, gry, grz, timearr
