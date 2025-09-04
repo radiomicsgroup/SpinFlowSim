@@ -115,7 +115,31 @@ class pipenet(builtins.object)
  |  pipenet was developed with python 3.10.8
  |  
  |  Methods defined here:
- |  
+ |
+ |  calcMicroPar(self,Nspins=2000)
+ |     Computes the microvascular properties characterising a vascular network.
+ |
+ |     vm, vs, vm_pw, qm, qs, qm_pw, lmp, lm, Npaths, rm, rm_pw, anb = obj.calcMicroPar()
+ |      
+ |     OPTIONAL INPUT PARAMETERS
+ |     * Nspins: number of spins to simulate for the calculation of anb (apparent network branching) (default: 2000). 
+ |                Note that Nspins = 5000 were used in the simulations in
+ |                voronova AK et al, Med Image Anal 2025, 102:103531, doi: 10.1016/j.media.2025.103531
+ |       
+ |     RETURNS:
+ |     * vm:     mean of the velocity distribution across capillary segments (units: mm/s)
+ |     * vs:     standard deviation of the velocity distribution across capillary segments (units: mm/s)
+ |     * vw:     path-weighted mean velocity distribution across capillary segments (units: mm/s)
+ |     * qm:     mean volumetric flow rate (units: mm3/s)
+ |     * qs:     standard deviation of volumetric flow rate (units: mm3/s)
+ |     * qw:     path-weighted mean volumetric flow rate (units: mm3/s)
+ |     * lmp:    mean length of input to output path (units: mm)
+ |     * lm:     mean capillary segment length (units: mm)
+ |     * npaths: number of input to output paths (units: paths)
+ |     * rm:     mean capillary radius (units: mm).
+ |     * rw:     path-weighted mean capillary radius (units: mm).
+ |     * anb:    average number of capillary segments spins travel through during a reference time of 100 ms (units: segments/100 ms)
+ |
  |  GetPathTraj(self, dt=2e-05)
  |      Calculates position, velocity and flow experienced by a spin travelling along all possible paths
  |      that connect the input node of the vascular network to the output node
