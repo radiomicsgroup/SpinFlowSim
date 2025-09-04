@@ -42,15 +42,15 @@ Each of these .npy arrays has 100 entries, reporting average network properties 
 - **variable _vm_**: mean value of the blood velocity distribution, in `mm/s`;
 - **variable _vs_**: standard deviation of the blood velocity distribution, in `mm/s`;
 - **variable _vw_**: path-weighted value of the mean blood velocity distribution, in `mm/s`;
-- **variable _qm_**: mean volumetric flow rate of the blood, in `mm<sup>3</sup>/s`;
-- **variable _qs_**: standard deviation of the volumetric flow rate of the blood, in `mm<sup>3</sup>/s`;
-- **variable _qw_**: path-weighted value of mean volumetric flow rate of the blood, in `mm<sup>3</sup>/s`;
+- **variable _qm_**: mean volumetric flow rate of the blood, in `mm³/s`; 
+- **variable _qs_**: standard deviation of the volumetric flow rate of the blood, in `mm³/s`;
+- **variable _qw_**: path-weighted value of mean volumetric flow rate of the blood, in `mm³/s`
 - **variable _lmp_**: mean length of the input to output path in a network, expressed in `mm`.
 - **variable _lm_**: mean length of a capillary segment, expressed in `mm`.
 - **variable _npaths_**: average number of input to output paths per network, expressed in `paths`.
 - **variable _rm_**: mean value of the capillary radius, expressed in `mm`.
 - **variable _rw_**: path-weighted value of the mean capillary radius, expressed in `mm`.
-- **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`.
+- **variable _anb_**: apparent network branching (ANB), expressed in `segments/100 ms`.
 
 These parameters are calculated and stored by running the [`calculate_microPars.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/calculate_microPars.py) script. The [`syn`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) module contains the method `calcMicroPar()` used to compute the microvascular properties shown in this analysis. You can read more about them in our [paper](https://doi.org/10.1016/j.media.2025.103531), or in this [README file](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md). 
 
