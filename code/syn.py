@@ -223,6 +223,117 @@ class pipenet():
 
 
 
+
+    def calcMicroPar(self,Nspins=2000):
+        '''
+        Computes the microvascular properties characterising a vascular network.
+        
+        OPTIONAL INPUT PARAMETERS
+        * Nspins: number of spins to simulate for the calculation of anb (apparent network branching) (default: 2000). 
+                  Note that Nspins = 5000 were used in the simulations in
+                  Voronova AK et al, Med Image Anal 2025, 102:103531, doi: 10.1016/j.media.2025.103531
+        
+        RETURNS:
+        - vm: mean of the velocity distribution across capillary segments (units: mm/s)
+        - vs: standard deviation of the velocity distribution across capillary segments (units: mm/s)
+        - vw: path-weighted mean velocity distribution across capillary segments (units: mm/s)
+        - qm: mean volumetric flow rate (units: mm3/s)
+        - qs: standard deviation of volumetric flow rate (units: mm3/s)
+        - qw: path-weighted mean volumetric flow rate (units: mm3/s)
+        - lmp: mean length of input to output path (units: mm)
+        - lm: mean capillary segment length (units: mm)
+        - npaths: number of input to output paths (units: paths)
+        - rm: mean capillary radius (units: mm).
+        - rw: path-weighted mean capillary radius (units: mm).
+        - anb: average number of capillary segments spins travel through during a reference time of 100 ms (units: segments/100 ms)
+        '''
+        ### Deal with inputs
+        if( not np.isscalar(Nspins) ):
+            raise RuntimeError('The number of molecules must be scalar integer > 0')
+        if( Nspins < 0 ):
+            raise RuntimeError('The number of molecules must be scalar integer > 0')
+        if( not isinstance(Nspins, int) ):
+            raise RuntimeError('ERROR. The number of molecules must be a scalar integer > 0')
+    
+        connectivity = np.abs(self.connmat) # connectivity matrix storing node connections
+    
+        v = np.abs(self.velmat)            
+        varray = v[connectivity==1]         # exclude nodes with -1 connectivity due to symmetry
+        vm = np.mean(varray)                # mean velocity  (mm/s)
+        vs = np.std(varray)                 # standard deviation of velocity  (mm/s)
+        
+    
+        q = np.abs(self.flowmat)            
+        qarray = q[connectivity==1]
+        qm = np.mean(qarray)                # mean volumetric flow rate  (mm3/s)
+        qs = np.std(qarray)                 # standard deviation of volumetric flow rate  (mm3/s)
+    
+    
+        r = np.abs(self.radmat)
+        rarray = r[connectivity==1]        
+        rm = np.mean(rarray)                # mean radius (mm)
+    
+    
+        l = np.abs(self.lengthmat)
+        larray = l[connectivity==1]   
+        lm = np.mean(larray)                # mean segment length (mm)
+    
+    
+        # Calculate path-weighted metrics
+        rm_pw = []
+        vm_pw = []
+        qm_pw = []
+        totpaths = []
+        qpaths = self.iopaths               # List of all possible paths from input node to output node
+        Npaths = len(qpaths)                # Number of paths
+        for ii in range(0,Npaths):
+            mypath = qpaths[ii]             # List of nodes the current path passes through
+            nsegs = len(mypath) - 1         # Number of segments particles in this path go through
+            r_Npaths = []
+            q_Npaths = []
+            v_Npaths = []
+            l_Npaths = []
+            for nn in range(0,nsegs):        # Loop over segments making up the current path
+                l_Npaths.append(l[nn,nn+1])
+                r_Npaths.append(r[nn,nn+1])
+                v_Npaths.append(v[nn,nn+1])
+                q_Npaths.append(q[nn,nn+1])
+    
+            PL = np.nansum(np.array(l_Npaths)) 
+            rweighted = np.nansum(np.array(r_Npaths)*np.array(l_Npaths))/PL  
+            vweighted = np.nansum(np.array(v_Npaths)*np.array(l_Npaths))/PL  
+            qweighted = np.nansum(np.array(q_Npaths)*np.array(l_Npaths))/PL  
+            rm_pw.append(rweighted)
+            vm_pw.append(vweighted)
+            qm_pw.append(qweighted)
+            totpaths.append(PL)
+    
+        rm_pw = np.array(rm_pw)
+        vm_pw = np.array(vm_pw)
+        qm_pw = np.array(qm_pw)
+        totpaths = np.array(totpaths)
+    
+        rm_pw = np.sum(rm_pw*totpaths)/np.sum(totpaths) # path-weighted mean radius
+        vm_pw = np.sum(vm_pw*totpaths)/np.sum(totpaths) # path-weighted mean velocity
+        qm_pw = np.sum(qm_pw*totpaths)/np.sum(totpaths) # path-weighted mean volumetric flow rate
+        lmp = np.mean(totpaths)                         # mean length of input to output path 
+        # Synthesize one diffusion-weighted measurement with duration 100 ms
+        bufferlist = self.dMRISynMea(bval=100.0,Gdur=0.030,Gsep=0.070,Gdir=np.array((1.0,0.0,0.0)),Nspins=Nspins,dt=1e-5)
+        flowwalk = bufferlist[3]    # Trajectories over time of all spins
+        
+        # Calculate differences in trajectories betweem successive timesteps 
+        traj_diffs = np.diff(flowwalk, axis=1)
+        traj_diffs_t= traj_diffs.transpose(2, 1, 0).reshape(-1, 3)
+        changes = np.sum(np.any(traj_diffs_t[1:] != traj_diffs_t[:-1], axis=1))
+    
+        #  Count the average number of changes in trajectories for 5000 spins across -x, -y, -z directions
+        anb = changes / Nspins  
+    
+        return  vm, vs, vm_pw, qm, qs, qm_pw, lmp, lm, Npaths, rm, rm_pw, anb
+    
+    
+    
+    
     def dMRISynMea(self,bval,Gdur,Gsep,Gdir,Nspins=2000,dt=2e-5,Gx=None,Gy=None,Gz=None,rndseed=20181019,bcon='periodic'):
         '''
         Synthesises a diffusion-weighted MRI measurement from protons flowing within a vascular network
@@ -1745,6 +1856,8 @@ def getGradPGSE(bval, Gdur, Gsep, Gdir, dt, Nsample=None):
 
     # Return Gx(t), Gy(t), Gz(t) and time array
     return grx, gry, grz, timearr
+
+
 
 
 def getGradVelcomp(bval, tau , Gsep, Gdir, dt, Nsample=None):
