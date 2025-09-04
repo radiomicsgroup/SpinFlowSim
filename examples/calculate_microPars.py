@@ -5,10 +5,8 @@ sys.path.insert(0, '../code' )      # Add the SpinFlowSim folder where the syn.p
 import syn
 import visu
 import os
-from parsana import calcMicroPar, anaNetBran
 
 
-Nmol_sim = 5000 # number of spins in simulation
 
 # List of vascular networks
 networkID = [f"Net{i}" for i in range(1, 16)]
@@ -19,11 +17,18 @@ for ss in range(Nnets):
 
     # Intialize lists storing microvascular parameters
     Pars_vm = []
-    Pars_lm = []
-    Pars_rm = []
     Pars_vs = []
+    Pars_vw = []
+    Pars_qm = []
+    Pars_qs = []
+    Pars_qw = []
+    Pars_lmp = []
+    Pars_lm = []
+    Pars_npaths = []
+    Pars_rm = []
+    Pars_rw = []
     Pars_anb = []
-
+    
     folder_path = os.path.join('..', 'networks', networkID[ss]) # path to folder containg vascular network realizations 
     files = os.listdir(folder_path)
 
@@ -35,29 +40,20 @@ for ss in range(Nnets):
             with open(infile_path, 'rb') as net_file:  # Open the `.bin` file to load each network realization
                 net = pk.load(net_file)
 
-                vm, vs, lm, rm = calcMicroPar(net)  # Calculate the average microvascular parameters per network: 
-                                                    # vm: mean velocity, vs: standard deviation of velocity, 
-                                                    # lm: mean segment length, rm: mean radius
-                                                    
-                # Synthesize a diffusion-weighted MRI measurement from protons flowing within a vascular network for a unique b-value
-                gdir = np.array((1.0,0.0,0.0))      # use fixed gradient direction
-                out = net.dMRISynMea(
-                    bval = 100.0, 
-                    Gdur = 0.030, 
-                    Gsep = 0.070, 
-                    Gdir = gdir, 
-                    Nspins = Nmol_sim, 
-                    dt = 1e-5,  
-                    )
-                
-                rmat = out[3] # Access matrix storing the trajectories of the spins (units: mm)
-                
-                anb = anaNetBran(rmat, Nmol_sim) # Obtain the average number of changes a spin experiences for the simulated DW-MRI measurement in the network
-            
+                # Calculate the average microvascular parameters per network
+                vm, vs, vm_pw, qm, qs, qm_pw, lmp, lm, Npaths, rm, rm_pw, anb = net.calcMicroPar(Nspins=5000)    # Nspins = number of spins for anb calculation
+
                 Pars_vm.append(vm)
                 Pars_vs.append(vs)
+                Pars_vw.append(vm_pw)
+                Pars_qm.append(qm)
+                Pars_qs.append(qs)
+                Pars_qw.append(qm_pw)
+                Pars_lmp.append(lmp)
                 Pars_lm.append(lm)
+                Pars_npaths.append(Npaths)
                 Pars_rm.append(rm)
+                Pars_rw.append(rm_pw)
                 Pars_anb.append(anb) 
 
 
@@ -68,9 +64,18 @@ for ss in range(Nnets):
     
     np.save(os.path.join(target_folder, '{}_Pars_vm.npy'.format(saveas)), Pars_vm)
     np.save(os.path.join(target_folder, '{}_Pars_vs.npy'.format(saveas)), Pars_vs)
+    np.save(os.path.join(target_folder, '{}_Pars_vw.npy'.format(saveas)), Pars_vw)
+    np.save(os.path.join(target_folder, '{}_Pars_qm.npy'.format(saveas)), Pars_qm)
+    np.save(os.path.join(target_folder, '{}_Pars_qs.npy'.format(saveas)), Pars_qs)
+    np.save(os.path.join(target_folder, '{}_Pars_qw.npy'.format(saveas)), Pars_qw)
+    np.save(os.path.join(target_folder, '{}_Pars_lmp.npy'.format(saveas)), Pars_lmp)
     np.save(os.path.join(target_folder, '{}_Pars_lm.npy'.format(saveas)), Pars_lm)
+    np.save(os.path.join(target_folder, '{}_Pars_npaths.npy'.format(saveas)), Pars_npaths)
     np.save(os.path.join(target_folder, '{}_Pars_rm.npy'.format(saveas)), Pars_rm)
+    np.save(os.path.join(target_folder, '{}_Pars_rw.npy'.format(saveas)), Pars_rw)
     np.save(os.path.join(target_folder, '{}_Pars_anb.npy'.format(saveas)), Pars_anb)
+
+
 
 
     
