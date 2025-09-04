@@ -27,15 +27,32 @@ The vascular parameters required for this tutorial can be found in the [`data_fo
 
 - [Net1_Pars_vm.npy](data_for_plots/Net1/Net1_Pars_vm.npy)
 - [Net1_Pars_vs.npy](data_for_plots/Net1/Net1_Pars_vs.npy)
+- [Net1_Pars_vw.npy](data_for_plots/Net1/Net1_Pars_vw.npy)  (WIP)
+- [Net1_Pars_qm.npy](data_for_plots/Net1/Net1_Pars_qm.npy)  (WIP)
+- [Net1_Pars_qs.npy](data_for_plots/Net1/Net1_Pars_qs.npy)  (WIP)
+- [Net1_Pars_qw.npy](data_for_plots/Net1/Net1_Pars_qw.npy)  (WIP)
+- [Net1_Pars_lmp.npy](data_for_plots/Net1/Net1_Pars_lmp.npy) (WIP)
+- [Net1_Pars_lm.npy](data_for_plots/Net1/Net1_Pars_lm.npy)   (WIP)
+- [Net1_Pars_npaths.npy](data_for_plots/Net1/Net1_Pars_npaths.npy)   (WIP)
+- [Net1_Pars_rm.npy](data_for_plots/Net1/Net1_Pars_rm.npy)   (WIP)
+- [Net1_Pars_rw.npy](data_for_plots/Net1/Net1_Pars_rw.npy)   (WIP)
 - [Net1_Pars_anb.npy](data_for_plots/Net1/Net1_Pars_anb.npy)
 
-Each of these .npy arrays has 100 entries, reporting average network properties for each network realization (remember that we obtain 100 different instantiations of each of our 15 networks, by varying inlet/outlet as well as the input flow - see more about this [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/README.md)). The three array report values of three different vascular properties, namely:
+Each of these .npy arrays has 100 entries, reporting average network properties for each network realization (remember that we obtain 100 different instantiations of each of our 15 networks, by varying inlet/outlet as well as the input flow - see more about this [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/README.md)). The twelve arrays report values of twelve different vascular properties, namely:
 - **variable _vm_**: mean value of the blood velocity distribution, in `mm/s`;
 - **variable _vs_**: standard deviation of the blood velocity distribution, in `mm/s`;
+- **variable _vw_**: path-weighted value of the mean blood velocity distribution, in `mm/s`;
+- **variable _qm_**: mean volumetric flow rate of the blood, in `mm<sup>3</sup>/s`;
+- **variable _qs_**: standard deviation of the volumetric flow rate of the blood, in `mm<sup>3</sup>/s`;
+- **variable _qw_**: path-weighted value of mean volumetric flow rate of the blood, in `mm<sup>3</sup>/s`;
+- **variable _lmp_**: mean length of the input to output path in a network, expressed in `mm`.
+- **variable _lm_**: mean length of a capillary segment, expressed in `mm`.
+- **variable _npaths_**: average number of input to output paths per network, expressed in `paths`.
+- **variable _rm_**: mean value of the capillary radius, expressed in `mm`.
+- **variable _rw_**: path-weighted value of the mean capillary radius, expressed in `mm`.
 - **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`.
 
-These parameters are calculated and stored by running the [`calculate_microPars.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/calculate_microPars.py) script. The [`parsana.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/parsana.py)
-module contains the functions used for this analysis. You can read more about them in our [paper](https://doi.org/10.1016/j.media.2025.103531), or in this [README file](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md). 
+These parameters are calculated and stored by running the [`calculate_microPars.py`](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/examples/calculate_microPars.py) script. The [`syn`](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/code/syn.py) module contains the method `calcMicroPar()` used to compute the microvascular properties shown in this analysis. You can read more about them in our [paper](https://doi.org/10.1016/j.media.2025.103531), or in this [README file](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks/README.md). 
 
 ### Synthetic dMRI signals
 
