@@ -50,7 +50,7 @@ Each _pipenet_ object storing a network is accompanied by a small CSV file beari
 As an example, the content of one of these CSV files would look something like this:
 ```
 vm,vs,vw,qm,qs,qw,lmp,lm,npaths,rm,rw,anb
-0.76,0.99,1.52,1.89e-05,2.03e-05,2.14e-05,0.316,0.0462,150,0.0031,0.00196,6.26
+0.58,0.73,0.47,2.98e-05,2.69e-05,3.17e-05,0.864,0.0682,229,0.00471,0.00427,3.02
 ```
 
 ### Using vascular networks and their properties
