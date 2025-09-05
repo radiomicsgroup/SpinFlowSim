@@ -31,17 +31,26 @@ A file name `net10_Nin0_Nout28_Qin0.0001.bin` indicates that:
 - the input volumetric flow rate is `1 × 10⁻⁴ mm³/s`.
 
 ### Network properties (.csv files)
-Each _pipenet_ object storing a network is accompanied by a small CSV file bearing the same name, and storing summary network properties. For example, the network file  [_net10_Nin0_Nout28_Qin0.0001.bin_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.bin) has a companion CSV file called  [_net10_Nin0_Nout28_Qin0.0001.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.csv). Each of these CSV files has 5 columns, reporting 5 network properties:
+Each _pipenet_ object storing a network is accompanied by a small CSV file bearing the same name, and storing summary network properties. For example, the network file  [_net10_Nin0_Nout28_Qin0.0001.bin_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.bin) has a companion CSV file called  [_net10_Nin0_Nout28_Qin0.0001.csv_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/networks/Net10/net10_Nin0_Nout28_Qin0.0001.csv). Each of these CSV files has 12 columns, reporting 12 network properties:
+
 - **variable _vm_**: mean value of the blood velocity distribution, in `mm/s`;
 - **variable _vs_**: standard deviation of the blood velocity distribution, in `mm/s`;
-- **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`. This is a count of the number of capillary segments that spins flowing through the network pass through during a given observation time (in this case, 100 ms);
-- **variable _rm_**: mean capillary segment radius, in `µm`;
-- **variable _lm_**: mean capillary segment length, in `µm`.
+- **variable _vw_**: path-weighted value of the mean blood velocity distribution, in `mm/s`;
+- **variable _qm_**: mean volumetric flow rate of the blood, in `mm³/s`; 
+- **variable _qs_**: standard deviation of the volumetric flow rate of the blood, in `mm³/s`;
+- **variable _qw_**: path-weighted value of mean volumetric flow rate of the blood, in `mm³/s`
+- **variable _lmp_**: mean length of the input to output path in a network, expressed in `mm`.
+- **variable _lm_**: mean length of a capillary segment, expressed in `mm`.
+- **variable _npaths_**: average number of input to output paths per network, expressed in `paths`.
+- **variable _rm_**: mean capillary segment radius, in `mm`;
+- **variable _rw_**: path-weighted value of the mean capillary segment radius, expressed in `mm`.
+- **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`. This is a count of the number of capillary segments that spins flowing through the network pass through during a given observation time (in this case, 100 ms)
+
 
 As an example, the content of one of these CSV files would look something like this:
 ```
-vm,vs,anb,rm,lm
-4.56,3.23,14.76,5.67,19.56
+vm,vs,vw,qm,qs,qw,lmp,lm,npaths,rm,rw,anb
+0.76,0.99,1.52,1.89e-05,2.03e-05,2.14e-05,0.316,0.0462,150,0.0031,0.00196,6.26
 ```
 
 ### Using vascular networks and their properties
