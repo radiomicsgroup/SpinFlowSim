@@ -1535,7 +1535,7 @@ def ComputeFlow(radmat,resmat,nodein,nodeout,qin,solver='numerical'):
         cnet = Circuit('')
 
         # # Add a current generator
-        cnet.I('q',f'{nodein}', f'{nodeout}', qin)
+        cnet.I('q', f'{nodein:03d}', f'{nodeout:03d}', qin)
 
         # # Add resistors according to the given vascular network structure
         Nnodes = radmat.shape[0]
@@ -1544,7 +1544,7 @@ def ComputeFlow(radmat,resmat,nodein,nodeout,qin,solver='numerical'):
                 radij = radmat[ii,jj]
                 if( (~np.isnan(radij)) and (radij!=0) ):
                     rij = resmat[ii,jj]
-                    cnet.R(f'{ii}{jj}',f'{ii}', f'{jj}', rij).minus.add_current_probe(cnet)        
+                    cnet.R(f'{ii:03d}{jj:03d}', f'{ii:03d}', f'{jj:03d}', rij).minus.add_current_probe(cnet)      
 
         # # Create analysis of circuit 
         simulator = cnet.simulator(temperature=25, nominal_temperature=25)
@@ -1553,19 +1553,30 @@ def ComputeFlow(radmat,resmat,nodein,nodeout,qin,solver='numerical'):
         # # Get electric currents through each link connecting a pair of nodes and build a volumetric flow matrix
         qmat = np.zeros((Nnodes,Nnodes))
         for key in analysis.branches.keys():
-            # kkk = str(key)
-            if len(key) == 10:
-                ii, jj = int(key[2]), int(key[3])
-            elif len(key) == 11:
-                ii, jj = int(key[2]), int(key[3:5])
-            elif len(key) == 12:
-                ii, jj = int(key[2:4]), int(key[4:6])
-            else:
+            key_str = str(key)
+            
+            # Skip if not a resistor branch
+            if not (key_str.startswith('vr') and key_str.endswith('_minus')):
                 continue
             
-            myvalij = float(analysis.branches[key])
-            qmat[ii, jj] = myvalij
-            qmat[jj, ii] = -myvalij
+            try:
+                # Extract numeric part between 'vr' and '_minus'
+                numeric_part = key_str[2:-6]
+                
+                # Parse as two 3-digit numbers
+                if len(numeric_part) == 6:
+                    ii = int(numeric_part[:3])   
+                    jj = int(numeric_part[3:])   
+                    
+                    # Validate node indices
+                    if 0 <= ii < Nnodes and 0 <= jj < Nnodes:
+                        myvalij = float(analysis.branches[key].as_ndarray().item())
+                        qmat[ii, jj] = myvalij
+                        qmat[jj, ii] = -myvalij
+                    
+            except (ValueError, IndexError) as e:
+                print(f"Error parsing key '{key_str}': {e}")
+                continue
 
         # Put NaNs along the diagonal
         for ii in range(0,Nnodes):
