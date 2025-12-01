@@ -18,7 +18,9 @@ Tutorial 2 contains the following sections:
 * [Scatter plots showing parameter estimation results](#corr)
 
 ## Description of the data of this tutorial  <a name="data-4-plots"></a>
-To run this tutorial, we need synthetic dMRI signals and corresponding sets of vascular parameters. We will work with the 15 vascular networks used in our [paper](https://doi.org/10.1016/j.media.2025.103531), which we distribute with _SpinFlowSim_ [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks).
+In this tutorial we will perform experiments _in silico_. In practice, we will use synthetic signals to develop numerical signal models, and we will then use the developed models to estimate microvascular properties on additional synthetic signals, which were not used to build the models themselves. Essentially, this replicates the _in silico_ validation of our [paper](https://doi.org/10.1016/j.media.2025.103531). 
+
+To run this tutorial, we need synthetic dMRI signals and corresponding sets of vascular parameters. We will work with the 15 vascular networks used in our [paper](https://doi.org/10.1016/j.media.2025.103531), which we distribute with _SpinFlowSim_ [here](https://github.com/radiomicsgroup/SpinFlowSim/tree/main/networks). 
 
 
 ### Vascular parameters
