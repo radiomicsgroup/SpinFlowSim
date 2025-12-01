@@ -375,4 +375,4 @@ This tutorial has shown you how to use the _pipenet_ class defined in module [_s
   * `getGradPGSE()` generates diffusion encoding gradient wave forms for an ideal PGSE sequence.
 
 ## Next tutorial
-Next, [tutorial 2](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial1.md) shows how to use vascular networks and their synthetic signals to inform microvascular parameter estimation on unseen signals.
+Next, [tutorial 2](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/tutorial2.md) shows how to use vascular networks and their synthetic signals to inform microvascular parameter estimation on unseen signals.
