@@ -268,6 +268,13 @@ plt.show()
 </div>
 
 
+A network can be characterised by several different properties, e.g., its mean capillary radius, its mean capillary length, mean/standard deviation of blood velocity or volumetric flow rate, etc. To get all the properties stores within an array, simply make use of the `calcMicroPar()` method:
+```
+property_array = net.calcMicroPar()
+```
+The array `property_array`stores the following properties, in this order:
+vm, vs, vm_pw, qm, qs, qm_pw, lmp, lm, Npaths, rm, rm_pw, anb
+
 ## Synthesising vascular diffusion MRI signals <a name="dmri-signals"></a>
 Finally, once we have drawn a vascular network on histology, and used such data to initialise a _pipenet_ vascular network obkect, we can use it to generate realistic vascular dMRI signals! Continuing the example above, we now show you how to generate signals from the kidney vascular network initialised by previous script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py).
 
