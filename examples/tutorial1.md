@@ -268,12 +268,24 @@ plt.show()
 </div>
 
 
-A network can be characterised by several different properties, e.g., its mean capillary radius, its mean capillary length, mean/standard deviation of blood velocity or volumetric flow rate, etc. To get all the properties stores within an array, simply make use of the `calcMicroPar()` method:
+A network can be characterised by several different properties, e.g., its mean capillary radius, its mean capillary length, mean/standard deviation of blood velocity or volumetric flow rate, etc. To get all the properties stores within an array, simply make use of the `calcMicroPar()` method (please also see [tutorial 2](https://raw.githubusercontent.com/radiomicsgroup/SpinFlowSim/refs/heads/main/examples/tutorial2.md)):
 ```
 property_array = net.calcMicroPar()
 ```
 The array `property_array`stores the following properties, in this order:
-vm, vs, vm_pw, qm, qs, qm_pw, lmp, lm, Npaths, rm, rm_pw, anb
+- **variable _vm_**: mean value of the blood velocity distribution, in `mm/s`;
+- **variable _vs_**: standard deviation of the blood velocity distribution, in `mm/s`;
+- **variable _vw_**: path-weighted value of the mean blood velocity distribution, in `mm/s`;
+- **variable _qm_**: mean volumetric flow rate of the blood, in `mm³/s`; 
+- **variable _qs_**: standard deviation of the volumetric flow rate of the blood, in `mm³/s`;
+- **variable _qw_**: path-weighted value of mean volumetric flow rate of the blood, in `mm³/s`
+- **variable _lmp_**: mean length of the input to output path in a network, expressed in `mm`.
+- **variable _lm_**: mean length of a capillary segment, expressed in `mm`.
+- **variable _npaths_**: average number of input to output paths per network, expressed in `paths`.
+- **variable _rm_**: mean capillary segment radius, in `mm`;
+- **variable _rw_**: path-weighted value of the mean capillary segment radius, expressed in `mm`.
+- **variable _anb_**: apparent network branching (ANB), expressed in `number of segments`. This is the average number of capillary segments spins flow through during a reference time of  100 ms.
+
 
 ## Synthesising vascular diffusion MRI signals <a name="dmri-signals"></a>
 Finally, once we have drawn a vascular network on histology, and used such data to initialise a _pipenet_ vascular network obkect, we can use it to generate realistic vascular dMRI signals! Continuing the example above, we now show you how to generate signals from the kidney vascular network initialised by previous script [_script01_initnet.py_](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/script01_initnet.py).
