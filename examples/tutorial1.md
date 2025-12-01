@@ -32,7 +32,7 @@ To instantiate a new object from the _pipenet_ class you need the following mand
 
 Additional optional parameters are the **fluid viscosity**, the **radius at the inlet**, the **fluid dynamics model** and the **type of solver**. The full manual of the _pipenet_ class can be read [here](https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/manuals/pipenet_manual.md).
 
-For example, this code creates an initialises a _pipenet_ object describing a simple 2D 3-capillary network, made of 3 nodes, namely nodes 0, 1 and 2, as illustrated below. Connections are between nodes 0 and 1, between 0 and 2, and between 1 and 2; the input flow, of 0.0055 mm<sup>3</sup>/s, comes from node 0, and the output node is 2.
+For example, this code creates an initialises a _pipenet_ object describing a simple 2D 3-capillary network, made of 3 nodes, namely nodes 0, 1 and 2, as illustrated below. Connections are between nodes 0 and 1, between 0 and 2, and between 1 and 2; the input flow, of 0.0055 mm<sup>3</sup>/s, comes from node 0, and the output node is 2. Node 0 position is $(x,y,z) = (0.0, 0.0, 0.0) mm$; node 1 position is $(x,y,z) = (0.010, 0.020, 0.0) mm$; node 2 position is $(x,y,z) = (0.030, 0.0, 0.0) mm$. The radius of the capillary connecting node 0 and 1 is $0.005 mm$; the radius of the capillary connecting node 1 and 2 is $0.008 mm$; the radius of the capillary connecting node 0 and 2 is $0.007 mm$.
 
 <div align="center">
   <img src="https://github.com/radiomicsgroup/SpinFlowSim/blob/main/examples/imgs/networkexample.png" width="700" height="auto">
